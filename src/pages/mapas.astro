@@ -1,25 +1,58 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const EMBED_SRC =
+  "https://www.google.com/maps/d/u/1/embed?mid=1m6DWjCGFXBFTX0zg6xGLhB1Ujtr3WuM&ehbc=2E312F&noprof=1";
 ---
 
 <BaseLayout title="Mapas | Ruta Base">
   <style>
-    .box{
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 16px;
+    .wrap{ max-width: 1050px; }
+
+    .card{
       border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 16px;
-      background: rgba(255,255,255,0.55);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      padding: 14px;
     }
-    h1{ margin: 0 0 8px 0; }
+
+    .mapBox{
+      width: 100%;
+      height: 75vh;
+      min-height: 520px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.06);
+    }
+
+    .mapBox iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .muted{ color:#666; font-size:14px; margin: 10px 0 0; }
   </style>
 
-  <div class="box">
+  <div class="wrap">
     <h1>Mapas</h1>
-    <p class="muted">Próximamente.</p>
+
+    <div class="card">
+      <div class="mapBox">
+        <!-- Sin allowfullscreen y con noprof=1 -->
+        <iframe src={EMBED_SRC} loading="lazy"></iframe>
+      </div>
+
+      <p class="muted">
+        Mapa incrustado (sin botones de compartir ni pantalla completa de la web).
+      </p>
+    </div>
   </div>
 </BaseLayout>
+
+
 
 
 
