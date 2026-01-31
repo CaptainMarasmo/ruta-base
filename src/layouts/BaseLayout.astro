@@ -1,0 +1,131 @@
+---
+const {
+  title = "Ruta Base",
+  useVideoBg = false,
+  bgImage = "/fondo.png",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <style>
+      :root { font-family: system-ui, Arial; }
+      html, body { height: 100%; }
+
+      body{
+        margin: 0;
+        background: var(--bg) center/cover no-repeat fixed;
+        position: relative;
+        min-height: 100vh;
+      }
+
+      /* Si hay vídeo en esta página, quitamos la imagen */
+      body[data-video="1"]{
+        background: none;
+      }
+
+      /* Vídeo solo en Inicio cuando se active */
+      #bg-video{
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      /* Capa blanca para legibilidad */
+      body::before{
+        content:"";
+        position: fixed;
+        inset: 0;
+        background: rgba(255,255,255,0.65);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Barra morada estrecha */
+      header{
+        position: sticky;
+        top: 0;
+        height: 34px;
+        background: rgba(155, 120, 255, 0.22);
+        border-bottom: 1px solid rgba(90, 40, 160, 0.18);
+        z-index: 2;
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+      }
+
+      nav{
+        height: 34px;
+        display: flex;
+        gap: 8px;
+        padding: 0 10px;
+        overflow-x: auto;
+        align-items: center;
+        box-sizing: border-box;
+      }
+
+      /* TU ESTILO (tal cual) */
+      nav a{
+        display: inline-block;
+        text-decoration: none;
+        color: #1a0b2e;
+        padding: 0 8px;
+        border-radius: 8px;
+        white-space: nowrap;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 34px;
+      }
+
+      nav a:hover{
+        background: rgba(255,255,255,0.35);
+      }
+
+      main{
+        position: relative;
+        z-index: 1;
+        padding: 18px 14px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .muted{ color:#666; font-size:14px; }
+      .grid{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+      .card{ border:1px solid #eee; border-radius:14px; padding:14px; background: rgba(255,255,255,0.75); }
+    </style>
+  </head>
+
+  <body data-video={useVideoBg ? "1" : "0"} style={`--bg: url('${bgImage}')`}>
+    {useVideoBg && (
+      <video id="bg-video" autoplay muted loop playsinline preload="auto">
+        <source src="/fondo.mp4" type="video/mp4" />
+      </video>
+    )}
+
+    <header>
+      <nav>
+        <a href="/">Inicio</a>
+        <a href="/viajes">Viajes</a>
+        <a href="/ev">EV</a>
+        <a href="/msfs">Vuelo Virtual</a>
+        <a href="/galeria">Galería</a>
+        <a href="/mapas">Mapas</a>
+        <a href="/consejos">Consejos</a>
+        <a href="/sobre">Sobre mí</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+

@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Titanic | Ruta Base" bgImage="/fondo.png">
+  <style>
+    .hero{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+    .hero img{ width:240px; max-width:100%; border-radius:14px; border:1px solid rgba(0,0,0,0.08); background: rgba(255,255,255,0.65); }
+    .card{ border:1px solid rgba(0,0,0,0.08); border-radius:14px; padding:14px; background: rgba(255,255,255,0.75); }
+    .muted{ color: rgba(26,11,46,0.75); }
+  </style>
+
+  <h1>Titanic (2012)</h1>
+
+  <div class="hero">
+    <img src="/covers/titanic.png" alt="Titanic" />
+    <div class="card">
+      <p class="muted">Próximamente: Resumen, Itinerario, Imprescindibles, Costes, Mapa y Galería.</p>
+    </div>
+  </div>
+</BaseLayout>

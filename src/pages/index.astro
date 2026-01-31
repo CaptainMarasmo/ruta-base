@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Ruta Base" useVideoBg={true}>
+  <style>
+    @keyframes floatTitle {
+      0%   { transform: translateY(0px); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes glowTitle {
+      0%   { text-shadow: 0 0 0 rgba(155,120,255,0.0); }
+      50%  { text-shadow: 0 0 18px rgba(155,120,255,0.55); }
+      100% { text-shadow: 0 0 0 rgba(155,120,255,0.0); }
+    }
+    .hero-title{
+      display: inline-block;
+      animation: floatTitle 3.6s ease-in-out infinite, glowTitle 3.6s ease-in-out infinite;
+      color: #1a0b2e;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .hero-title{ animation: none; }
+    }
+  </style>
+
+  <div style="text-align:center; padding-top: 10px;">
+    <img
+      src="/logorb.png"
+      alt="Ruta Base"
+      style="width: 420px; max-width: 90vw; height: auto; display:block; margin: 22px auto 14px;"
+    />
+
+    <h1 style="margin: 0;">
+      <span class="hero-title">Aquí comienza la aventura</span>
+    </h1>
+
+    <p class="muted" style="margin-top: 8px;">Planificar, conocer, viajar y recordar.</p>
+  </div>
+</BaseLayout>
+
+
+
+
+
+

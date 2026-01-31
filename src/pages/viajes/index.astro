@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const viajes = [
+  { title: "Argentina", slug: "argentina", cover: "/covers/argentina.png", intro: "Diario, rutas y sitios clave.", year: "2025" },
+  { title: "México", slug: "mexico", cover: "/covers/mexico.png", intro: "Itinerario, comida, costes y mapa.", year: "2022" },
+  { title: "Francia", slug: "francia", cover: "/covers/francia.png", intro: "Rutas, pueblos y mejores momentos." },
+  { title: "Kenia", slug: "kenya", cover: "/covers/kenya.png", intro: "Safari, logística y consejos prácticos.", year: "2024" },
+
+  { title: "Estados Unidos", slug: "estados-unidos", cover: "/covers/estadosunidos.png", intro: "Ruta, paradas y notas del viaje.", year: "2011" },
+  { title: "Titanic", slug: "titanic", cover: "/covers/titanic.png", intro: "Historia, visita y apuntes del viaje.", year: "2012" },
+];
+---
+
+<BaseLayout title="Viajes | Ruta Base">
+  <style>
+    .cards{
+      display:grid;
+      gap:14px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    }
+
+    .cardLink{
+      display:block;
+      text-decoration:none;
+      color:#111;
+      border:1px solid #eee;
+      border-radius:14px;
+      overflow:hidden;
+      background: rgba(255,255,255,0.75);
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      cursor:pointer;
+    }
+
+    .cover{
+      height:140px;
+      position:relative;
+      background:#f3f3f3;
+      background-image: var(--img);
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
+    }
+
+    .cover::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0);
+      transition: background 180ms ease;
+      pointer-events:none;
+    }
+
+    .cardLink:hover .cover::after{
+      background: rgba(0,0,0,0.35);
+    }
+
+    .cardLink:hover{
+      transform: translateY(-2px);
+      border-color: rgba(155,120,255,0.55);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    }
+  </style>
+
+  <h1>Viajes</h1>
+
+  <div class="cards">
+    {viajes.map((v) => (
+      <a class="cardLink" href={`/viajes/${v.slug}`}>
+        <div class="cover" style={`--img: url('${v.cover}')`}></div>
+
+        <div style="padding:12px;">
+          <div style="font-weight:800;">{v.title}</div>
+          <div class="muted" style="margin-top:6px;">{v.intro}</div>
+          <div style="color:#999;font-size:12px;margin-top:10px;">{v.year ?? ""}</div>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
