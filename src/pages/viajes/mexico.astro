@@ -1,29 +1,699 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import itinerarioRaw from "../../data/mexico.js";
 
-const title = "México";
-const cover = "/covers/mexico.jpg";
+type Dia = {
+  day: number;
+  title: string;
+  text?: string;
+};
+
+const itinerario: Dia[] = Array.isArray(itinerarioRaw)
+  ? [...(itinerarioRaw as Dia[])].sort((a, b) => (a.day ?? 0) - (b.day ?? 0))
+  : [];
+
+const daysSet = new Set(itinerario.map((d) => d.day));
+
+const nextExistingDay = (day: number): number | null => {
+  for (let i = day + 1; i <= 365; i++) {
+    if (daysSet.has(i)) return i;
+  }
+  return null;
+};
 ---
 
-<BaseLayout title={`${title} | Ruta Base`}>
-  <h1>{title}</h1>
-  <div style={`height:220px;border-radius:16px;background:#f3f3f3 url(${cover}) center/cover no-repeat;`}></div>
+<BaseLayout title="México | Ruta Base">
+  <style>
+    .hero{
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+      background: rgba(255,255,255,0.75);
+      margin-bottom: 16px;
+    }
 
-  <h2 style="margin-top:18px;">Resumen</h2>
-  <p>…</p>
+    .heroImg{
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
 
-  <h2>Itinerario</h2>
-  <p>…</p>
+    .pad{ padding: 14px; }
 
-  <h2>Imprescindibles</h2>
-  <p>…</p>
+    .toc{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 16px;
+    }
 
-  <h2>Costes</h2>
-  <p>…</p>
+    .toc a{
+      display: inline-block;
+      text-decoration: none;
+      color: #1a0b2e;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(0,0,0,0.08);
+      font-weight: 700;
+      font-size: 13px;
+    }
 
-  <h2>Mapa</h2>
-  <p>…</p>
+    .toc a:hover{
+      background: rgba(155,120,255,0.22);
+    }
 
-  <h2>Galería</h2>
-  <p>…</p>
+    /* Secciones plegables */
+    details.sec{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    summary.secSummary{
+      list-style: none;
+      cursor: pointer;
+      padding: 14px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #1a0b2e;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    summary.secSummary::-webkit-details-marker{ display:none; }
+
+    .secCaret{
+      font-size: 18px;
+      opacity: 0.7;
+      transform: rotate(-90deg);
+      transition: transform 0.18s ease;
+    }
+
+    details[open] .secCaret{
+      transform: rotate(0deg);
+    }
+
+    .secBody{
+      padding: 0 14px 14px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .dots{
+      color: #666;
+      margin: 10px 0 0 0;
+    }
+
+    /* Itinerario */
+    .dayList{
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    details.day{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.65);
+      overflow: hidden;
+    }
+
+    summary.daySummary{
+      list-style: none;
+      cursor: pointer;
+      padding: 12px;
+      font-weight: 800;
+      color: #1a0b2e;
+      user-select: none;
+    }
+
+    summary.daySummary::-webkit-details-marker{ display:none; }
+
+    .dayBody{
+      padding: 0 12px 12px 12px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .dayText{
+      margin: 10px 0 0 0;
+      color: #222;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .nextRow{
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .nextBtn{
+      display: inline-block;
+      text-decoration: none;
+      color: #1a0b2e;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(155,120,255,0.22);
+      border: 1px solid rgba(155,120,255,0.45);
+    }
+
+    .nextBtn:hover{
+      background: rgba(155,120,255,0.30);
+    }
+
+    /* MAPA (pequeño + clic para ampliar) */
+    .mapWrap{
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .mapBox{
+      width: 21%;
+      max-width: 240px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.65);
+    }
+
+    .mapBtn{
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+    }
+
+    .mapImg{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 800px){
+      .mapBox{ width: 55%; max-width: 340px; }
+    }
+
+    /* GALERIA */
+    #galeria h3{
+      margin: 14px 0 8px 0;
+      font-size: 15px;
+      color: #1a0b2e;
+    }
+
+    .videoGrid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 900px){
+      .videoGrid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .videoGrid{ grid-template-columns: 1fr; }
+    }
+
+    .videoGrid iframe{
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.04);
+    }
+
+    .photoGrid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .photoBtn{
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .photoBtn img{
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.10);
+      display: block;
+      transition: transform 0.18s ease;
+    }
+
+    .photoBtn:hover img{
+      transform: scale(1.03);
+    }
+
+    .noScroll{
+      overflow: hidden;
+    }
+
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9999;
+    }
+
+    .lightbox.open{
+      display: block;
+    }
+
+    .lbBackdrop{
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+    }
+
+    .lbPanel{
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .lbImg{
+      max-width: min(92vw, 980px);
+      max-height: 82vh;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .lbClose{
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-size: 26px;
+      line-height: 36px;
+      cursor: pointer;
+    }
+
+    .lbNav{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 56px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-size: 34px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lbPrev{ left: 14px; }
+    .lbNext{ right: 14px; }
+
+    .lbCounter{
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+    }
+  </style>
+
+  <h1>México</h1>
+
+  <div class="hero">
+    <img class="heroImg" src="/mexicoyo.jpg" alt="México" />
+    <div class="pad">
+      <p class="muted">México y su cultura azteca.</p>
+    </div>
+  </div>
+
+  <div class="toc">
+    <a href="#resumen">Resumen</a>
+    <a href="#itinerario">Itinerario</a>
+    <a href="#imprescindibles">Imprescindibles</a>
+    <a href="#costes">Costes</a>
+    <a href="#mapa">Mapa</a>
+    <a href="#galeria">Galería</a>
+  </div>
+
+  <details class="sec" id="resumen">
+    <summary class="secSummary">
+      <span>Resumen</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <p>
+        Historias de México Lindo es la crónica de un viaje por México tras la pandemia donde se narra, día a día, lo que vive el autor en diferentes lugares del país. El blog arranca dando la bienvenida a la “nueva aventura por la antigua tierra de los Mayas”, lo que ya sitúa el tono: un recorrido por lugares con historia, cultura y paisaje variado.
+        <br /><br />
+        En una de las entradas, durante lo que llaman Día 13, visitan las ruinas arqueológicas de Monte Albán, una de las zonas históricas más conocidas del país, localizada cerca de Oaxaca. Tras la visita, pasean por las calles de Oaxaca, comen en un restaurante local, participan en un taller de alebrijes, prueban chocolate artesanal, recorren el mercado y cierran el día con músicos callejeros.
+        <br /><br />
+        Ese día resume bien lo que ofrece el blog: historia ancestral, ciudades vivas, gastronomía y experiencias culturales contadas desde dentro, paso a paso.
+      </p>
+    </div>
+  </details>
+
+  <details class="sec" id="itinerario">
+    <summary class="secSummary">
+      <span>Itinerario</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <div class="dayList">
+        {itinerario.map((d) => {
+          const nextDay = nextExistingDay(d.day);
+          const hasText = typeof d.text === "string" && d.text.trim().length > 0;
+
+          return (
+            <details class="day" id={`dia-${d.day}`}>
+              <summary class="daySummary">Día {d.day} — {d.title}</summary>
+
+              <div class="dayBody">
+                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">…</p>}
+
+                {nextDay && (
+                  <div class="nextRow">
+                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día →</a>
+                  </div>
+                )}
+              </div>
+            </details>
+          );
+        })}
+      </div>
+    </div>
+  </details>
+
+  <details class="sec" id="imprescindibles">
+    <summary class="secSummary">
+      <span>Imprescindibles</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <p class="dots">…</p>
+    </div>
+  </details>
+
+  <details class="sec" id="costes">
+    <summary class="secSummary">
+      <span>Costes</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <p class="dots">…</p>
+    </div>
+  </details>
+
+  <details class="sec" id="mapa">
+    <summary class="secSummary">
+      <span>Mapa</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <div class="mapWrap">
+        <div class="mapBox">
+          <button class="mapBtn" type="button" id="openMap">
+            <img class="mapImg" src="/mapa_mexico.png" alt="Mapa de México (ruta)" />
+          </button>
+        </div>
+      </div>
+
+      <p class="dots">Próximamente: mapa interactivo.</p>
+    </div>
+  </details>
+
+  <details class="sec" id="galeria">
+    <summary class="secSummary">
+      <span>Galería</span><span class="secCaret">▾</span>
+    </summary>
+
+    <div class="secBody">
+      <h3>Vídeos</h3>
+      <div class="videoGrid">
+        <iframe src="https://www.youtube.com/embed/TU7oWZIwur8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/sXOJrkP26rs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/eIDZ0ZxSV5M" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/8SSYP6VHeKc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/VRW1ABr31gs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/fGOnMESCS1I" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/AFPzudzs8uc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/ywgnsRvB_mE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/ReCXF5U0hMU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+
+      <h3>Fotos</h3>
+      <div class="photoGrid" id="photoGrid">
+        <button class="photoBtn" type="button"><img src="/galeria/mex1.jpg" alt="México 1" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex2.jpg" alt="México 2" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex3.jpg" alt="México 3" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex4.jpg" alt="México 4" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex5.jpg" alt="México 5" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex6.jpg" alt="México 6" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex7.jpg" alt="México 7" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex8.jpg" alt="México 8" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex9.jpg" alt="México 9" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex10.jpg" alt="México 10" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex11.jpg" alt="México 11" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex12.jpg" alt="México 12" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex13.jpg" alt="México 13" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex14.jpg" alt="México 14" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex15.jpg" alt="México 15" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex16.jpg" alt="México 16" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex17.jpg" alt="México 17" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex18.jpg" alt="México 18" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex19.jpg" alt="México 19" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/mex20.jpg" alt="México 20" loading="lazy" /></button>
+      </div>
+
+      <!-- LIGHTBOX (fotos + mapa) -->
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lbBackdrop" id="lbBackdrop"></div>
+
+        <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
+          <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
+
+          <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
+          <img class="lbImg" id="lbImg" alt="" />
+          <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
+
+          <div class="lbCounter" id="lbCounter">1 / 1</div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <script is:inline>
+    (function () {
+      // --- SECCIONES: abrir por hash / toc ---
+      const getDetailsById = (id) => document.getElementById(id);
+
+      const openSection = (id) => {
+        const d = getDetailsById(id);
+        if (d && d.tagName.toLowerCase() === "details") d.open = true;
+        return d;
+      };
+
+      const closeAllSectionsExcept = (keepId) => {
+        document.querySelectorAll("details.sec").forEach((d) => {
+          if (d.id !== keepId) d.open = false;
+        });
+      };
+
+      const openFromHash = () => {
+        const raw = (location.hash || "").slice(1);
+        if (!raw) return;
+
+        // Si es un día del itinerario
+        if (raw.startsWith("dia-")) {
+          const it = openSection("itinerario");
+          closeAllSectionsExcept("itinerario");
+
+          const dayEl = document.getElementById(raw);
+          if (dayEl && dayEl.tagName.toLowerCase() === "details") {
+            dayEl.open = true;
+            setTimeout(() => dayEl.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          } else if (it) {
+            setTimeout(() => it.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          }
+          return;
+        }
+
+        // Si es una sección
+        const sec = openSection(raw);
+        if (sec) {
+          closeAllSectionsExcept(raw);
+          setTimeout(() => sec.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        }
+      };
+
+      // Click en la barra: abrir y cerrar el resto
+      document.querySelectorAll(".toc a").forEach((a) => {
+        a.addEventListener("click", () => {
+          const id = (a.getAttribute("href") || "").replace("#", "");
+          if (!id) return;
+          openSection(id);
+          closeAllSectionsExcept(id);
+        });
+      });
+
+      window.addEventListener("hashchange", openFromHash);
+      openFromHash();
+
+      // --- LIGHTBOX (fotos + mapa) ---
+      const grid = document.getElementById("photoGrid");
+      const openMapBtn = document.getElementById("openMap");
+
+      const lightbox = document.getElementById("lightbox");
+      const backdrop = document.getElementById("lbBackdrop");
+      const btnClose = document.getElementById("lbClose");
+      const btnPrev = document.getElementById("lbPrev");
+      const btnNext = document.getElementById("lbNext");
+      const imgEl = document.getElementById("lbImg");
+      const counter = document.getElementById("lbCounter");
+
+      if (!lightbox || !imgEl) return;
+
+      const MAP_SRC = "/mapa_mexico.png";
+
+      const imgs = grid ? Array.from(grid.querySelectorAll("img")) : [];
+      let index = 0;
+      let mode = "photos"; // "photos" | "map"
+
+      const showNav = () => {
+        if (btnPrev) btnPrev.style.display = "";
+        if (btnNext) btnNext.style.display = "";
+      };
+
+      const hideNav = () => {
+        if (btnPrev) btnPrev.style.display = "none";
+        if (btnNext) btnNext.style.display = "none";
+      };
+
+      const setImage = (i) => {
+        if (!imgs.length) return;
+        index = (i + imgs.length) % imgs.length;
+        const src = imgs[index].getAttribute("src") || "";
+        const alt = imgs[index].getAttribute("alt") || "";
+        imgEl.setAttribute("src", src);
+        imgEl.setAttribute("alt", alt);
+        if (counter) counter.textContent = (index + 1) + " / " + imgs.length;
+      };
+
+      const openLightbox = () => {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("noScroll");
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("noScroll");
+        imgEl.removeAttribute("src");
+        showNav();
+        mode = "photos";
+      };
+
+      const openPhoto = (i) => {
+        mode = "photos";
+        showNav();
+        setImage(i);
+        openLightbox();
+      };
+
+      const openMap = () => {
+        mode = "map";
+        hideNav();
+        imgEl.setAttribute("src", MAP_SRC);
+        imgEl.setAttribute("alt", "Mapa de México (ruta)");
+        if (counter) counter.textContent = "Mapa";
+        openLightbox();
+      };
+
+      const prev = () => setImage(index - 1);
+      const next = () => setImage(index + 1);
+
+      if (grid) {
+        grid.addEventListener("click", (e) => {
+          const targetImg = e.target && e.target.closest ? e.target.closest("img") : null;
+          if (!targetImg) return;
+          const i = imgs.indexOf(targetImg);
+          if (i >= 0) openPhoto(i);
+        });
+      }
+
+      if (openMapBtn) openMapBtn.addEventListener("click", openMap);
+
+      if (btnClose) btnClose.addEventListener("click", closeLightbox);
+      if (backdrop) backdrop.addEventListener("click", closeLightbox);
+
+      if (btnPrev) btnPrev.addEventListener("click", () => { if (mode === "photos") prev(); });
+      if (btnNext) btnNext.addEventListener("click", () => { if (mode === "photos") next(); });
+
+      window.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (mode !== "photos") return;
+        if (e.key === "ArrowLeft") prev();
+        if (e.key === "ArrowRight") next();
+      });
+
+      let startX = 0;
+      let dx = 0;
+
+      const onTouchStart = (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (mode !== "photos") return;
+        startX = e.touches[0].clientX;
+        dx = 0;
+      };
+
+      const onTouchMove = (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (mode !== "photos") return;
+        dx = e.touches[0].clientX - startX;
+      };
+
+      const onTouchEnd = () => {
+        if (!lightbox.classList.contains("open")) return;
+        if (mode !== "photos") return;
+        if (Math.abs(dx) > 45) {
+          if (dx > 0) prev();
+          else next();
+        }
+        startX = 0;
+        dx = 0;
+      };
+
+      lightbox.addEventListener("touchstart", onTouchStart, { passive: true });
+      lightbox.addEventListener("touchmove", onTouchMove, { passive: true });
+      lightbox.addEventListener("touchend", onTouchEnd, { passive: true });
+    })();
+  </script>
 </BaseLayout>
+
