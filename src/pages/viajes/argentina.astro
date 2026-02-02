@@ -1,327 +1,25 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-
-const itinerario = [
-  {
-    day: 1,
-    title: "Comienza la aventura",
-    text: `El domingo arrancó con ese caos que parece inevitable cada vez que uno se prepara para un gran viaje. Por mucho que lo intentes, siempre hay algo que se resiste a entrar en la maleta o que se queda olvidado en algún rincón de la casa: cargadores que aparecen cuando ya cerraste la cremallera, billetes que revisas por quinta vez, móviles que jurabas tener en el bolsillo y hasta los pasaportes, que parecen esconderse a propósito para ponerte los nervios de punta.
-
-Y claro, como no íbamos a estar fuera demasiados días, el equipaje terminó lleno a rebosar, porque nunca se sabe qué vas a necesitar en la ruta. La logística fue todavía más peculiar por un detalle extra: dejar el Tesla preparado. Tocaba cargarlo al 100%, porque sé de sobra que el modo centinela va devorando batería como si fueran pipas, y esta vez iba a pasar varios días solo, sin acompañarme. Fue extraño pensarlo, porque aunque suene raro, siempre es un placer viajar con él. Esta vez, sin embargo, la aventura sería diferente: solo nosotros, sin cuatro ruedas eléctricas de por medio.
-
-La noche se convirtió en una cuenta atrás. Había que acostarse pronto, aunque eso nunca resulta sencillo cuando la adrenalina del viaje empieza a correr por las venas. A las 21:00 horas tocaba retreta: apagar luces, forzar el sueño, intentar descansar sabiendo que el taxi pasaría a recogernos a las 04:00 en punto. El vuelo desde Valencia con destino Madrid salía a las 06:15, y no había margen para despistes. Dormir temprano era casi un acto de fe.
-
-Entre los últimos repasos de maletas y la emoción contenida, me quedé pensando que ese momento —el de cerrar la puerta de casa, con el equipaje listo y el corazón latiendo rápido— es ya el verdadero inicio de cualquier aventura. Porque viajar empieza mucho antes de despegar.
-
-
-Aunque nos habíamos acostado temprano, a la una y media de la madrugada ya estábamos despiertos. La emoción de un viaje siempre gana la batalla al sueño. Tocaba la clásica rutina de última hora: preparar esas cuatro cosas que inevitablemente se quedan para el final, una ducha rápida para despejar las ideas, un desayuno ligero y… listo. El momento había llegado: bajar a la calle a esperar al taxi.
-
-Lo habíamos reservado tres días antes, pero yo no terminaba de confiarme. Con esas horas intempestivas, uno siempre teme que a la central se le olvide y que acabemos corriendo al aeropuerto como si fuera una persecución de película. Para quedarme tranquilo, llamé a RadioTaxi y confirmé la recogida. Y menos mal: en apenas diez minutos, con un adelanto que se agradecía, apareció el coche que nos llevaría hasta Manises.
-
-Allí estábamos las dos parejas, con todas las maletas alineadas como si fueran soldados listos para la misión. El maletero quedó lleno hasta los topes, cerrando con ese sonido que dice “ya no cabe ni un alfiler”. Afuera, la ciudad dormía. Calles vacías, farolas solitarias y ese silencio especial que solo existe en las madrugadas de domingo.
-
-El viaje en taxi, sin embargo, fue más lento de lo esperado. El conductor parecía ir en cámara lenta, y yo no dejaba de pensar que, en el mismo tiempo, me habría dado para ir y volver del aeropuerto dos veces. Pero al final llegamos, y con margen de sobra.
-
-En Manises, el mostrador de Iberia nos esperaba casi vacío, como si lo hubieran reservado para nosotros. Facturamos sin complicaciones, con esa sensación de alivio que da ver cómo las maletas desaparecen por la cinta y ya no son tu problema. Con los billetes en mano y los nervios un poco más calmados, bajamos a la terminal para tomar algo antes del embarque. Un pequeño respiro, un café y la certeza de que lo mejor estaba a punto de comenzar.
-
-
-La escala en Madrid fue corta, justo como a mí me gusta: sin prisas, pero sin pausas. Apenas unos minutos después de aterrizar ya estábamos en la puerta de embarque, listos para subirnos a un Airbus A350-900, un auténtico gigante de los cielos. Esa nave es un prodigio de la aviación moderna: silenciosa, elegante y con ese aire futurista que hace que volar se sienta más ligero.
-
-Los billetes eran semi premium. No era la codiciada primera clase, pero sí lo bastante cómodos como para que mis piernas agradecieran el espacio extra. Y créanme: en un vuelo de 11 horas y 39 minutos, cada centímetro cuenta. Entre cabezadas y momentos de vigilia, el tiempo dio para todo: dormir, ver dos películas, escuchar discos que llevaba descargados de Spotify e incluso echarme unas partidas al Monopoly en la pantalla del asiento. La comida estuvo bien, aunque algo justa, pero la ventaja de esta tarifa era poder pedir lo que quisiéramos en cualquier momento. Una de esas pequeñas comodidades que hacen la travesía más llevadera.
-
-Al fin, Buenos Aires. Allí nos esperaba Silvana, la persona asignada por la agencia de viajes para guiarnos en la ciudad. La capital porteña iba a ser solo una breve parada: una noche para aclimatarnos antes de partir rumbo a Iguazú y, más adelante, hacia el norte en Salta. Ya volveríamos a Buenos Aires más tranquilos en unos días.
-
-Nos llevaron directamente al hotel Recoleta Grand. Tras un merecido descanso en la habitación, bajamos al hall, donde libramos una pequeña batalla contra las tarjetas telefónicas argentinas. Nada de lo que hiciéramos parecía lograr activarlas. Rendidos por el cansancio, dejamos la tecnología de lado y nos fuimos a cenar.
-
-El restaurante elegido fue Fervor, a escasos pasos del hotel. El lugar estaba a rebosar, señal inequívoca de que era uno de los favoritos de la ciudad. A nuestra mesa se unió el hijo de nuestros amigos, que estudia allí, y también un compañero suyo que volvía a Tucumán después de pasar unos meses en Valencia. La noche se animó con charlas cruzadas y el primer gran banquete argentino del viaje: empanadas de entrada y, como plato estrella, un bife de chorizo imponente, jugoso, con ese sabor que solo la carne argentina sabe ofrecer.
-
-Con el estómago satisfecho y el cansancio acumulado, no quedaba otra que regresar al hotel. El reloj marcaba la cuenta atrás: a las 4:30 de la madrugada nos recogerían para el siguiente gran salto… las Cataratas del Iguazú.`
-  },
-  {
-    day: 2,
-    title: "Las Cataratas Brasileñas",
-    text: `El segundo día arrancó de madrugada. A las 4:30 ya estábamos dejando atrás Buenos Aires rumbo al aeropuerto Ministro Pistarini. La ciudad aún dormía y nosotros, con las maletas a cuestas, sentíamos esa mezcla de cansancio y emoción que solo un gran viaje puede dar. El hotel no tenía abierto el desayuno tan temprano, pero nos habían preparado una picnic box para cada uno: bizcocho, zumo de naranja, fruta fresca y, cómo no, unas galletas rellenas de dulce de leche, un clásico irresistible de estas tierras. En el aeropuerto, mientras esperábamos el vuelo de las 7:45, pudimos saborear ese desayuno improvisado en una cafetería, dándole al día el primer sorbo de energía.
-
-
-El vuelo a Iguazú salió puntual y en apenas una hora y cuarenta minutos aterrizamos en nuestro nuevo destino. Allí nos esperaba el chofer, aunque con una sorpresa: había llegado con un coche normal y, claro, nuestras maletas no entraban ni a presión. Tocó llamar a un compañero suyo que apareció en apenas cinco minutos. La jugada terminó siendo ventajosa: él se llevó las maletas al hotel y nosotros, ligeros de equipaje, nos fuimos directamente a nuestro objetivo del día, las cataratas del lado brasileño.
-
-
-El trayecto no fue corto. Más de una hora de camino, con un tráfico intenso en la frontera. En el lado brasileño hubo que bajarse del coche para pasar por aduanas y sellar pasaportes. Esta vez sí los cuñaron, a diferencia del día anterior, cuando en el aeropuerto de Buenos Aires nos dijeron que todo era digital y no había sello físico. Puede parecer un detalle menor, pero para nosotros los cuños en el pasaporte son como pequeñas medallas de viaje, recuerdos impresos en papel que coleccionamos con orgullo.
-
-Ya en el Parque Nacional do Iguaçu, el chofer nos dejó en la entrada y allí tomamos un autobús gratuito que nos condujo hasta el corazón de las cataratas. Al bajar… se nos cortó la respiración. Frente a nosotros estaba uno de los espectáculos más sobrecogedores de la naturaleza. El sendero, de un kilómetro y medio, nos llevó bordeando la inmensa pared de agua. Cada metro era una nueva postal, imposible no detenerse a fotografiar, a contemplar, a quedarse con la boca abierta.
-
-
-Las vistas del lado brasileño son, sencillamente, panorámicas. Como alguien dijo y no pudo expresarlo mejor: “relindo”. Y sí, esa palabra definía perfectamente lo que estábamos viendo. El camino se animaba con la presencia de los coatíes, simpáticos y pícaros, siempre husmeando bolsos y manos en busca de comida.
-
-
-El sendero terminaba en una pasarela que parecía adentrarse en las entrañas mismas de la catarata. Allí, el agua y el viento te envolvían con tal fuerza que algunos se cubrían con chubasqueros. Nosotros preferimos lo contrario: sentir en la piel el rugido de Iguazú. La experiencia era como flotar entre nubes de agua, estar literalmente dentro de la cascada.
-
-
-De regreso, tomamos el autobús hasta la entrada, donde el chofer nos esperaba. El hotel elegido era el Loi Suites, un refugio escondido en plena selva. Al llegar, nuestras maletas ya nos esperaban allí. Para llegar a las habitaciones había que atravesar puentes colgantes que serpenteaban sobre la vegetación, como si cada paso nos internara más en un mundo secreto.
-
-
-El almuerzo fue sencillo pero reparador: unas hamburguesas junto a las piscinas, con la vista puesta en el cauce del río Iguazú antes de unirse al Paraná. La tarde transcurrió tranquila, entre charlas en el hall y un merecido descanso tras los madrugones acumulados.
-
-La jornada terminó en el restaurante del hotel, con una cena relajada que puso punto final al día. Nos fuimos a dormir temprano: al amanecer nos aguardaba la otra cara de la moneda, la visita a las cataratas desde el lado argentino.`
-  },
-  {
-    day: 3,
-    title: "La Garganta del Diablo y un baño bajo las cataratas",
-    text: `Hoy la alarma sonó un poco más tarde. Después de varios días madrugando casi de noche, el hecho de poder desayunar en el hotel a las 7 de la mañana se sintió como un regalo. El buffet nos esperaba con fiambres, frutas, dulces, cereales y, para mí, lo mejor: una tortilla recién hecha que me sentó de maravilla. A las 7:45, puntuales, nos recogieron. En el camino paramos en un hotel cercano para sumar a una madre y su hija, llegadas desde Venezuela, que compartirían la jornada con nosotros.
-
-Nuestro guía para ese día se presentó con un nombre tan peculiar como inolvidable: Pájaro. Y lo curioso era que todos en el parque lo conocían y lo saludaban así, con una naturalidad que lo hacía aún más simpático.
-
-
-Con él subimos al tren ecológico que cruza el parque y que nos llevó hasta el punto más esperado: la Garganta del Diablo. El trayecto a pie desde allí eran 1.500 metros de pasarelas de metal que serpenteaban sobre las aguas tranquilas del Iguazú, justo antes de precipitarse al vacío. El sol, todavía bajo, bañaba el paisaje con una luz dorada que me hizo recordar escenas de La Misión, esa película que había visto meses atrás.
-
-
-Y entonces, al final del recorrido, la naturaleza desplegó todo su poder. Allí estaba: la caída de agua más impresionante que jamás había visto. Estábamos literalmente encima de la catarata, rodeados de un estruendo atronador, con el rocío elevándose hasta empaparnos la cara. Si las vistas desde Brasil el día anterior habían sido espectaculares, lo de hoy era sencillamente indescriptible. Entramos de los primeros al parque, así que por unos minutos tuvimos esa maravilla casi en exclusiva.
-
-
-De regreso, volvimos a tomar el tren, esta vez hacia la ruta superior. Desde allí pudimos contemplar otras cascadas más de cerca. Cada salto de agua parecía tener su propio carácter, su propio rugido. Iguazú es de esos lugares que uno podría repetir cada año y nunca cansarse. No en vano es una de las siete maravillas naturales del planeta.
-
-
-El cansancio ya se dejaba sentir. Eran cerca de las 13:30 cuando llegamos al restaurante del parque, un buffet libre con parrilla argentina incluida. Comimos bien, recuperamos fuerzas y, sobre todo, descansamos, porque sabíamos que lo mejor todavía estaba por venir.
-
-
-La aventura de la tarde comenzó a bordo de un bus-camión que se adentró en la selva hasta dejarnos en un embarcadero. Para llegar había que descender unos 200 escalones, pero la emoción borraba cualquier fatiga. Allí nos dieron unas bolsas herméticas para proteger lo que no queríamos mojar. La advertencia era clara: íbamos a acabar empapados.
-
-
-Y vaya si lo hicimos. Subimos a la lancha rápida, que remontó el río hasta situarnos justo bajo las cataratas. No hablo en metáforas: el agua nos cayó encima con toda su furia, como si la selva entera se descargara sobre nosotros. Terminamos empapados de pies a cabeza, riendo y gritando, conscientes de estar viviendo una experiencia única. Al volver, algo de la ropa se secó con el calor, pero no lo suficiente. En cuanto llegamos al hotel nos cambiamos por completo.
-
-La tarde continuó en clave de relax. Nos pusimos el bañador y bajamos a las piscinas que habíamos visto el día anterior. Allí nos esperaban dos extremos: una piscina caliente como el infierno y otra fría como un témpano. Nos zambullimos en ambas, alternando temperaturas, mientras disfrutábamos de una caipirinha en mano. Frente a nosotros, el río Iguazú, y al otro lado, Brasil.
-
-
-El atardecer llegó pronto, hacia las 18:30, tiñendo de rojo y naranja la selva. Se nos hizo de noche en el agua, y cuando encendieron las luces de las piscinas, la escena parecía sacada de un sueño. Después de caminar más de 9 kilómetros esa mañana, no había mejor premio que ese momento de calma.
-
-Reservamos cena para las 20:00 en el mismo restaurante de la noche anterior. Cenamos a gusto, sin prisa, saboreando el final de un día que había sido inolvidable. Solo quedaba retirarnos a dormir, porque la siguiente jornada nos exigiría madrugar otra vez.`
-  },
-  {
-    day: 4,
-    title: "Rumbo a Salta, la Linda",
-    text: `Pensábamos que levantándonos a las 6 podríamos colarnos en el desayuno del hotel antes de la apertura oficial. Pero al dejar las tarjetas de la habitación en recepción nos llevamos la sorpresa: ya nos habían preparado unas breakfast box para llevar. Así que, de poco sirvió la estrategia de adelantar el reloj: acabamos esperando en el hall hasta que llegó el chofer que nos trasladaría al aeropuerto de Iguazú.
-
-Ya en la terminal, con los box en mano, buscamos una cafetería para acompañar el picnic con algo caliente. Entre charlas y sorbos de café se nos pasó la espera hasta la hora de embarcar. El vuelo despegó puntual rumbo a Salta, y en poco más de un par de horas aterrizamos en la ciudad.
-
-
-Nos recogió un chofer, y en pocos minutos estábamos en el Hotel Legado Mítico, un auténtico lujo en el corazón de Salta. La decoración colonial, las habitaciones enormes y una terraza privada en nuestra estancia nos hicieron sentir que habíamos llegado a un lugar especial.
-
-Con el alojamiento resuelto, tocaba resolver otro asunto: los pesos argentinos empezaban a escasear. Nos dirigimos a la Plaza 9 de Julio, donde nos habían dicho que era común cambiar dinero en la calle. Y efectivamente, fue una escena curiosa: personas con mochilas repletas de billetes, haciendo transacciones rápidas en las esquinas, casi como si fuera contrabando. Inusual, sí, pero era lo que nos habían recomendado como la mejor opción.
-
-
-Resuelto el tema del dinero, nos esperaba un banquete. El restaurante elegido fue Doña Salta, uno de esos lugares auténticos donde predominaban los comensales locales sobre los turistas. El salón, con encanto tradicional, estaba lleno de vida. Probamos las que decían ser las mejores empanadas argentinas y, la verdad, tenían razón. Después me animé con un huaschalocro, un guiso típico de maíz, chorizo y carne, sabroso y contundente. Vicky se pidió una cazuela de cabrito que estaba deliciosa. Además de la comida, lo que más nos sorprendió fue la excelencia en la atención: los camareros pendientes de cada detalle, siempre amables y con esa calidez tan característica de Argentina que hace que uno se sienta en casa.
-
-
-Tras la comida, paseamos por las calles coloniales del centro, deteniéndonos en tiendas y finalmente en una compañía de telefonía para comprar una tarjeta de Claro, ya que Vicky todavía no tenía datos en el móvil.
-
-A las 16:00 nos recogieron en una furgoneta para hacer una visita guiada por la ciudad. Recorremos varios rincones del casco histórico y de las afueras, deteniéndonos en el Cerro San Bernardo, desde donde se contemplaba Salta entera bajo nuestros pies. El paisaje era precioso: árboles con tonalidades vibrantes, después fuimos a una zona boscosa de un quebrado donde habia un microclima, luego nos llevaron a un mercado de artesanos locales.
-
-
-De regreso al hotel, ya de noche, nos esperaba la cena. Reservamos en un restaurante italiano al otro lado de la ciudad y fuimos en taxi. Al llegar estaba tranquilo, pero pronto se llenó de clientes. La comida fue excelente y, nuevamente, la atención de las camareras fue impecable, de esas que hacen que la experiencia se disfrute todavía más.
-
-
-La noche terminó entre la comodidad de nuestro hotel y la ilusión por el día siguiente, cuando pondríamos rumbo a Cafayate, tierra de vinos y paisajes únicos.`
-  },
-  {
-    day: 5,
-    title: "Rumbo a Cafayate, entre gargantas y viñedos",
-    text: `El madrugón volvió a sonar a las 5 de la mañana. A las 6:45 salíamos de Salta rumbo a Cafayate, en plena ruta de los Valles Calchaquíes. La ciudad está a unos 183 kilómetros, una distancia engañosa: las carreteras no son las mejores, llenas de curvas y tramos estrechos, así que el trayecto se estira en unas tres horas de ida y otras tantas de vuelta. Íbamos en un microbús con 13 personas, bastante apretados, lo que lo hacía un poco incómodo para tantas horas de viaje. Pero la ilusión por lo que nos esperaba pudo más que cualquier molestia.
-
-El desayuno en el hotel fue a contrarreloj. Abrían a las 6:30 y a las 6:10 ya estábamos plantados allí, así que nos lo sirvieron antes de tiempo con toda amabilidad. Un detalle que agradecimos mucho, porque la jornada prometía ser intensa.
-
-
-Pronto estábamos recorriendo la Quebrada de las Conchas, un paisaje único donde el tiempo y el viento han esculpido rocas de formas caprichosas y colores que van del rojo intenso al ocre. Hicimos varias paradas para contemplar estas maravillas: la Garganta del Diablo, un cañón estrecho donde las paredes de piedra parecen cerrarse sobre ti; el Anfiteatro, una formación semicircular de roca con una acústica perfecta donde a veces los músicos improvisan; el Sapo, una roca que recuerda a un enorme batracio; los Castillos, imponentes murallas naturales que parecen fortalezas; y el Obelisco, una aguja de piedra que se alza solitaria contra el cielo.
-
-
-En la misma Garganta del Diablo había un pequeño puesto donde vendían empanadas y tortitas de queso recién hechas. No pudimos resistirnos: estaban sencillamente espectaculares, de esas que saben todavía mejor en medio del camino, con el aire fresco de la quebrada y el eco de las paredes rocosas alrededor.
-
-
-El día había amanecido nublado y fresco, pero al llegar a Cafayate el sol ya brillaba con fuerza. Antes de entrar en la ciudad paramos en una bodega de la zona. Cafayate es tierra de vinos y, en especial, del famoso Torrontés, un blanco aromático y fresco que solo aquí alcanza su máxima expresión. La visita no fue la más completa que he hecho en mi vida, pero la degustación nos permitió saborear el carácter especial de estos vinos de altura, criados a más de 1.600 metros sobre el nivel del mar.
-
-
-Después nos dirigimos al centro de Cafayate, una ciudad tranquila y pintoresca, con su plaza principal rodeada de galerías, restaurantes y la iglesia de Nuestra Señora del Rosario presidiendo el lugar. Almorzamos allí mismo, en un restaurante de la plaza, disfrutando de la calma y el aire puro de la montaña.
-
-Con tiempo para un último paseo por las calles coloniales y una foto frente a la iglesia, nos reencontramos con el grupo y emprendimos el regreso a Salta. El trayecto de vuelta, largo y sinuoso, se hizo ya de noche. Llegamos cansados, pero con la sensación de haber vivido un día lleno de paisajes únicos y sabores auténticos.
-
-
-Tras la excursión a Cafayate y el largo regreso por la quebrada, llegamos al hotel con el tiempo justo para descansar un rato y reponernos. A las 20:30 nos esperaba una cita especial: teníamos reserva en La Peña La Vieja Estación, uno de los locales más tradicionales de Salta para disfrutar de la gastronomía y el folklore del norte argentino.
-
-El lugar, con un aire auténtico y decorado con mucho encanto, tenía un gran escenario en el centro donde se desarrollaban los espectáculos. No había una sola mesa libre: el salón estaba a rebosar, algo que comprobamos en carne propia porque la noche anterior intentamos reservar y ya estaba completo. Por suerte, esta vez sí conseguimos sitio.
-
-
-La cena estuvo a la altura de las expectativas: pedimos de entrada una provoleta y unas mollejas, y como platos principales un bife de chorizo imponente y una cazuela de cabrito al horno que estaba deliciosa. Las porciones eran enormes, típicas del norte argentino, y todo llegó servido con esa atención cercana y cordial que hace sentir como en casa.
-
-Entre zambas, chacareras y guitarras en vivo, la noche se fue llenando de ritmo y aplausos. El ambiente era festivo, lleno de gente disfrutando de la música y la comida, en una atmósfera que reflejaba la esencia cultural de Salta.
-
-Al terminar, salimos caminando bajo el fresco de la noche. Apenas dos cuadras y media nos separaban de nuestro hotel, así que dimos un paseo tranquilo hasta llegar. La jornada había sido intensa, pero inolvidable: viñedos, formaciones rocosas y, para rematar, una velada con el alma folclórica de la región.
-
-Nos fuimos a dormir con la emoción de lo que vendría al día siguiente: subir al mítico Tren a las Nubes.`
-  },
-  {
-    day: 6,
-    title: "El Tren a las Nubes",
-    text: `El jet lag ni lo sentimos: dormimos tan poco desde quenllegamosna Argentina que apenas hubo lugar para notarlo. A las 5:30 ya estábamos en pie, preparando un nuevo día de aventuras. A las 6:30 nos esperaba el traslado hacia el bus que nos llevaría a San Antonio de los Cobres, el punto de partida del mítico Tren a las Nubes.
-
-A las 7 de la mañana los autobuses salieron del centro de Salta. El trayecto fue largo, casi cinco horas, y exigente: íbamos a superar los 4.000 metros de altura. Antiguamente, el tren partía directamente desde Salta, pero la inestabilidad del terreno acabó con esa ruta. Hoy en día solo queda operativo un tramo turístico, que arranca desde San Antonio de los Cobres y conserva la magia de la vieja línea.
-
-
-Las recomendaciones para evitar el mal de altura eran claras: nada de leche en el desayuno, mejor té o café, y beber abundante agua. En una de las paradas técnicas del camino nos dieron una infusión especial para combatir el “soroche”. Nuestro guía, que no soltaba el micrófono en todo el viaje, incluso nos contó una receta casera: mezclar alcohol de curar heridas con bolitas de alcanfor y aplicarlo en las fosas nasales con el dedo meñique. Según él, abría las vías respiratorias.
-
-
-El camino fue largo, pero los paisajes lo compensaban: montañas inmensas, valles áridos, cactus solitarios y, de fondo, picos nevados que parecían vigilar la ruta. Cerca del mediodía llegamos por fin a San Antonio de los Cobres, un poblado áspero y humilde en medio del altiplano. Allí nos aguardaba el tren.
-
-
-Sabíamos, por experiencia en Perú, que a esa altura no convenía correr ni hacer esfuerzos bruscos. Bajamos del bus a paso lento y directo a nuestros asientos ya asignados. El Tren a las Nubes comenzó su recorrido de tres horas, atravesando paisajes que parecían sacados del oeste americano. El clímax llegó al cruzar el viaducto La Polvorilla, un puente de acero a más de 4.200 metros de altura. El ritual era inevitable: asomarse por la ventanilla para sacar la foto con el puente de fondo. Fue un momento caótico, con todos los pasajeros intentando capturar el recuerdo en segundos, y la adrenalina me disparó las pulsaciones.
-
-
-Al llegar a la mitad del recorrido, los organizadores pidieron que todos cambiáramos de lado en el tren para que cada pasajero pudiera disfrutar las mismas vistas en el regreso. Un gesto simple, pero que hizo la experiencia más equitativa.
-
-De vuelta a San Antonio de los Cobres, almorzamos en el restaurante Lageru. El sitio era sobrio, acorde al entorno. La comida sencilla pero sabrosa: pollo al horno, empanadas, bebida y postre, todo por unos 19.000 pesos (aproximadamente 12 euros). El poblado en sí transmitía cierta sensación de abandono: calles sin asfaltar, casas humildes y un aire de decadencia que contrastaba con la grandeza de la cordillera.
-
-
-Algunos del grupo empezaban a notar los efectos de la altura, así que todos esperábamos con ansias subir de nuevo al bus para iniciar el descenso. El regreso fue más llevadero: muchos dormimos, otros nos dejamos hipnotizar por los paisajes. Ver cómo el altiplano pedregoso se transformaba en desierto de cactus y, más adelante, en montañas majestuosas iluminadas por la Golden Hour, fue un espectáculo en sí mismo. Las montañas parecían encenderse con vida propia bajo la luz dorada del atardecer.
-
-
-Llegamos a Salta al caer la noche, cansados pero con la sensación de haber vivido uno de esos días que quedan grabados en la memoria para siempre.
-
-Al llegar a Salta, después del descenso desde la puna, nos dimos el gusto de caminar unas siete cuadras hasta el hotel. Fueron unos veinte minutos que se agradecieron: después de tantas horas en bus y tren, estirar las piernas por las calles de la ciudad fue un pequeño placer.
-
-Ya instalados, nos tomamos un respiro antes de salir a cenar algo ligero. La altura y la intensidad del día nos tenían un poco aturdidos, así que no era noche para banquetes. Pero antes de sentarnos a la mesa, surgió un contratiempo que nos encendió todas las alarmas: la agencia de Salta nos informó que al día siguiente no podíamos llevar las maletas a Purmamarca. De inmediato recordamos la excursión a Cafayate, aquel viaje largo e incómodo, y teníamos claro que no íbamos a repetir la experiencia en las mismas condiciones.
-
-Tras hablarlo, planteamos la opción de hacer los dos días restantes de recorrido con un guía y un chofer privados. La agencia al principio dudó, pero tras varias idas y venidas llegamos a un acuerdo de precio justo para ambas partes. El cambio suponía varias ventajas: no habría que madrugar tanto (¡bien!), y tendríamos libertad para parar donde quisiéramos en el camino. La decisión quedó cerrada: nos recogerían a las 8:15 de la mañana.
-
-Con la tranquilidad de haber resuelto el asunto, bajamos a cenar al restaurante que estaba justo al lado del hotel. Varias noches lo habíamos visto lleno a través de sus ventanales majestuosos, así que esta vez nos animamos a probarlo. La elección resultó acertada: buena comida, excelente atención y el cierre perfecto para un día intenso.
-
-Por fin, tocaba descansar como se debe. Mañana el viaje continuaría con rumbo a Purmamarca, la puerta de entrada a la Quebrada de Humahuaca.`
-  },
-  {
-    day: 7,
-    title: "Rumbo a Purmamarca y las Salinas Grandes",
-    text: `¡Aleluya! Hoy por fin dormimos ocho horas seguidas. Nos levantamos a las 7:30, desayunamos con calma y a las 8:30 nos recogía nuestro chofer-guía privado. Viajábamos en una pickup con Pablo, un hombre amable y muy profesional, curtido en miles de recorridos por estas rutas del norte. Desde el principio supimos que íbamos en buenas manos.
-
-La gran ventaja de ir en privado era evidente: parábamos donde nos daba la gana. Antes de llegar a San Salvador de Jujuy encontramos unos puestos al borde de la carretera con montañas de frutillas (lo que en casa llamamos fresas o fresones). No pudimos resistirnos: compramos una caja entera por 5.000 pesos argentinos, unos tres euros. Pablo también se llevó la suya.
-
-
-Más adelante hicimos otra parada en Volcán, en la tienda de artesanía Arte Guanuco. Allí aprovechamos para ir al baño, pero también para picar algo de compras: yo me llevé una sudadera Columbia y, sinceramente, me hubiera llevado media tienda.
-
-
-El recorrido por la Quebrada de Humahuaca, siguiendo el curso del río Grande, nos regalaba paisajes de postal. Incluso nos cruzamos con el Tren Solar de la Quebrada, un moderno convoy que recorre el valle funcionando únicamente con baterías recargadas cada día con energía solar. Una muestra de innovación en medio de la tradición andina.
-
-
-Por consejo de Pablo, seguimos directo hasta las Salinas Grandes, dejando Purmamarca para la vuelta. La subida fue intensa: alcanzamos los 4.170 metros sobre el nivel del mar en un mirador panorámico. Allí paramos a hacer fotos, pero la altitud pasó factura: una chica  se desmayó por el mal de altura y, a los pocos minutos, también su madre. Afortunadamente, los presentes reaccionaron rápido y pudieron llevarlas de regreso a Purmamarca. Yo, en cambio, me sentía fresco: esta vez no había olvidado llevar el ventolín, como sí me pasó el día anterior.
-
-
-Pocos kilómetros después se abrió ante nosotros un paisaje irreal: las Salinas Grandes.
-Un salar inmenso de más de 200 km², un mar blanco a cielo abierto, formado durante millones de años por la evaporación de aguas subterráneas cargadas de sal. La superficie parece un espejo cuarteado en hexágonos perfectos, y caminar sobre ella es como pisar otro planeta. Entramos, paseamos, hicimos fotos jugando con la perspectiva y disfrutamos de esa sensación única de infinito que solo un desierto de sal puede dar.
-
-
-Ya bien entrada la tarde volvimos a Purmamarca por la carretera sinuosa. Pasaban de las 15:30 cuando llegamos al Restaurante Ruta 55, donde nos esperaba Anita, su dueña. Nos atendió con una amabilidad increíble y la comida fue memorable. Probamos unas empanadas que, sin exagerar, quizá hayan sido las mejores del viaje. Compartimos mesa con Pablo, y por supuesto lo invitamos: se estaba portando de diez con nosotros.
-
-
-Cerca de las 17:00 llegamos a nuestro alojamiento, el Hotel El Manantial del Silencio, construido en el año 2000 como réplica de una casa colonial. Un lugar con encanto, tranquilidad y sin televisores en las habitaciones, como para honrar su nombre.
-
-
-La tarde dominical la dedicamos al descanso. Aun así, nos resistíamos a perder la final de tenis entre Alcaraz y Sinner, así que en recepción nos indicaron una sala con TV donde pudimos verla en directo. Y qué partido: ganó Alcaraz y se convirtió en número uno del mundo. El momento se celebró con fresas —las mismas que habíamos comprado por la mañana— y unas copas en el hall del hotel.
-
-
-Purmamarca, a 2.400 metros de altitud, nos recibía con calma. Mañana seguiríamos rumbo a Humahuaca y otros pueblos de la quebrada, antes de regresar a Salta.`
-  },
-  {
-    day: 8,
-    title: "La Quebrada de Humahuaca, los 14 colores y la despedida de Salta",
-    text: `La noche no fue fácil. A las tres de la mañana nos despertamos con malestar y apenas logramos dormir una hora más. Cuando llegó la hora del desayuno, el apetito brillaba por su ausencia. Pero el viaje continuaba, y dejamos atrás Purmamarca rumbo al norte, hacia la mítica Quebrada de Humahuaca.
-
-La primera parada fue en Tilcara. Allí visitamos la Iglesia de Nuestra Señora del Rosario, sencilla y blanca, con ese aire de templo de pueblo que respira historia. En la plaza central los puestos de artesanía llenaban de color el ambiente, con tejidos andinos, mates tallados y recuerdos de todos los tamaños. Pero lo que más me llamó la atención fue un mural enorme con las caras de Maradona y Messi: dos íconos argentinos mirando de frente al mundo, como guardianes del lugar.
-
-
-Más adelante hicimos una parada breve pero significativa: el Trópico de Capricornio. Era la cuarta línea imaginaria del planeta que cruzábamos. Ya habíamos pasado el Círculo Polar Ártico en Rovaniemi, el Ecuador en Kenia y Perú, y el Trópico de Cáncer en México y Egipto. Ahora sumábamos este a la lista. Solo nos queda el Círculo Polar Antártico… aunque eso, salvo pisar la Antártida, se antoja imposible.
-
-
-En Uquía visitamos la central de artesanía de Arte Guanuco, a quienes habíamos conocido el día anterior en Volcán. Allí nos enseñaron el arte de la alfarería, recorrimos una pequeña bodega de vinos de altura mucho más encantadora que la de Cafayate, y hasta nos encontramos con una granja de llamas tan simpáticas que parecía que posaban para las fotos.
-
-
-Finalmente llegamos a Humahuaca, pero aún nos esperaba una sorpresa. Le preguntamos a Pablo, nuestro guía, por la legendaria Serranía de Hornocal, la montaña de los 14 colores. Nos advirtió que no estaba en el programa, que quedaba a una hora de allí y a 4.350 metros de altura. Pero al ver nuestras ganas, sonrió y nos dijo: “si no le contamos nada a la agencia, vamos”. Trato hecho.
-
-
-El ascenso fue duro, con viento gélido y apenas 8 grados, pero cuando bajamos del 4×4 y se abrió ante nosotros el Hornocal, entendimos por qué valía cada esfuerzo. Frente a nosotros se desplegaba una muralla de colores: rojos, verdes, amarillos y violetas dibujando un zigzag hipnótico. Un paisaje irreal, tal vez el más bello que habíamos visto en todo el viaje. El viento azotaba con fuerza, pero nadie quería moverse. Allí, a más de 4.300 metros, la naturaleza nos regalaba un espectáculo inolvidable.
-
-
-En el descenso nos cruzamos con una familia de vicuñas, esos camélidos más pequeños y esquivos que las llamas, hoy en peligro de extinción. Una aparición silenciosa y elegante, como un regalo extra del altiplano.
-
-
-De vuelta en Purmamarca, cumplimos un deseo: volver a comer en el Restaurante Ruta 52, en casa de Anita y Samuel. Otra vez nos recibieron como si fuéramos viejos amigos, con la misma hospitalidad y unas empanadas que parecían aún mejores que la primera vez. Inmortalizamos el momento con fotos y nos despedimos de ellos con un afecto que parecía de toda la vida.
-
-
-Ya con el estómago lleno, Pablo se dio un rato para descansar y aprovechamos para pasear por Purmamarca, ese pueblo pequeño en tamaño pero enorme en vida. Visitamos la Iglesia de Santa Rosa de Lima, que para mí tenía un valor especial: era la santa que llevaba el nombre de mi madre.
-
-
-Pasada la media hora, emprendimos la ruta de regreso a Salta. Yo caí rendido en el asiento, derrotado por el cansancio. La carretera elegida esta vez fue distinta: más corta en distancia, pero más lenta, porque atravesaba un paisaje boscoso y montañoso lleno de curvas. La Ruta 9, verde y húmeda, parecía otro mundo comparado con el árido altiplano.
-
-
-Cerca de las 19:00 llegamos a Salta. La despedida con Pablo fue emotiva. Solo habían sido dos días juntos, pero tan intensos que parecían semanas. Nos habíamos contado nuestras vidas, compartido confidencias y risas. Nos prometimos mantener el contacto, aunque fuera para felicitarnos las fiestas.
-
-Ya instalados, nos fuimos directos a la Plaza 9 de Julio, el corazón de Salta. Allí se alzaba la Catedral Basílica de Salta, iluminada y majestuosa, justo en plena semana de las Fiestas del Señor y la Virgen del Milagro, los patronos de la ciudad. La plaza estaba abarrotada de peregrinos llegados de todas partes, rezando, cantando, algunos incluso caminando descalzos en señal de fe. El ambiente era sobrecogedor: devoción, tradición y emoción a flor de piel.
-
-Caminamos también hasta la Basílica Menor y Convento de San Francisco, uno de los templos más bellos de Argentina. Su fachada neoclásica, con columnas rojizas y doradas, se iluminaba como un faro en la noche, y su campanario —el más alto de Sudamérica— parecía tocar el cielo salteño.
-
-
-De regreso al hotel, nos sentamos en el hall con una copa en la mano, recordando todo lo vivido en estos días intensos por el norte argentino. El hotel, de pocas habitaciones, era tranquilo y acogedor. Allí mismo rellenamos el cuestionario para elegir nuestro desayuno a la carta y programarlo a las 9:00, ya que a las 10:45 nos recogerían para llevarnos al aeropuerto rumbo a Buenos Aires, donde nos aguardaba la próxima semana de viaje.
-
-La Quebrada nos había mostrado sus colores, su fe y su magia. Y nosotros nos íbamos con la certeza de haber tocado el alma profunda del norte argentino.`
-  },
-  {
-    day: 9,
-    title: "De vuelta a Buenos Aires, tango y librerías",
-    text: `Hoy no hubo madrugones. Desayunamos con calma a las 9:00, y a las 10:45 nos recogieron para llevarnos al aeropuerto de Salta. El vuelo hasta Buenos Aires fue breve, apenas una hora y cuarenta minutos. Aterrizamos en el Aeroparque Jorge Newbery, más cercano al centro, lo cual nos venía de maravilla. Allí nos esperaba de nuevo Silvana, siempre puntual, para llevarnos al Hotel Recoleta Grand.
-
-Al llegar recuperamos las maletas que habíamos dejado en consigna. Verlas todas juntas nos arrancó una sonrisa: no éramos conscientes de la cantidad de equipaje que cargábamos hasta que lo vimos amontonado frente a nosotros.
-
-
-La agenda marcaba que a las 19:30 nos recogerían para llevarnos a cenar y disfrutar de un espectáculo de tango en San Telmo, pero todavía teníamos varias horas libres. Decidimos aprovecharlas visitando uno de los lugares más peculiares de Buenos Aires: El Ateneo Grand Splendid.
-
-Este sitio es mucho más que una librería. Su historia comienza en 1919, cuando abrió como teatro Grand Splendid, uno de los más elegantes de la ciudad. En los años 20 funcionó también como cine y fue pionero en proyectar películas sonoras en Argentina. Décadas más tarde cayó en decadencia, hasta que en el año 2000 el grupo editorial El Ateneo lo rescató y lo transformó en librería. En lugar de destruir su alma, la conservaron: los palcos son ahora rincones de lectura, el escenario se convirtió en cafetería y los frescos de la cúpula siguen coronando la sala. Hoy es considerada una de las librerías más hermosas del mundo, un verdadero templo para los amantes de los libros.
-
-
-Allí nos sentamos a tomar algo ligero en la cafetería, ubicada precisamente en lo que fue el escenario. A nuestro lado, un pianista llenaba el ambiente con música en vivo, como si el teatro todavía quisiera recordarnos lo que fue. El lugar nos maravilló, aunque no pudimos evitar cierta nostalgia: nos dio un poco de pena ver un teatro tan majestuoso convertido en librería. Tal vez sea nuestro amor por las tablas, pero aun así reconocimos la magia de haberle dado una segunda vida.
-
-
-Al caer la tarde volvimos caminando al hotel. Buenos Aires nos sorprendió en cada paso: tiene algo de Madrid en sus plazas y avenidas, pero con un aire de Nueva York, quizá por sus semáforos al estilo estadounidense y la energía constante de sus calles.
-
-Regresamos al hotel justo a tiempo para que nos recogieran a las 19:30. El chofer que nos tocó parecía tener prisa o mala noche: conducía como loco. En el trayecto paramos en el hotel NH para recoger a alguien, pero nunca apareció. Estuvimos casi quince minutos esperando, y aunque no dijo una palabra, el conductor dejó claro su enfado: subió la música de la radio a todo volumen, como si de repente el coche se hubiera convertido en discoteca rodante. Por suerte para nosotros, la emisora pinchaba música de los 80, que nos encanta. Eso sí, los otros turistas que recogimos después en distintos hoteles se quedaron sorprendidos con aquel viaje a ritmo de sintetizador y guitarras eléctricas.
-
-Llegamos pasadas las 20:00 al mítico Viejo Almacén, uno de los templos del tango en Buenos Aires. Íbamos con un paquete completo: transporte, cena y espectáculo. La cena fue correcta y abundante: empanadas de entrada, un bife de chorizo jugoso, flan de huevo de postre y bebidas incluidas —vino, agua y hasta Seven Up, para variar. El servicio fue ágil, pues todo estaba calculado: a las 21:30 en punto arrancaba el show.
-
-
-El detalle curioso era que el restaurante y el salón del espectáculo no estaban en el mismo edificio. Bastaba cruzar una callecita empedrada y, al otro lado, nos esperaba el escenario. Allí nos acomodaron en una mesa justo en el centro, frente al escenario, con la mejor vista para lo que estaba por venir.
-
-El espectáculo fue un torbellino de pasión. La música era en directo: orquesta de tango con bandoneones, violines y piano. Sobre el escenario, parejas de bailarines, vestidos con trajes típicos de la época de Gardel, interpretaban tangos con una energía y una precisión que cortaban la respiración. Entre danza y danza, una cantante entonó clásicos del repertorio porteño, con esa melancolía que solo el tango sabe transmitir.
-
-
-Hubo también un número especial con boleadoras, las tradicionales armas de los gauchos, usadas aquí como instrumento rítmico. Los bailarines las hacían girar y golpear contra el suelo al compás de la música, produciendo un sonido seco y sincopado, parecido al claqué. Fue hipnótico: un espectáculo de destreza, fuerza y coordinación.
-
-El gran broche llegó al final: apareció sobre el escenario el legendario cantante y actor argentino Hugo Marcel. A sus más de 80 años, se entregó como si el tiempo no pasara por él. Cantó con emoción y elegancia, y fue conmovedor verlo disfrutar tanto como el público, con una sonrisa cómplice que nos envolvió a todos.
-
-
-Al terminar el show, el mismo conductor nos esperaba para llevarnos de regreso al hotel. Esta vez, por suerte, el viaje fue más tranquilo.
-
-La noche había sido mágica. El tango, con su mezcla de pasión, nostalgia y fuerza, nos había mostrado un pedazo del alma argentina. Y lo mejor es que la aventura porteña no terminaba ahí: al día siguiente nos esperaba un recorrido por los barrios más emblemáticos de Buenos Aires.`
-  },
-  { day: 10, title: "Buenos Aires al completo" },
-  { day: 11, title: "Entre mármoles y fiebre" },
-  { day: 12, title: "Recuperando fuerzas en Buenos Aires" },
-  { day: 13, title: "De San Telmo a Caminito, y teatro de cierre." },
-  { day: 14, title: "Último día en Buenos Aires antes del sur" },
-  { day: 15, title: "Rumbo al fin del mundo" },
-  { day: 16, title: "Entre lagos y montañas en Tierra del Fuego" },
-  { day: 17, title: "Ushuaia en toda su esencia" },
-  { day: 18, title: "Rumbo a El Calafate" },
-  { day: 19, title: "El gigante de hielo: Perito Moreno" },
-  { day: 20, title: "Navegando entre gigantes de hielo" },
-  { day: 21, title: "De vuelta a Buenos Aires" },
-  { day: 22, title: "Sorpresa: cruzamos a Uruguay" },
-  { day: 23, title: "Volviendo al principio" },
-  { day: 24, title: "La despedida" },
-];
+import itinerarioRaw from "../../data/argentina.js";
+
+type Dia = {
+  day: number;
+  title: string;
+  text?: string;
+};
+
+const itinerario: Dia[] = Array.isArray(itinerarioRaw)
+  ? [...(itinerarioRaw as Dia[])].sort((a, b) => (a.day ?? 0) - (b.day ?? 0))
+  : [];
+
+const daysSet = new Set(itinerario.map((d) => d.day));
+
+const nextExistingDay = (day: number): number | null => {
+  for (let i = day + 1; i <= 365; i++) {
+    if (daysSet.has(i)) return i;
+  }
+  return null;
+};
 ---
 
 <BaseLayout title="Argentina | Ruta Base">
@@ -367,20 +65,53 @@ La noche había sido mágica. El tango, con su mezcla de pasión, nostalgia y fu
       background: rgba(155,120,255,0.22);
     }
 
-    section{
+    /* Secciones plegables */
+    details.sec{
       border: 1px solid rgba(0,0,0,0.08);
       border-radius: 14px;
-      padding: 14px;
       background: rgba(255,255,255,0.75);
       margin-bottom: 12px;
+      overflow: hidden;
     }
 
-    section h2{
-      margin: 0 0 8px 0;
-      font-size: 18px;
+    summary.secSummary{
+      list-style: none;
+      cursor: pointer;
+      padding: 14px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       color: #1a0b2e;
+      font-weight: 900;
+      font-size: 18px;
     }
 
+    summary.secSummary::-webkit-details-marker{ display:none; }
+
+    .secCaret{
+      font-size: 18px;
+      opacity: 0.7;
+      transform: rotate(-90deg);
+      transition: transform 0.18s ease;
+    }
+
+    details[open] .secCaret{
+      transform: rotate(0deg);
+    }
+
+    .secBody{
+      padding: 0 14px 14px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .dots{
+      color: #666;
+      margin: 10px 0 0 0;
+    }
+
+    /* Itinerario */
     .dayList{
       display: grid;
       gap: 10px;
@@ -417,11 +148,6 @@ La noche había sido mágica. El tango, con su mezcla de pasión, nostalgia y fu
       white-space: pre-wrap;
     }
 
-    .dots{
-      color: #666;
-      margin: 10px 0 0 0;
-    }
-
     .nextRow{
       margin-top: 12px;
       display: flex;
@@ -444,7 +170,7 @@ La noche había sido mágica. El tango, con su mezcla de pasión, nostalgia y fu
       background: rgba(155,120,255,0.30);
     }
 
-    /* MAPA: 70% ancho, centrado */
+    /* MAPA (pequeño + clic para ampliar) */
     .mapWrap{
       display: flex;
       justify-content: center;
@@ -452,12 +178,21 @@ La noche había sido mágica. El tango, con su mezcla de pasión, nostalgia y fu
     }
 
     .mapBox{
-      width: 70%;
-      max-width: 760px;
+      width: 21%;
+      max-width: 240px;
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid rgba(0,0,0,0.08);
       background: rgba(255,255,255,0.65);
+    }
+
+    .mapBtn{
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      display: block;
+      width: 100%;
     }
 
     .mapImg{
@@ -467,7 +202,150 @@ La noche había sido mágica. El tango, con su mezcla de pasión, nostalgia y fu
     }
 
     @media (max-width: 800px){
-      .mapBox{ width: 100%; }
+      .mapBox{ width: 55%; max-width: 340px; }
+    }
+
+    /* GALERIA */
+    #galeria h3{
+      margin: 14px 0 8px 0;
+      font-size: 15px;
+      color: #1a0b2e;
+    }
+
+    .videoGrid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 900px){
+      .videoGrid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px){
+      .videoGrid{ grid-template-columns: 1fr; }
+    }
+
+    .videoGrid iframe{
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.04);
+    }
+
+    .photoGrid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .photoBtn{
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .photoBtn img{
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.10);
+      display: block;
+      transition: transform 0.18s ease;
+    }
+
+    .photoBtn:hover img{
+      transform: scale(1.03);
+    }
+
+    .noScroll{
+      overflow: hidden;
+    }
+
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9999;
+    }
+
+    .lightbox.open{
+      display: block;
+    }
+
+    .lbBackdrop{
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+    }
+
+    .lbPanel{
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .lbImg{
+      max-width: min(92vw, 980px);
+      max-height: 82vh;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .lbClose{
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-size: 26px;
+      line-height: 36px;
+      cursor: pointer;
+    }
+
+    .lbNav{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 56px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-size: 34px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lbPrev{ left: 14px; }
+    .lbNext{ right: 14px; }
+
+    .lbCounter{
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
     }
   </style>
 
@@ -489,78 +367,327 @@ La noche había sido mágica. El tango, con su mezcla de pasión, nostalgia y fu
     <a href="#galeria">Galería</a>
   </div>
 
-  <section id="resumen">
-    <h2>Resumen</h2>
-    <p>
-      La Ruta Gaucha es un viaje de 25 días por Argentina de norte a sur: arranca en Buenos Aires, sube a la selva de Iguazú, cruza por el norte andino (zona Salta / Purmamarca) y baja a la Patagonia con El Calafate y el glaciar Perito Moreno, para rematar en Ushuaia y Tierra del Fuego, el fin del mundo de verdad. Es una ruta hecha para paisajes y contrastes, no para tachar monumentos.
-    </p>
-  </section>
-
-  <section id="itinerario">
-    <h2>Itinerario</h2>
-
-    <div class="dayList">
-      {itinerario.map((d) => {
-        const nextDay = d.day < itinerario.length ? d.day + 1 : null;
-        return (
-          <details class="day" id={`dia-${d.day}`}>
-            <summary class="daySummary">Día {d.day} — {d.title}</summary>
-
-            <div class="dayBody">
-              {d.text ? <p class="dayText">{d.text}</p> : <p class="dots">…</p>}
-
-              {nextDay && (
-                <div class="nextRow">
-                  <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día →</a>
-                </div>
-              )}
-            </div>
-          </details>
-        );
-      })}
+  <details class="sec" id="resumen">
+    <summary class="secSummary">
+      <span>Resumen</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <p>
+        La Ruta Gaucha es un viaje de 25 días por Argentina de norte a sur: arranca en Buenos Aires, sube a la selva de Iguazú, cruza por el norte andino (zona Salta / Purmamarca) y baja a la Patagonia con El Calafate y el glaciar Perito Moreno, para rematar en Ushuaia y Tierra del Fuego, el fin del mundo de verdad. Es una ruta hecha para paisajes y contrastes, no para tachar monumentos.
+      </p>
     </div>
+  </details>
 
-    <script is:inline>
-      const openFromHash = () => {
-        const id = (location.hash || "").slice(1);
-        if (!id) return;
-        const el = document.getElementById(id);
-        if (el && el.tagName && el.tagName.toLowerCase() === "details") {
-          el.open = true;
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      };
-      window.addEventListener("hashchange", openFromHash);
-      openFromHash();
-    </script>
-  </section>
+  <details class="sec" id="itinerario">
+    <summary class="secSummary">
+      <span>Itinerario</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <div class="dayList">
+        {itinerario.map((d) => {
+          const nextDay = nextExistingDay(d.day);
+          const hasText = typeof d.text === "string" && d.text.trim().length > 0;
 
-  <section id="imprescindibles">
-    <h2>Imprescindibles</h2>
-    <p class="dots">…</p>
-  </section>
+          return (
+            <details class="day" id={`dia-${d.day}`}>
+              <summary class="daySummary">Día {d.day} — {d.title}</summary>
 
-  <section id="costes">
-    <h2>Costes</h2>
-    <p class="dots">…</p>
-  </section>
+              <div class="dayBody">
+                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">…</p>}
 
-  <section id="mapa">
-    <h2>Mapa</h2>
-
-    <div class="mapWrap">
-      <div class="mapBox">
-        <img class="mapImg" src="/mapa_argentina.png" alt="Mapa de Argentina (ruta)" />
+                {nextDay && (
+                  <div class="nextRow">
+                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día →</a>
+                  </div>
+                )}
+              </div>
+            </details>
+          );
+        })}
       </div>
     </div>
+  </details>
 
-    <p class="dots">Próximamente: mapa interactivo.</p>
-  </section>
+  <details class="sec" id="imprescindibles">
+    <summary class="secSummary">
+      <span>Imprescindibles</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <p class="dots">…</p>
+    </div>
+  </details>
 
-  <section id="galeria">
-    <h2>Galería</h2>
-    <p class="dots">…</p>
-  </section>
+  <details class="sec" id="costes">
+    <summary class="secSummary">
+      <span>Costes</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <p class="dots">…</p>
+    </div>
+  </details>
+
+  <details class="sec" id="mapa">
+    <summary class="secSummary">
+      <span>Mapa</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <div class="mapWrap">
+        <div class="mapBox">
+          <button class="mapBtn" type="button" id="openMap">
+            <img class="mapImg" src="/mapa_argentina.png" alt="Mapa de Argentina (ruta)" />
+          </button>
+        </div>
+      </div>
+
+      <p class="dots">Próximamente: mapa interactivo.</p>
+    </div>
+  </details>
+
+  <details class="sec" id="galeria">
+    <summary class="secSummary">
+      <span>Galería</span><span class="secCaret">▾</span>
+    </summary>
+    <div class="secBody">
+      <h3>Vídeos</h3>
+      <div class="videoGrid">
+        <iframe src="https://www.youtube.com/embed/9EjcFCl4EgE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/9gDVJ3nsbjE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/MuWJ-onE2Rw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/xYxQ_LIKkXs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/Hms2foj1WPQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/7GNv-GpOZA0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/l6qduhBFv20" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/wEbehw_ghtg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/zLfggdJgItE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+
+      <h3>Fotos</h3>
+      <div class="photoGrid" id="photoGrid">
+        <button class="photoBtn" type="button"><img src="/galeria/arg1.jpg" alt="Argentina 1" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg2.jpg" alt="Argentina 2" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg3.jpg" alt="Argentina 3" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg4.jpg" alt="Argentina 4" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg5.jpg" alt="Argentina 5" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg6.jpg" alt="Argentina 6" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg7.jpg" alt="Argentina 7" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg8.png" alt="Argentina 8" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg9.jpg" alt="Argentina 9" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg10.jpg" alt="Argentina 10" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg11.jpg" alt="Argentina 11" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg12.jpg" alt="Argentina 12" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg13.jpg" alt="Argentina 13" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg14.jpg" alt="Argentina 14" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg15.jpg" alt="Argentina 15" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg16.jpg" alt="Argentina 16" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg17.jpg" alt="Argentina 17" loading="lazy" /></button>
+        <button class="photoBtn" type="button"><img src="/galeria/arg18.jpg" alt="Argentina 18" loading="lazy" /></button>
+      </div>
+
+      <!-- LIGHTBOX (fotos + mapa) -->
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lbBackdrop" id="lbBackdrop"></div>
+
+        <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
+          <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
+
+          <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
+          <img class="lbImg" id="lbImg" alt="" />
+          <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
+
+          <div class="lbCounter" id="lbCounter">1 / 1</div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <script is:inline>
+    (function () {
+      // --- SECCIONES: abrir por hash / toc ---
+      const getDetailsById = (id) => document.getElementById(id);
+
+      const openSection = (id) => {
+        const d = getDetailsById(id);
+        if (d && d.tagName.toLowerCase() === "details") d.open = true;
+        return d;
+      };
+
+      const closeAllSectionsExcept = (keepId) => {
+        document.querySelectorAll("details.sec").forEach((d) => {
+          if (d.id !== keepId) d.open = false;
+        });
+      };
+
+      const openFromHash = () => {
+        const raw = (location.hash || "").slice(1);
+        if (!raw) return;
+
+        // Si es un día del itinerario
+        if (raw.startsWith("dia-")) {
+          const it = openSection("itinerario");
+          closeAllSectionsExcept("itinerario");
+
+          const dayEl = document.getElementById(raw);
+          if (dayEl && dayEl.tagName.toLowerCase() === "details") {
+            dayEl.open = true;
+            setTimeout(() => dayEl.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          } else if (it) {
+            setTimeout(() => it.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          }
+          return;
+        }
+
+        // Si es una sección
+        const sec = openSection(raw);
+        if (sec) {
+          closeAllSectionsExcept(raw);
+          setTimeout(() => sec.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        }
+      };
+
+      // Click en la barra: abrir y cerrar el resto
+      document.querySelectorAll(".toc a").forEach((a) => {
+        a.addEventListener("click", () => {
+          const id = (a.getAttribute("href") || "").replace("#", "");
+          if (!id) return;
+          openSection(id);
+          closeAllSectionsExcept(id);
+        });
+      });
+
+      window.addEventListener("hashchange", openFromHash);
+      openFromHash();
+
+      // --- LIGHTBOX (fotos + mapa) ---
+      const grid = document.getElementById("photoGrid");
+      const openMapBtn = document.getElementById("openMap");
+
+      const lightbox = document.getElementById("lightbox");
+      const backdrop = document.getElementById("lbBackdrop");
+      const btnClose = document.getElementById("lbClose");
+      const btnPrev = document.getElementById("lbPrev");
+      const btnNext = document.getElementById("lbNext");
+      const imgEl = document.getElementById("lbImg");
+      const counter = document.getElementById("lbCounter");
+
+      if (!lightbox || !imgEl) return;
+
+      const MAP_SRC = "/mapa_argentina.png";
+
+      const imgs = grid ? Array.from(grid.querySelectorAll("img")) : [];
+      let index = 0;
+      let mode = "photos"; // "photos" | "map"
+
+      const showNav = () => {
+        if (btnPrev) btnPrev.style.display = "";
+        if (btnNext) btnNext.style.display = "";
+      };
+
+      const hideNav = () => {
+        if (btnPrev) btnPrev.style.display = "none";
+        if (btnNext) btnNext.style.display = "none";
+      };
+
+      const setImage = (i) => {
+        if (!imgs.length) return;
+        index = (i + imgs.length) % imgs.length;
+        const src = imgs[index].getAttribute("src") || "";
+        const alt = imgs[index].getAttribute("alt") || "";
+        imgEl.setAttribute("src", src);
+        imgEl.setAttribute("alt", alt);
+        if (counter) counter.textContent = (index + 1) + " / " + imgs.length;
+      };
+
+      const openLightbox = () => {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("noScroll");
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("noScroll");
+        imgEl.removeAttribute("src");
+        showNav();
+        mode = "photos";
+      };
+
+      const openPhoto = (i) => {
+        mode = "photos";
+        showNav();
+        setImage(i);
+        openLightbox();
+      };
+
+      const openMap = () => {
+        mode = "map";
+        hideNav();
+        imgEl.setAttribute("src", MAP_SRC);
+        imgEl.setAttribute("alt", "Mapa de Argentina (ruta)");
+        if (counter) counter.textContent = "Mapa";
+        openLightbox();
+      };
+
+      const prev = () => setImage(index - 1);
+      const next = () => setImage(index + 1);
+
+      if (grid) {
+        grid.addEventListener("click", (e) => {
+          const targetImg = e.target && e.target.closest ? e.target.closest("img") : null;
+          if (!targetImg) return;
+          const i = imgs.indexOf(targetImg);
+          if (i >= 0) openPhoto(i);
+        });
+      }
+
+      if (openMapBtn) openMapBtn.addEventListener("click", openMap);
+
+      if (btnClose) btnClose.addEventListener("click", closeLightbox);
+      if (backdrop) backdrop.addEventListener("click", closeLightbox);
+
+      if (btnPrev) btnPrev.addEventListener("click", () => { if (mode === "photos") prev(); });
+      if (btnNext) btnNext.addEventListener("click", () => { if (mode === "photos") next(); });
+
+      window.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (mode !== "photos") return;
+        if (e.key === "ArrowLeft") prev();
+        if (e.key === "ArrowRight") next();
+      });
+
+      let startX = 0;
+      let dx = 0;
+
+      const onTouchStart = (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (mode !== "photos") return;
+        startX = e.touches[0].clientX;
+        dx = 0;
+      };
+
+      const onTouchMove = (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (mode !== "photos") return;
+        dx = e.touches[0].clientX - startX;
+      };
+
+      const onTouchEnd = () => {
+        if (!lightbox.classList.contains("open")) return;
+        if (mode !== "photos") return;
+        if (Math.abs(dx) > 45) {
+          if (dx > 0) prev();
+          else next();
+        }
+        startX = 0;
+        dx = 0;
+      };
+
+      lightbox.addEventListener("touchstart", onTouchStart, { passive: true });
+      lightbox.addEventListener("touchmove", onTouchMove, { passive: true });
+      lightbox.addEventListener("touchend", onTouchEnd, { passive: true });
+    })();
+  </script>
 </BaseLayout>
 
 
