@@ -19,29 +19,213 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       animation: floatTitle 3.6s ease-in-out infinite, glowTitle 3.6s ease-in-out infinite;
       color: #1a0b2e;
       font-weight: 900;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.3px;
     }
     @media (prefers-reduced-motion: reduce){
       .hero-title{ animation: none; }
     }
+    .hero{
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      align-items: center;
+    }
+    .hero-panel{
+      padding: 28px;
+      border-radius: 24px;
+    }
+    .hero-actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .hero-stats{
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      margin-top: 22px;
+    }
+    .stat{
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(106, 76, 255, 0.14);
+      text-align: left;
+    }
+    .stat strong{
+      display: block;
+      font-size: 20px;
+      color: #3b1b7a;
+    }
+    .hero-image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .timeline{
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .timeline-step{
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(106, 76, 255, 0.12);
+      background: rgba(255,255,255,0.8);
+    }
+    .photo-stack{
+      position: relative;
+      width: min(420px, 90%);
+      aspect-ratio: 3 / 4;
+      margin: 0 auto 12px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(106, 76, 255, 0.18);
+      box-shadow: 0 14px 30px rgba(60, 30, 120, 0.18);
+    }
+    .photo-stack img{
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      animation: fadePhotos 24s infinite;
+    }
+    .photo-stack img:nth-child(1){ animation-delay: 0s; }
+    .photo-stack img:nth-child(2){ animation-delay: 4s; }
+    .photo-stack img:nth-child(3){ animation-delay: 8s; }
+    .photo-stack img:nth-child(4){ animation-delay: 12s; }
+    .photo-stack img:nth-child(5){ animation-delay: 16s; }
+    .photo-stack img:nth-child(6){ animation-delay: 20s; }
+    @keyframes fadePhotos{
+      0% { opacity: 0; transform: scale(1); }
+      5% { opacity: 1; }
+      20% { opacity: 1; transform: scale(1.02); }
+      25% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .photo-stack img{ animation: none; opacity: 1; position: relative; }
+      .photo-stack{ display: grid; gap: 10px; }
+    }
+    .quote-grid{
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .quote{
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(106, 76, 255, 0.14);
+      background: rgba(255,255,255,0.85);
+      font-weight: 600;
+      color: #3b1b7a;
+    }
   </style>
 
-  <div style="text-align:center; padding-top: 10px;">
-    <img
-      src="/logorb.png"
-      alt="Ruta Base"
-      style="width: 420px; max-width: 90vw; height: auto; display:block; margin: 22px auto 14px;"
-    />
+  <section class="hero section">
+    <div class="hero-panel shadow-card">
+      <span class="pill">Ruta Base · inspiraciones semanales</span>
+      <h1 style="margin: 14px 0 8px;">
+        <span class="hero-title">Aquí comienza la aventura</span>
+      </h1>
+      <p class="muted" style="font-size: 17px; margin: 0;">
+        Diseña viajes memorables con rutas inteligentes, mapas claros y experiencias que se sienten únicas.
+      </p>
 
-    <h1 style="margin: 0;">
-      <span class="hero-title">Aquí comienza la aventura</span>
-    </h1>
+      <div class="hero-actions">
+        <a class="button primary" href="/viajes">Ver itinerarios</a>
+        <a class="button ghost" href="/mapas">Explorar mapas</a>
+      </div>
 
-    <p class="muted" style="margin-top: 8px;">Planificar, conocer, viajar y recordar.</p>
-  </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>+120</strong>
+          <span class="muted">puntos destacados</span>
+        </div>
+        <div class="stat">
+          <strong>24</strong>
+          <span class="muted">rutas listas</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong>
+          <span class="muted">modos de viaje</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-panel shadow-card" style="text-align:center;">
+      <div class="photo-stack">
+        <img src="/galeria/arg3.jpg" alt="Montañas de Argentina" class="hero-image" />
+        <img src="/galeria/mex8.jpg" alt="Ruta costera en México" class="hero-image" />
+        <img src="/galeria/arg12.jpg" alt="Paisajes patagónicos" class="hero-image" />
+        <img src="/galeria/mex14.jpg" alt="Atardecer en ruta mexicana" class="hero-image" />
+        <img src="/galeria/arg16.jpg" alt="Lago y bosques" class="hero-image" />
+        <img src="/galeria/mex18.jpg" alt="Aventura sobre ruedas" class="hero-image" />
+      </div>
+      <p class="muted" style="margin: 10px 0 0;">
+        Planificar, conocer, viajar y recordar con una estética limpia y moderna.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Tu viaje, en un solo lugar</h2>
+    <p class="section-subtitle muted">
+      Organiza inspiración, rutas y momentos en una experiencia visual pensada para descubrir.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3 style="margin-top: 0;">Rutas curadas</h3>
+        <p class="muted">Itinerarios con tiempos reales, paradas imprescindibles y recomendaciones locales.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top: 0;">Mapas inmersivos</h3>
+        <p class="muted">Capas visuales, puntos destacados y vistas rápidas para decidir al instante.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top: 0;">Diarios visuales</h3>
+        <p class="muted">Guarda los recuerdos clave con fotografías, notas y tips de viaje.</p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top: 0;">Modo EV + Vuelo</h3>
+        <p class="muted">Explora rutas sustentables o prepárate para volar con simuladores y guías.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Así funciona Ruta Base</h2>
+    <p class="section-subtitle muted">Un flujo simple para preparar viajes sin estrés.</p>
+    <div class="timeline">
+      <div class="timeline-step">
+        <h4 style="margin: 0 0 6px;">1. Inspírate</h4>
+        <p class="muted">Explora destinos, galerías y relatos que encienden nuevas ideas.</p>
+      </div>
+      <div class="timeline-step">
+        <h4 style="margin: 0 0 6px;">2. Organiza</h4>
+        <p class="muted">Agrupa lugares, calcula tiempos y guarda tus rutas favoritas.</p>
+      </div>
+      <div class="timeline-step">
+        <h4 style="margin: 0 0 6px;">3. Viaja</h4>
+        <p class="muted">Lleva el plan contigo y disfruta el viaje con confianza.</p>
+      </div>
+      <div class="timeline-step">
+        <h4 style="margin: 0 0 6px;">4. Recuerda</h4>
+        <p class="muted">Crea un registro visual de cada aventura y compártelo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Frases que impulsan tu próxima aventura</h2>
+    <p class="section-subtitle muted">Inspírate antes de salir y guarda la emoción durante el viaje.</p>
+    <div class="quote-grid">
+      <div class="quote">“Cada kilómetro cuenta una historia: sal a descubrir la tuya.”</div>
+      <div class="quote">“Viajar es coleccionar momentos, no cosas: que el camino te sorprenda.”</div>
+      <div class="quote">“Planifica con calma, vive con intensidad y vuelve con recuerdos inolvidables.”</div>
+    </div>
+  </section>
 </BaseLayout>
-
-
 
 
 
