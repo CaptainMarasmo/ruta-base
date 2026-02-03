@@ -25,12 +25,13 @@ const nextExistingDay = (day: number): number | null => {
 <BaseLayout title="Argentina | Ruta Base">
   <style>
     .hero{
+      position: relative;
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.08);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.75);
-      margin-bottom: 16px;
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+      margin-bottom: 12px;
     }
 
     .heroImg{
@@ -38,15 +39,69 @@ const nextExistingDay = (day: number): number | null => {
       height: 320px;
       object-fit: cover;
       display: block;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
     }
 
-    .pad{ padding: 14px; }
+    .pad{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 10px;
+      display: flex;
+      justify-content: flex-start;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%);
+    }
+    .caption{
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.35);
+      border: 1px solid rgba(0,0,0,0.1);
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+    }
+    .pageTitle{
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flag-arg{
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.15);
+      background:
+        radial-gradient(circle at 50% 50%, #f6c343 0 20%, transparent 21%),
+        linear-gradient(135deg, rgba(255,255,255,0.25) 0 30%, rgba(255,255,255,0) 30% 60%, rgba(0,0,0,0.08) 60% 100%),
+        linear-gradient(#6cc3ff 0 33%, #ffffff 33% 66%, #6cc3ff 66% 100%);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      vertical-align: -0.1em;
+      background-size: 100% 100%, 200% 200%, 100% 100%;
+      background-position: center, 20% 30%, center;
+    }
 
     .toc{
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin: 10px 0 16px;
+      position: sticky;
+      top: 10px;
+      z-index: 5;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.7);
+      padding: 8px;
+      border-radius: 12px;
     }
 
     .toc a{
@@ -87,6 +142,8 @@ const nextExistingDay = (day: number): number | null => {
       font-weight: 900;
       font-size: 18px;
     }
+    /* Solo TOC arriba: ocultar títulos repetidos */
+    summary.secSummary{ display: none; }
 
     summary.secSummary::-webkit-details-marker{ display:none; }
 
@@ -105,6 +162,20 @@ const nextExistingDay = (day: number): number | null => {
       padding: 0 14px 14px 14px;
       border-top: 1px solid rgba(0,0,0,0.08);
     }
+    details.sec{
+      border: 0;
+      background: transparent;
+      margin-bottom: 0;
+    }
+    details.sec[open]{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      margin-bottom: 12px;
+    }
+    /* Mostrar solo títulos; contenido visible solo al abrir */
+    details.sec .secBody{ display: none; }
+    details.sec[open] .secBody{ display: block; }
 
     .dots{
       color: #666;
@@ -349,12 +420,22 @@ const nextExistingDay = (day: number): number | null => {
     }
   </style>
 
-  <h1>Argentina</h1>
+  <div class="titleRow" style="position:relative; width:100%;">
+    <div class="titleNav" style="position:absolute; top:-16px; right:-6px; z-index:5; display:flex; align-items:center;">
+      <a class="titleArrow" href="/viajes/mexico" aria-label="Siguiente" style="margin-left:-8px;">
+        <img src="/giroderecha.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" />
+      </a>
+    </div>
+    <h1 class="pageTitle">
+      Argentina
+      <span class="flag-arg" aria-hidden="true"></span>
+    </h1>
+  </div>
 
   <div class="hero">
     <img class="heroImg" src="/perito.png" alt="Perito Moreno" />
     <div class="pad">
-      <p class="muted">Perito Moreno como portada del viaje.</p>
+      <p class="muted caption">El Perito Moreno es el glaciar más grande y espectacular que he visitado.</p>
     </div>
   </div>
 
@@ -397,7 +478,7 @@ const nextExistingDay = (day: number): number | null => {
 
                 {nextDay && (
                   <div class="nextRow">
-                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día →</a>
+                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día &#10148;</a>
                   </div>
                 )}
               </div>
@@ -483,22 +564,23 @@ const nextExistingDay = (day: number): number | null => {
         <button class="photoBtn" type="button"><img src="/galeria/arg18.jpg" alt="Argentina 18" loading="lazy" /></button>
       </div>
 
-      <!-- LIGHTBOX (fotos + mapa) -->
-      <div class="lightbox" id="lightbox" aria-hidden="true">
-        <div class="lbBackdrop" id="lbBackdrop"></div>
-
-        <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
-          <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
-
-          <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
-          <img class="lbImg" id="lbImg" alt="" />
-          <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
-
-          <div class="lbCounter" id="lbCounter">1 / 1</div>
-        </div>
-      </div>
     </div>
   </details>
+
+  <!-- LIGHTBOX (fotos + mapa) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lbBackdrop" id="lbBackdrop"></div>
+
+    <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
+      <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
+
+      <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
+      <img class="lbImg" id="lbImg" alt="" />
+      <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
+
+      <div class="lbCounter" id="lbCounter">1 / 1</div>
+    </div>
+  </div>
 
   <script is:inline>
     (function () {
@@ -519,7 +601,11 @@ const nextExistingDay = (day: number): number | null => {
 
       const openFromHash = () => {
         const raw = (location.hash || "").slice(1);
-        if (!raw) return;
+        if (!raw) {
+          openSection("resumen");
+          closeAllSectionsExcept("resumen");
+          return;
+        }
 
         // Si es un día del itinerario
         if (raw.startsWith("dia-")) {
@@ -556,6 +642,17 @@ const nextExistingDay = (day: number): number | null => {
 
       window.addEventListener("hashchange", openFromHash);
       openFromHash();
+
+      // Itinerario: solo un día abierto a la vez
+      const dayDetails = Array.from(document.querySelectorAll("details.day"));
+      dayDetails.forEach((d) => {
+        d.addEventListener("toggle", () => {
+          if (!d.open) return;
+          dayDetails.forEach((other) => {
+            if (other !== d) other.open = false;
+          });
+        });
+      });
 
       // --- LIGHTBOX (fotos + mapa) ---
       const grid = document.getElementById("photoGrid");

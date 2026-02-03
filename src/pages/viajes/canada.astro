@@ -1,29 +1,322 @@
-﻿---
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Canadá";
 const cover = "/covers/canada.png";
+const mapSrc = "/mapa_canada.png";
 ---
 
 <BaseLayout title={`${title} | Ruta Base`}>
-  <h1>{title}</h1>
-  <div style={`height:220px;border-radius:16px;background:#f3f3f3 url(${cover}) center/cover no-repeat;`}></div>
+  <style>
+    .hero{
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+      margin-bottom: 12px;
+    }
 
-  <h2 style="margin-top:18px;">Resumen</h2>
-  <p>…</p>
+    .heroImg{
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    }
 
-  <h2>Itinerario</h2>
-  <p>…</p>
+    .pad{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 10px;
+      display: flex;
+      justify-content: flex-start;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%);
+    }
 
-  <h2>Imprescindibles</h2>
-  <p>…</p>
+    .caption{
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.35);
+      border: 1px solid rgba(0,0,0,0.1);
+      margin: 0;
+      font-size: 13px;
+      font-weight: 600;
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+    }
 
-  <h2>Costes</h2>
-  <p>…</p>
+    .pageTitle{
+      margin-top: 0;
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-  <h2>Mapa</h2>
-  <p>…</p>
+    .toc{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 16px;
+      position: sticky;
+      top: 10px;
+      z-index: 5;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.7);
+      padding: 8px;
+      border-radius: 12px;
+    }
 
-  <h2>Galería</h2>
-  <p>…</p>
+    .toc a{
+      display: inline-block;
+      text-decoration: none;
+      color: #1a0b2e;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(0,0,0,0.08);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .toc a:hover{
+      background: rgba(155,120,255,0.22);
+    }
+
+    details.sec{
+      border: 0;
+      background: transparent;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+
+    summary.secSummary{ display: none; }
+
+    .secBody{
+      padding: 0 14px 14px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    details.sec[open]{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      margin-bottom: 12px;
+    }
+
+    .secCaret{ display:none; }
+
+    .dots{ color:#666; margin:10px 0 0 0; }
+
+    .mapWrap{ display:flex; justify-content:center; margin-top:10px; }
+
+    .mapBox{
+      width: 55%;
+      max-width: 340px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.65);
+    }
+
+    .mapBtn{ padding:0; border:0; background:transparent; cursor:pointer; display:block; width:100%; }
+    .mapImg{ width:100%; height:auto; display:block; }
+
+    #galeria h3{ margin:14px 0 8px 0; font-size:15px; color:#1a0b2e; }
+
+    .videoGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:10px;
+      margin-bottom:18px;
+    }
+
+    @media (max-width:900px){ .videoGrid{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:520px){ .videoGrid{ grid-template-columns: 1fr; } }
+
+    .videoGrid iframe{
+      width:100%;
+      aspect-ratio:16/9;
+      height:auto;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.04);
+    }
+
+    .photoGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .photoBtn{ padding:0; border:0; background:transparent; cursor:pointer; }
+
+    .photoBtn img{
+      width:100%;
+      height:140px;
+      object-fit:cover;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.10);
+      display:block;
+      transition: transform 0.18s ease;
+    }
+
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .lightbox.open{ display:block; }
+    .lbBackdrop{ position:absolute; inset:0; background: rgba(0,0,0,0.55); }
+    .lbPanel{ position:absolute; inset:5%; border-radius:16px; background: rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; }
+    .lbImg{ max-width:90%; max-height:90%; border-radius:12px; border:1px solid rgba(255,255,255,0.2); }
+    .lbClose{ position:absolute; top:14px; right:14px; width:40px; height:40px; border-radius:12px; border:1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color:#fff; font-size:26px; line-height:36px; cursor:pointer; }
+    .lbNav{ position:absolute; top:50%; transform: translateY(-50%); width:46px; height:56px; border-radius:14px; border:1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color:#fff; font-size:34px; cursor:pointer; user-select:none; }
+    .lbPrev{ left:14px; }
+    .lbNext{ right:14px; }
+    .lbCounter{ position:absolute; bottom:14px; left:50%; transform: translateX(-50%); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color:#fff; font-weight:700; font-size:12px; }
+  </style>
+
+  <div class="titleRow" style="position:relative; width:100%;">
+    <div class="titleNav" style="position:absolute; top:-16px; right:-6px; z-index:5; display:flex; align-items:center;">
+      <a class="titleArrow" href="/viajes/bostwana" aria-label="Anterior"><img src="/giroizquierda.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
+      <a class="titleArrow" href="/viajes/costarica" aria-label="Siguiente" style="margin-left:-8px;"><img src="/giroderecha.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
+    </div>
+    <h1 class="pageTitle">{title}</h1>
+  </div>
+
+  <div class="hero">
+    <img class="heroImg" src={cover} alt={title} />
+    <div class="pad">
+      <p class="muted caption">{title} como portada del viaje.</p>
+    </div>
+  </div>
+
+  <div class="toc">
+    <a href="#resumen">Resumen</a>
+    <a href="#itinerario">Itinerario</a>
+    <a href="#imprescindibles">Imprescindibles</a>
+    <a href="#costes">Costes</a>
+    <a href="#mapa">Mapa</a>
+    <a href="#galeria">Galería</a>
+  </div>
+
+  <details class="sec" id="resumen">
+    <summary class="secSummary"><span>Resumen</span><span class="secCaret">▾</span></summary>
+    <div class="secBody">
+      <p>…</p>
+    </div>
+  </details>
+
+  <details class="sec" id="itinerario">
+    <summary class="secSummary"><span>Itinerario</span><span class="secCaret">▾</span></summary>
+    <div class="secBody">
+      <p>…</p>
+    </div>
+  </details>
+
+  <details class="sec" id="imprescindibles">
+    <summary class="secSummary"><span>Imprescindibles</span><span class="secCaret">▾</span></summary>
+    <div class="secBody">
+      <p class="dots">…</p>
+    </div>
+  </details>
+
+  <details class="sec" id="costes">
+    <summary class="secSummary"><span>Costes</span><span class="secCaret">▾</span></summary>
+    <div class="secBody">
+      <p class="dots">…</p>
+    </div>
+  </details>
+
+  <details class="sec" id="mapa">
+    <summary class="secSummary"><span>Mapa</span><span class="secCaret">▾</span></summary>
+    <div class="secBody">
+      <div class="mapWrap">
+        <div class="mapBox">
+          <button class="mapBtn" type="button" id="openMap">
+            <img class="mapImg" src={mapSrc} alt={`Mapa de ${title}`} />
+          </button>
+        </div>
+      </div>
+      <p class="dots">Próximamente: mapa interactivo.</p>
+    </div>
+  </details>
+
+  <details class="sec" id="galeria">
+    <summary class="secSummary"><span>Galería</span><span class="secCaret">▾</span></summary>
+    <div class="secBody">
+      <h3>Videos</h3>
+      <div class="videoGrid"></div>
+      <h3>Fotos</h3>
+      <div class="photoGrid" id="photoGrid"></div>
+    </div>
+  </details>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lbBackdrop" id="lbBackdrop"></div>
+    <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
+      <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
+      <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
+      <img class="lbImg" id="lbImg" alt="" />
+      <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
+      <div class="lbCounter" id="lbCounter">1 / 1</div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const getDetailsById = (id) => document.getElementById(id);
+
+      const openSection = (id) => {
+        const d = getDetailsById(id);
+        if (d && d.tagName.toLowerCase() === "details") d.open = true;
+        return d;
+      };
+
+      const closeAllSectionsExcept = (keepId) => {
+        document.querySelectorAll("details.sec").forEach((d) => {
+          if (d.id !== keepId) d.open = false;
+        });
+      };
+
+      const openFromHash = () => {
+        const raw = (location.hash || "").slice(1);
+        if (!raw) {
+          openSection("resumen");
+          closeAllSectionsExcept("resumen");
+          return;
+        }
+        const sec = openSection(raw);
+        if (sec) {
+          closeAllSectionsExcept(raw);
+          setTimeout(() => sec.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        }
+      };
+
+      document.querySelectorAll(".toc a").forEach((a) => {
+        a.addEventListener("click", () => {
+          const id = (a.getAttribute("href") || "").replace("#", "");
+          if (!id) return;
+          openSection(id);
+          closeAllSectionsExcept(id);
+        });
+      });
+
+      window.addEventListener("hashchange", openFromHash);
+      openFromHash();
+    })();
+  </script>
 </BaseLayout>

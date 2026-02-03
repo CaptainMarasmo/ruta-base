@@ -4,15 +4,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="Ruta Base" useVideoBg={true}>
   <style>
+    :global(body){
+      overflow: hidden;
+    }
     @keyframes floatTitle {
       0%   { transform: translateY(0px); }
       50%  { transform: translateY(-10px); }
       100% { transform: translateY(0px); }
     }
     @keyframes glowTitle {
-      0%   { text-shadow: 0 0 0 rgba(155,120,255,0.0); }
-      50%  { text-shadow: 0 0 18px rgba(155,120,255,0.55); }
-      100% { text-shadow: 0 0 0 rgba(155,120,255,0.0); }
+      0%   { text-shadow: 0 0 0 rgba(56,170,92,0.0); }
+      50%  { text-shadow: 0 0 18px rgba(56,170,92,0.55); }
+      100% { text-shadow: 0 0 0 rgba(56,170,92,0.0); }
     }
     .hero-title{
       display: inline-block;
@@ -21,28 +24,314 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       font-weight: 900;
       letter-spacing: 0.2px;
     }
+    .hero-wrap{
+      display: grid;
+      gap: 14px;
+      justify-items: center;
+      align-items: center;
+      width: 100%;
+      margin: 20px 0 12px;
+    }
+    .home-stage{
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      padding: 0 0 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+    .home-stage > img:not(.taxi):not(.taxi-london):not(.bike):not(.gondola):not(.agenda),
+    .home-stage > h1,
+    .home-stage > p{
+      position: relative;
+    }
+    .taxi{
+      position: fixed;
+      right: 10px;
+      bottom: 18px;
+      width: 240px;
+      height: auto;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 999;
+      margin: 0;
+      display: block;
+    }
+    .taxi-london{
+      position: fixed;
+      left: 10px;
+      bottom: 18px;
+      width: 240px;
+      height: auto;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 999;
+      margin: 0;
+      display: block;
+    }
+    .bike{
+      position: fixed;
+      left: 260px;
+      bottom: 50px;
+      width: 150px;
+      height: auto;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 1000;
+      display: block;
+    }
+    .gondola{
+      position: fixed;
+      right: 260px;
+      bottom: 50px;
+      width: 150px;
+      height: auto;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 1000;
+      display: block;
+    }
+    .agenda{
+      position: fixed;
+      left: 50%;
+      bottom: 60px;
+      width: 140px;
+      height: auto;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 1000;
+      transform: translateX(-50%);
+      display: block;
+    }
+    .hero-row{
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      width: min(1040px, 96vw);
+      flex-wrap: wrap;
+    }
+    .hero-row .hero-carousel:last-child{
+      margin-left: auto;
+    }
+    .hero-carousel{
+      position: relative;
+      width: min(360px, 86vw);
+      height: clamp(180px, 28vw, 220px);
+      border-radius: 14px;
+      overflow: visible;
+      display: grid;
+      place-items: center;
+      background: transparent;
+      border: 0;
+      will-change: transform;
+    }
+    .hero-carousel img{
+      position: absolute;
+      width: clamp(140px, 24vw, 220px);
+      height: clamp(100px, 18vw, 160px);
+      object-fit: cover;
+      border-radius: 10px;
+      opacity: 1;
+      box-shadow: none;
+      border: 0;
+      transition: transform 900ms ease, filter 900ms ease;
+    }
+    .hero-carousel .slot1{
+      transform: translate(-55px, -12px) rotate(-6deg) scale(1.0);
+      filter: brightness(1.02);
+      z-index: 4;
+    }
+    .hero-carousel .slot2{
+      transform: translate(8px, -24px) rotate(3deg) scale(1.02);
+      filter: brightness(1);
+      z-index: 3;
+    }
+    .hero-carousel .slot3{
+      transform: translate(52px, -4px) rotate(7deg) scale(1.01);
+      filter: brightness(0.98);
+      z-index: 2;
+    }
+    .hero-carousel .slot4{
+      transform: translate(-12px, 22px) rotate(-3deg) scale(0.99);
+      filter: brightness(0.96);
+      z-index: 1;
+    }
+    .motivation{
+      --tilt: -8deg;
+      max-width: 280px;
+      font-family: inherit;
+      font-weight: 900;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+      color: #1a0b2e;
+      display: inline-block;
+      transform-origin: left center;
+      transform: rotate(var(--tilt)) skew(-4deg);
+      animation: glowTitle 3.6s ease-in-out infinite;
+    }
+    .motivation > span{
+      display: inline-block;
+      animation: floatTitle 3.6s ease-in-out infinite;
+    }
+    .quote-band{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      width: min(960px, 92vw);
+      margin: 4px auto 6px;
+    }
+    .motivation.m1{ --tilt: -7deg; position: relative; top: 30px; left: 18px; }
+    .motivation.m2{ --tilt: 8deg; position: relative; top: -10px; left: -18px; }
+    .motivation.m3{
+      position: absolute;
+      top: 230px;
+      left: 12vw;
+      transform: rotate(-3deg);
+    }
+    @media (max-width: 720px){
+      .quote-band{
+        flex-direction: column;
+        gap: 8px;
+      }
+      .motivation{
+        display: block;
+        margin: 8px auto;
+        text-align: center;
+      }
+      .motivation.m3{
+        position: static;
+      }
+    }
     @media (prefers-reduced-motion: reduce){
       .hero-title{ animation: none; }
+      .hero-carousel{ animation: none; transform: none; }
+      .hero-carousel img{
+        animation: none;
+        transition: none;
+        opacity: 1;
+      }
     }
   </style>
 
-  <div style="text-align:center; padding-top: 10px;">
+  <div class="home-stage" style="text-align:center; padding-top: 10px;">
+    <img class="taxi" src="/taxi.png" alt="Taxi de Nueva York" />
+    <img class="taxi-london" src="/taxilondres.png" alt="Taxi de Londres" />
+    <img class="bike" src="/bici.png" alt="Bicicleta" />
+    <img class="gondola" src="/gondola.png" alt="Góndola" />
+    <img class="agenda" src="/agendaviajera.png" alt="Agenda viajera" />
+    <div class="hero-wrap">
+      <div class="hero-row" aria-hidden="true">
+        <div class="hero-carousel" data-carousel="left">
+          <img class="slot1" src="/galeria/mex4.jpg" alt="" loading="lazy" />
+          <img class="slot2" src="/galeria/arg6.jpg" alt="" loading="lazy" />
+          <img class="slot3" src="/galeria/mex12.jpg" alt="" loading="lazy" />
+          <img class="slot4" src="/galeria/arg12.jpg" alt="" loading="lazy" />
+        </div>
+        <div class="hero-carousel alt" data-carousel="right">
+          <img class="slot1" src="/galeria/mex17.jpg" alt="" loading="lazy" />
+          <img class="slot2" src="/galeria/arg16.jpg" alt="" loading="lazy" />
+          <img class="slot3" src="/galeria/mex8.jpg" alt="" loading="lazy" />
+          <img class="slot4" src="/galeria/arg3.jpg" alt="" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-band">
+      <div class="motivation m1"><span>El viaje empieza cuando decidís salir de la rutina.</span></div>
+      <div class="motivation m2"><span>Cada ruta guarda una historia que te espera.</span></div>
+    </div>
+
     <img
       src="/logorb.png"
       alt="Ruta Base"
-      style="width: 420px; max-width: 90vw; height: auto; display:block; margin: 22px auto 14px;"
+      style="width: 420px; max-width: 90vw; height: auto; display:block; margin: -180px auto 10px;"
     />
 
-    <h1 style="margin: 0;">
+    <h1 style="margin: -40px 0 0;">
       <span class="hero-title">Aquí comienza la aventura</span>
     </h1>
 
-    <p class="muted" style="margin-top: 8px;">Planificar, conocer, viajar y recordar.</p>
+    <p class="muted" style="margin-top: 2px;">Planificar, conocer, viajar y recordar.</p>
   </div>
+
+  <script is:inline>
+    const gallery = [
+      "/galeria/mex1.jpg",
+      "/galeria/mex2.jpg",
+      "/galeria/mex3.jpg",
+      "/galeria/mex4.jpg",
+      "/galeria/mex5.jpg",
+      "/galeria/mex6.jpg",
+      "/galeria/mex7.jpg",
+      "/galeria/mex8.jpg",
+      "/galeria/mex9.jpg",
+      "/galeria/mex10.jpg",
+      "/galeria/mex11.jpg",
+      "/galeria/mex12.jpg",
+      "/galeria/mex13.jpg",
+      "/galeria/mex14.jpg",
+      "/galeria/mex15.jpg",
+      "/galeria/mex16.jpg",
+      "/galeria/mex17.jpg",
+      "/galeria/mex18.jpg",
+      "/galeria/mex19.jpg",
+      "/galeria/mex20.jpg",
+      "/galeria/arg1.jpg",
+      "/galeria/arg2.jpg",
+      "/galeria/arg3.jpg",
+      "/galeria/arg4.jpg",
+      "/galeria/arg5.jpg",
+      "/galeria/arg6.jpg",
+      "/galeria/arg7.jpg",
+      "/galeria/arg8.png",
+      "/galeria/arg9.jpg",
+      "/galeria/arg10.jpg",
+      "/galeria/arg11.jpg",
+      "/galeria/arg12.jpg",
+      "/galeria/arg13.jpg",
+      "/galeria/arg14.jpg",
+      "/galeria/arg15.jpg",
+      "/galeria/arg16.jpg",
+      "/galeria/arg17.jpg",
+      "/galeria/arg18.jpg",
+    ];
+
+    const shuffle = (arr) => {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    };
+
+    const imgs = Array.from(document.querySelectorAll(".hero-carousel img"));
+    const picks = shuffle(gallery).slice(0, imgs.length);
+    imgs.forEach((img, idx) => {
+      img.src = picks[idx];
+    });
+
+    const slots = ["slot1", "slot2", "slot3", "slot4"];
+    const rotateCarousel = (carousel) => {
+      const images = Array.from(carousel.querySelectorAll("img"));
+      images.forEach((img) => {
+        const current = slots.find((s) => img.classList.contains(s));
+        const next = slots[(slots.indexOf(current) + 1) % slots.length];
+        img.classList.remove(current);
+        img.classList.add(next);
+      });
+    };
+
+    const carousels = Array.from(document.querySelectorAll(".hero-carousel"));
+    setInterval(() => {
+      carousels.forEach(rotateCarousel);
+    }, 4000);
+  </script>
 </BaseLayout>
-
-
-
-
 
 

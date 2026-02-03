@@ -99,6 +99,47 @@ const {
       .muted{ color:#666; font-size:14px; }
       .grid{ display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
       .card{ border:1px solid #eee; border-radius:14px; padding:14px; background: rgba(255,255,255,0.75); }
+      .titleRow{
+        display: block !important;
+        position: relative !important;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding-top: 2px;
+        width: 100%;
+      }
+      .titleNav{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        position: absolute !important;
+        top: -10px !important;
+        right: 0 !important;
+        white-space: nowrap;
+      }
+      .titleNav a{
+        text-decoration: none !important;
+      }
+      .titleArrow{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 999px;
+        text-decoration: none !important;
+        border-bottom: 0 !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        color: #1a0b2e;
+        font-weight: 900;
+        font-size: 34px !important;
+        line-height: 1;
+        border: 1px solid rgba(0,0,0,0.12);
+        background: rgba(255,255,255,0.75);
+        transform: scale(1.05);
+      }
+      .titleArrow:hover{
+        background: rgba(155,120,255,0.18);
+      }
     </style>
   </head>
 
