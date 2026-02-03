@@ -162,6 +162,104 @@ const nextExistingDay = (day: number): number | null => {
       padding: 0 14px 14px 14px;
       border-top: 1px solid rgba(0,0,0,0.08);
     }
+    .hotelRow{
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+    .hotelCard{
+      flex: 1 1 260px;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,0.75);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+    .hotelName{
+      font-weight: 800;
+      margin: 0 0 6px;
+    }
+    .hotelMedia{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .hotelPhoto{
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    }
+    .hotelInfo{
+      display: grid;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .hotelInfo a{
+      color: inherit;
+      font-weight: 700;
+    }
+    .hotelMap{
+      width: 100%;
+      height: 240px;
+      border: 0;
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+    .hotelItem{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.7);
+      overflow: hidden;
+    }
+    .hotelToggle{
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      font-weight: 800;
+      font-size: 16px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+    .hotelTitle{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .hotelStars{
+      color: #f2c84b;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .hotelToggle .hotelCaret{
+      font-size: 18px;
+      opacity: 0.7;
+      transform: rotate(-90deg);
+      transition: transform 0.18s ease;
+    }
+    .hotelItem.open .hotelToggle .hotelCaret{
+      transform: rotate(0deg);
+    }
+    .hotelPanel{
+      display: none;
+      padding: 0 14px 14px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .hotelItem.open .hotelPanel{
+      display: block;
+    }
     details.sec{
       border: 0;
       background: transparent;
@@ -439,13 +537,14 @@ const nextExistingDay = (day: number): number | null => {
     </div>
   </div>
 
-  <div class="toc">
+    <div class="toc">
     <a href="#resumen">Resumen</a>
     <a href="#itinerario">Itinerario</a>
     <a href="#imprescindibles">Imprescindibles</a>
     <a href="#costes">Costes</a>
+    <a href="#hoteles">Hoteles</a>
     <a href="#mapa">Mapa</a>
-    <a href="#galeria">Galería</a>
+    <a href="#galeria">Galeria</a>
   </div>
 
   <details class="sec" id="resumen">
@@ -507,6 +606,190 @@ const nextExistingDay = (day: number): number | null => {
     </div>
   </details>
 
+  <details class="sec" id="hoteles">
+    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
+    <div class="secBody">
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Hotel Recoleta Grand Buenos Aires
+            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+          </span>
+          <span class="hotelCaret">▾</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Av. Gral. Las Heras 1745, C1018 Cdad. Autónoma de Buenos Aires, Argentina</div>
+            <div class="muted">Precio: <strong>362€</strong> la noche</div>
+            <div class="muted">Web: <a href="https://www.recoletagrand.com/" target="_blank" rel="noopener">recoletagrand.com</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/harg1.jpg" alt="Hotel Recoleta Grand - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/harg2.jpg" alt="Hotel Recoleta Grand - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/harg3.jpg" alt="Hotel Recoleta Grand - foto 3" loading="lazy" />
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.4741757550446!2d-58.39360252446988!3d-34.592169272958394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccabcfca7a58b%3A0x313ed311c088fbcb!2sRecoleta%20Grand%2C%20Buenos%20Aires%2C%20a%20Tribute%20Portfolio%20Hotel!5e0!3m2!1ses!2ses!4v1770141840011!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Hotel Recoleta Grand"
+          ></iframe>
+        </div>
+      </div>
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Loi Suites Iguazu Hotel
+            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+          </span>
+          <span class="hotelCaret">▾</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Selva Iryapú s/n, N3370 Puerto Iguazú, Misiones, Argentina</div>
+            <div class="muted">Precio: <strong>266€</strong> la noche</div>
+            <div class="muted">Web: <a href="https://loisuites.com.ar/iguazu.html" target="_blank" rel="noopener">loisuites.com.ar</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/higu2.jpg" alt="Loi Suites Iguazu - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/higu3.jpg" alt="Loi Suites Iguazu - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/higu4.jpg" alt="Loi Suites Iguazu - foto 3" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/higu5.jpg" alt="Loi Suites Iguazu - foto 4" loading="lazy" />
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7196.500340204833!2d-54.545521!3d-25.596601999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f693bf9a59d3e7%3A0xa9a6f8a4d5921302!2sLoi%20Suites%20Iguaz%C3%BA%20Hotel!5e0!3m2!1ses!2ses!4v1770143421747!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Loi Suites Iguazu"
+          ></iframe>
+        </div>
+      </div>
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Hotel Legado Mítico Salta
+            <span class="hotelStars" aria-hidden="true">★★★★</span>
+          </span>
+          <span class="hotelCaret">▾</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Bartolomé Mitre 647, A4400 EHM, Salta, Argentina</div>
+            <div class="muted">Precio: <strong>224€</strong> la noche</div>
+            <div class="muted">Web: <a href="https://legadomitico.com/salta/" target="_blank" rel="noopener">legadomitico.com</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/hsal1.jpg" alt="Hotel Legado Mítico Salta - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hsal2.jpg" alt="Hotel Legado Mítico Salta - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hsal3.jpg" alt="Hotel Legado Mítico Salta - foto 3" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hsal4.jpg" alt="Hotel Legado Mítico Salta - foto 4" loading="lazy" />
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1811.2037468077936!2d-65.41150018007096!3d-24.78149636620746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941bc3bed2e1bf7b%3A0x322e0bc0ff194f6b!2sHotel%20Legado%20M%C3%ADtico%20Salta!5e0!3m2!1ses!2ses!4v1770144407629!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Hotel Legado Mítico Salta"
+          ></iframe>
+        </div>
+      </div>
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Hotel El Manantial del Silencio
+            <span class="hotelStars" aria-hidden="true">★★★★</span>
+          </span>
+          <span class="hotelCaret">▾</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Ruta Nacional N52 Km 3,5, Y4618 Purmamarca, Jujuy, Argentina</div>
+            <div class="muted">Precio: <strong>Pendiente</strong></div>
+            <div class="muted">Web: <a href="http://www.hotelmanantialdelsilencio.com/" target="_blank" rel="noopener">hotelmanantialdelsilencio.com</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/hpur1.jpg" alt="Hotel El Manantial del Silencio - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hpur2.jpg" alt="Hotel El Manantial del Silencio - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hpur3.jpg" alt="Hotel El Manantial del Silencio - foto 3" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hpur4.jpg" alt="Hotel El Manantial del Silencio - foto 4" loading="lazy" />
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2132.0274651783125!2d-65.50423509959425!3d-23.742466939678792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941b49ca833a1183%3A0x897de17cd130cd87!2sHotel%20El%20Manantial%20del%20Silencio!5e0!3m2!1ses!2ses!4v1770145058607!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Hotel El Manantial del Silencio"
+          ></iframe>
+        </div>
+      </div>
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Los Cauquenes Resort + Spa + Experiences
+            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+          </span>
+          <span class="hotelCaret">▾</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Barrio Bahía Cauquén, De la Ermita 3462, V9410 Ushuaia, Tierra del Fuego, Argentina</div>
+            <div class="muted">Precio: <strong>336€</strong> la noche</div>
+            <div class="muted">Web: <a href="https://www.loscauquenes.com/es/" target="_blank" rel="noopener">loscauquenes.com</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/husu1.jpg" alt="Los Cauquenes - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/husu2.jpg" alt="Los Cauquenes - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/husu3.jpg" alt="Los Cauquenes - foto 3" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/husu4.jpg" alt="Los Cauquenes - foto 4" loading="lazy" />
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18382.150002637693!2d-68.3858858184877!3d-54.83674708305094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc4c2488171315e5%3A0xa2d5f3c1ca32267f!2sLos%20Cauquenes%20Resort%20%2B%20Spa%20%2B%20Experiences!5e0!3m2!1ses!2ses!4v1770145919417!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Los Cauquenes Resort + Spa + Experiences"
+          ></iframe>
+        </div>
+      </div>
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Xelena Hotel & Suites
+            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+          </span>
+          <span class="hotelCaret">▾</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Rene Favaloro 3500, Z9405 El Calafate, Santa Cruz, Argentina</div>
+            <div class="muted">Precio: <strong>199€</strong> la noche</div>
+            <div class="muted">Web: <a href="http://www.hotelxelena.com/" target="_blank" rel="noopener">hotelxelena.com</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/hcal1.jpg" alt="Xelena Hotel & Suites - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hcal2.jpg" alt="Xelena Hotel & Suites - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hcal3.jpg" alt="Xelena Hotel & Suites - foto 3" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hcal4.jpg" alt="Xelena Hotel & Suites - foto 4" loading="lazy" />
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5093.369940296534!2d-72.30331129999999!3d-50.335128399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbdbb0cd7e3c07e69%3A0xd7326674c4e3032c!2sXelena%20Hotel%20%26%20Suites!5e0!3m2!1ses!2ses!4v1770146055885!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Xelena Hotel & Suites"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </details>
   <details class="sec" id="mapa">
     <summary class="secSummary">
       <span>Mapa</span><span class="secCaret">▾</span>
@@ -672,7 +955,8 @@ const nextExistingDay = (day: number): number | null => {
 
       const imgs = grid ? Array.from(grid.querySelectorAll("img")) : [];
       let index = 0;
-      let mode = "photos"; // "photos" | "map"
+      let mode = "photos"; // "photos" | "map" | "hotel"
+      let activeImgs = imgs;
 
       const showNav = () => {
         if (btnPrev) btnPrev.style.display = "";
@@ -685,13 +969,13 @@ const nextExistingDay = (day: number): number | null => {
       };
 
       const setImage = (i) => {
-        if (!imgs.length) return;
-        index = (i + imgs.length) % imgs.length;
-        const src = imgs[index].getAttribute("src") || "";
-        const alt = imgs[index].getAttribute("alt") || "";
+        if (!activeImgs.length) return;
+        index = (i + activeImgs.length) % activeImgs.length;
+        const src = activeImgs[index].getAttribute("src") || "";
+        const alt = activeImgs[index].getAttribute("alt") || "";
         imgEl.setAttribute("src", src);
         imgEl.setAttribute("alt", alt);
-        if (counter) counter.textContent = (index + 1) + " / " + imgs.length;
+        if (counter) counter.textContent = (index + 1) + " / " + activeImgs.length;
       };
 
       const openLightbox = () => {
@@ -707,10 +991,20 @@ const nextExistingDay = (day: number): number | null => {
         imgEl.removeAttribute("src");
         showNav();
         mode = "photos";
+        activeImgs = imgs;
       };
 
       const openPhoto = (i) => {
         mode = "photos";
+        activeImgs = imgs;
+        showNav();
+        setImage(i);
+        openLightbox();
+      };
+
+      const openHotel = (i, list) => {
+        mode = "hotel";
+        activeImgs = list;
         showNav();
         setImage(i);
         openLightbox();
@@ -736,21 +1030,44 @@ const nextExistingDay = (day: number): number | null => {
           if (i >= 0) openPhoto(i);
         });
       }
+      const hotelImgs = Array.from(document.querySelectorAll(".hotelPhoto"));
+      if (hotelImgs.length) {
+        hotelImgs.forEach((img) => {
+          img.addEventListener("click", () => {
+            const hotelItem = img.closest(".hotelItem");
+            const list = hotelItem ? Array.from(hotelItem.querySelectorAll(".hotelPhoto")) : [];
+            const i = list.indexOf(img);
+            if (i >= 0) openHotel(i, list);
+          });
+        });
+      }
 
       if (openMapBtn) openMapBtn.addEventListener("click", openMap);
 
       if (btnClose) btnClose.addEventListener("click", closeLightbox);
       if (backdrop) backdrop.addEventListener("click", closeLightbox);
 
-      if (btnPrev) btnPrev.addEventListener("click", () => { if (mode === "photos") prev(); });
-      if (btnNext) btnNext.addEventListener("click", () => { if (mode === "photos") next(); });
+      if (btnPrev) btnPrev.addEventListener("click", () => { if (mode === "photos" || mode === "hotel") prev(); });
+      if (btnNext) btnNext.addEventListener("click", () => { if (mode === "photos" || mode === "hotel") next(); });
 
       window.addEventListener("keydown", (e) => {
         if (!lightbox.classList.contains("open")) return;
         if (e.key === "Escape") closeLightbox();
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         if (e.key === "ArrowLeft") prev();
         if (e.key === "ArrowRight") next();
+      });
+
+      const hotelItems = Array.from(document.querySelectorAll("[data-hotel]"));
+      hotelItems.forEach((item) => {
+        const btn = item.querySelector(".hotelToggle");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          hotelItems.forEach((other) => {
+            if (other !== item) other.classList.remove("open");
+          });
+          item.classList.toggle("open");
+        });
       });
 
       let startX = 0;
@@ -758,20 +1075,20 @@ const nextExistingDay = (day: number): number | null => {
 
       const onTouchStart = (e) => {
         if (!lightbox.classList.contains("open")) return;
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         startX = e.touches[0].clientX;
         dx = 0;
       };
 
       const onTouchMove = (e) => {
         if (!lightbox.classList.contains("open")) return;
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         dx = e.touches[0].clientX - startX;
       };
 
       const onTouchEnd = () => {
         if (!lightbox.classList.contains("open")) return;
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         if (Math.abs(dx) > 45) {
           if (dx > 0) prev();
           else next();
@@ -786,5 +1103,8 @@ const nextExistingDay = (day: number): number | null => {
     })();
   </script>
 </BaseLayout>
+
+
+
 
 

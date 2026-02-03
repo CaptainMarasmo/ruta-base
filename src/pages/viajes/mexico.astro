@@ -439,13 +439,14 @@ const nextExistingDay = (day: number): number | null => {
     </div>
   </div>
 
-  <div class="toc">
+    <div class="toc">
     <a href="#resumen">Resumen</a>
     <a href="#itinerario">Itinerario</a>
     <a href="#imprescindibles">Imprescindibles</a>
     <a href="#costes">Costes</a>
+    <a href="#hoteles">Hoteles</a>
     <a href="#mapa">Mapa</a>
-    <a href="#galeria">Galería</a>
+    <a href="#galeria">Galeria</a>
   </div>
 
   <details class="sec" id="resumen">
@@ -511,6 +512,12 @@ const nextExistingDay = (day: number): number | null => {
     </div>
   </details>
 
+  <details class="sec" id="hoteles">
+    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
+    <div class="secBody">
+      <p class="dots">...</p>
+    </div>
+  </details>
   <details class="sec" id="mapa">
     <summary class="secSummary">
       <span>Mapa</span><span class="secCaret">▾</span>
@@ -792,4 +799,7 @@ const nextExistingDay = (day: number): number | null => {
     })();
   </script>
 </BaseLayout>
+
+
+
 
