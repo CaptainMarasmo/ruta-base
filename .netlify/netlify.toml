@@ -1,0 +1,39 @@
+functionsDirectory = "C:\\Users\\TOP GUN\\Downloads\\web\\ruta-base\\netlify\\functions"
+functionsDirectoryOrigin = "default"
+headers = []
+redirects = []
+
+[build]
+publish = "C:\\Users\\TOP GUN\\Downloads\\web\\ruta-base\\dist"
+publishOrigin = "ui"
+commandOrigin = "ui"
+command = "npm run build"
+functions = "C:\\Users\\TOP GUN\\Downloads\\web\\ruta-base\\netlify\\functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[functions]
+
+[functions.emails]
+included_files = ["./emails/**"]
+
+[functions."*"]
+
+[[plugins]]
+origin = "ui"
+package = "@netlify/plugin-emails"
+pinned_version = "1"
+
+[plugins.inputs]

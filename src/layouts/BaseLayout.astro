@@ -54,8 +54,8 @@ const {
         position: sticky;
         top: 0;
         height: 34px;
-        background: rgba(155, 120, 255, 0.22);
-        border-bottom: 1px solid rgba(90, 40, 160, 0.18);
+        background: rgba(170, 235, 190, 0.7);
+        border-bottom: 1px solid rgba(70, 150, 95, 0.25);
         z-index: 2;
         backdrop-filter: blur(10px);
         overflow: hidden;
@@ -69,6 +69,7 @@ const {
         overflow-x: auto;
         align-items: center;
         box-sizing: border-box;
+        justify-content: center;
       }
 
       /* TU ESTILO (tal cual) */
@@ -140,6 +141,17 @@ const {
       .titleArrow:hover{
         background: rgba(155,120,255,0.18);
       }
+      :global(.flag-badge){
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        border-radius: 3px;
+        border: 1px solid rgba(0,0,0,0.15);
+        background: var(--flag, #eaeaea);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        vertical-align: -0.1em;
+        margin-left: 6px;
+      }
     </style>
   </head>
 
@@ -159,6 +171,8 @@ const {
         <a href="/galeria">Galería</a>
         <a href="/mapas">Mapas</a>
         <a href="/consejos">Consejos</a>
+        <a href="/chat">Chat</a>
+        <a href="/registro">Regístrate</a>
         <a href="/sobre">Sobre mí</a>
       </nav>
     </header>

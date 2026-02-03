@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Chat | Ruta Base" bgImage="/fondo.png">
+  <style>
+    .chatWrap {
+      max-width: 720px;
+      margin: 40px auto 0;
+      padding: 0 10px;
+    }
+
+    .chatBox {
+      max-width: 520px;
+      margin: 18px auto 0;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .chatBox h3 {
+      margin: 0 0 8px;
+    }
+
+    .chatBox input,
+    .chatBox textarea {
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .chatBox textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .chatBox button {
+      margin-top: 8px;
+      border: 0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      background: rgba(155, 120, 255, 0.22);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .chatStatus {
+      font-size: 13px;
+      color: #555;
+      margin-top: 6px;
+    }
+  </style>
+
+  <section class="chatWrap">
+    <h1>Chat</h1>
+    <p class="muted">Cuéntanos qué te gustaría hacer o preguntar.</p>
+
+    <div class="chatBox">
+      <h3>Escríbenos</h3>
+      <form id="chatForm">
+        <input type="text" name="name" placeholder="Tu nombre (opcional)" />
+        <textarea name="message" placeholder="¿Qué te gustaría hacer o preguntar?" required></textarea>
+        <button type="submit">Enviar</button>
+        <div class="chatStatus" id="chatStatus"></div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById("chatForm");
+    const statusEl = document.getElementById("chatStatus");
+
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        statusEl.textContent = "Enviando...";
+        const data = new FormData(form);
+        const payload = {
+          name: data.get("name") || "",
+          message: data.get("message") || "",
+        };
+
+        try {
+          const res = await fetch("/.netlify/functions/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          if (!res.ok) throw new Error("Error");
+          form.reset();
+          statusEl.textContent = "Mensaje enviado. ¡Gracias!";
+        } catch {
+          statusEl.textContent = "No se pudo enviar. Intenta más tarde.";
+        }
+      });
+    }
+  </script>
+</BaseLayout>
