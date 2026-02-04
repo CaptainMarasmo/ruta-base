@@ -3,6 +3,529 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="EV | Ruta Base" bgImage="/fondoev.png">
-  <h1>EV</h1>
-  <p class="muted">Rutas en coche eléctrico, cargas y consumos.</p>
+  <style>
+    :global(main){
+      max-width: 1440px;
+      padding: 20px;
+    }
+    :root{
+      --ink-950:#00050C;
+      --ink-925:#000D1A;
+      --ink-900:#011727;
+      --ink-850:#022237;
+      --ink-800:#0B2233;
+      --aqua-500:#28B0C7;
+      --aqua-350:#3ED0E3;
+      --aqua-200:#62E0E5;
+      --aqua-150:#98EBEE;
+      --teal-450:#22BAB4;
+      --neon-green:#7DE37C;
+      --amber-500:#DB9643;
+      --warning:#F2C14E;
+      --danger:#FF4D6D;
+
+      --bg-canvas: var(--ink-950);
+      --bg-canvasAlt: var(--ink-925);
+      --bg-surface: rgba(1,23,39,0.72);
+      --bg-strong: rgba(2,34,55,0.82);
+      --bg-subtle: rgba(0,13,26,0.58);
+
+      --text-primary: rgba(232,253,255,0.92);
+      --text-secondary: rgba(232,253,255,0.70);
+      --text-tertiary: rgba(232,253,255,0.50);
+      --text-muted: rgba(232,253,255,0.38);
+
+      --stroke-soft: rgba(98,224,229,0.28);
+      --stroke-strong: rgba(62,208,227,0.45);
+      --stroke-hair: rgba(152,235,238,0.22);
+
+      --panel-bg: linear-gradient(180deg, rgba(2,34,55,0.80) 0%, rgba(0,13,26,0.70) 100%);
+      --panel-edge: linear-gradient(90deg, rgba(62,208,227,0.00) 0%, rgba(62,208,227,0.55) 50%, rgba(62,208,227,0.00) 100%);
+      --meter-track: linear-gradient(90deg, rgba(98,224,229,0.18) 0%, rgba(98,224,229,0.05) 100%);
+      --meter-fill: linear-gradient(90deg, rgba(62,208,227,1.00) 0%, rgba(34,186,180,1.00) 55%, rgba(125,227,124,1.00) 100%);
+      --heat-energy: linear-gradient(90deg, rgba(62,208,227,0.90) 0%, rgba(242,193,78,0.95) 55%, rgba(219,150,67,1.00) 100%);
+
+      --radius-md: 14px;
+      --radius-lg: 18px;
+
+      --shadow-panel: 0 10px 30px rgba(0,0,0,0.55);
+
+      --font-ui: "Rajdhani", "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font-num: "Orbitron", "Rajdhani", "Inter", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .ev-app{
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 50% 40%, rgba(14,176,233,0.18) 0%, rgba(0,5,12,0.90) 60%),
+        var(--bg-canvas);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-panel);
+    }
+
+    .topbar{
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,13,26,0.70);
+      border-bottom: 1px solid rgba(98,224,229,0.12);
+      padding: 0 16px;
+      border-radius: var(--radius-lg);
+    }
+
+    .topbar .title{
+      font-family: var(--font-num);
+      letter-spacing: 0.12em;
+      font-size: 18px;
+    }
+
+    .topbar .quick{
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn{
+      background: rgba(2,34,55,0.72);
+      color: var(--text-primary);
+      border: 1px solid rgba(98,224,229,0.18);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .btn:hover{
+      border-color: var(--stroke-strong);
+      box-shadow: 0 0 18px rgba(62,208,227,0.25);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 3fr 6fr 3fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .panel{
+      background: var(--panel-bg);
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-panel);
+      padding: 16px;
+      position: relative;
+      animation: pulseGlow 1.8s cubic-bezier(0.2,0.9,0.2,1.0) infinite;
+    }
+    .panel::before{
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 10px;
+      height: 2px;
+      background: var(--panel-edge);
+      opacity: 0.8;
+    }
+    .panel h3{
+      margin: 0 0 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .panelHeader{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .panelHeader small{
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .kpi{
+      display: grid;
+      gap: 12px;
+    }
+
+    .kpi-card{
+      padding: 10px 12px;
+      border: 1px solid rgba(98,224,229,0.18);
+      border-radius: 10px;
+      background: rgba(0,13,26,0.55);
+    }
+
+    .kpi-label{
+      font-size: 12px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .kpi-value{
+      font-family: var(--font-num);
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+
+    .hero{
+      display: grid;
+      gap: 16px;
+    }
+
+    .ring{
+      display: grid;
+      place-items: center;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid rgba(62,208,227,0.45);
+      box-shadow: 0 0 22px rgba(62,208,227,0.35);
+      margin-bottom: 12px;
+      animation: pulseGlow 1.8s cubic-bezier(0.2,0.9,0.2,1.0) infinite;
+    }
+
+    .ring .value{
+      font-family: var(--font-num);
+      font-size: 48px;
+    }
+
+    .meter{
+      height: 6px;
+      border-radius: 6px;
+      background: var(--meter-track);
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .meter span{
+      display: block;
+      height: 100%;
+      background: var(--meter-fill);
+      width: 72%;
+    }
+
+    .table{
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .table th,
+    .table td{
+      padding: 6px 4px;
+      border-bottom: 1px solid rgba(98,224,229,0.10);
+    }
+    .table th{
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: var(--text-tertiary);
+    }
+
+    .calendar{
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      font-size: 12px;
+    }
+    .day{
+      padding: 8px;
+      border: 1px solid rgba(98,224,229,0.12);
+      border-radius: 6px;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+    .day.active{
+      border-color: var(--stroke-strong);
+      color: var(--text-primary);
+      box-shadow: 0 0 14px rgba(62,208,227,0.25);
+    }
+
+    .sessions{
+      margin-top: 10px;
+    }
+
+    .chip{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(98,224,229,0.2);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .chip.energy{
+      border-color: rgba(219,150,67,0.55);
+      color: var(--warning);
+    }
+
+    .modal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.6);
+      z-index: 50;
+      padding: 20px;
+    }
+    .modal.open{
+      display: flex;
+    }
+    .modalCard{
+      width: min(720px, 94vw);
+      background: var(--panel-bg);
+      border: 1px solid var(--stroke-strong);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-panel);
+      position: relative;
+    }
+    .modalCard h4{
+      margin: 0 0 12px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .formGrid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .formGrid label{
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .formGrid input{
+      width: 100%;
+      margin-top: 6px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(98,224,229,0.2);
+      background: rgba(0,13,26,0.65);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .modalActions{
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 8px rgba(62,208,227,0.25); }
+      50% { box-shadow: 0 0 18px rgba(62,208,227,0.45); }
+      100% { box-shadow: 0 0 8px rgba(62,208,227,0.25); }
+    }
+
+    @media (max-width: 980px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <div class="ev-app">
+    <div class="topbar">
+      <div class="title">NEONHUD EV</div>
+      <div class="quick">
+        <button class="btn" type="button" id="openForm">+ Datos</button>
+        <button class="btn" type="button" id="viewResults">Ver resultados</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel" id="panelKpis">
+        <div class="panelHeader">
+          <h3>KPIs</h3>
+          <small>Última actualización: 12:45</small>
+        </div>
+        <div class="kpi">
+          <div class="kpi-card"><div class="kpi-label">KM recorridos</div><div class="kpi-value" id="kKm">1.240</div></div>
+          <div class="kpi-card"><div class="kpi-label">kWh cargados</div><div class="kpi-value" id="kCharged">92.4</div></div>
+          <div class="kpi-card"><div class="kpi-label">kWh consumidos</div><div class="kpi-value" id="kUsed">76.9</div></div>
+          <div class="kpi-card"><div class="kpi-label">Precio carga</div><div class="kpi-value" id="kPrice">32€</div></div>
+        </div>
+      </div>
+
+      <div class="panel hero" id="panelHero">
+        <h3>Telemetría principal</h3>
+        <div class="ring">
+          <div class="value" id="kBattery">86%</div>
+          <div class="kpi-label">Batería</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">KM estimados al 100%</div>
+          <div class="kpi-value" id="kRange">480</div>
+          <div class="meter"><span></span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Potencia de carga (kWh)</div>
+          <div class="kpi-value" id="kPower">42.6</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Tiempo de carga</div>
+          <div class="kpi-value" id="kTime">01:32</div>
+        </div>
+      </div>
+
+      <div class="panel" id="panelCalendar">
+        <div class="panelHeader">
+          <h3>Calendario de cargas</h3>
+          <span class="chip energy">ENERGY</span>
+        </div>
+        <div class="calendar">
+          <div class="day">1</div><div class="day">2</div><div class="day active">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+          <div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day active">12</div><div class="day">13</div><div class="day">14</div>
+          <div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div>
+          <div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div>
+        </div>
+        <div class="sessions">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>kWh</th>
+                <th>Tiempo</th>
+                <th>Coste</th>
+              </tr>
+            </thead>
+            <tbody id="sessionTable">
+              <tr><td>12/02</td><td>18.4</td><td>00:42</td><td>6.80€</td></tr>
+              <tr><td>09/02</td><td>22.1</td><td>00:50</td><td>7.90€</td></tr>
+              <tr><td>03/02</td><td>16.8</td><td>00:38</td><td>6.10€</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="dataModal" aria-hidden="true">
+    <div class="modalCard">
+      <h4>Nueva carga</h4>
+      <div class="formGrid">
+        <div>
+          <label>KM recorridos
+            <input id="fKm" type="number" placeholder="1240" />
+          </label>
+        </div>
+        <div>
+          <label>kWh cargados
+            <input id="fCharged" type="number" step="0.1" placeholder="18.4" />
+          </label>
+        </div>
+        <div>
+          <label>kWh consumidos
+            <input id="fUsed" type="number" step="0.1" placeholder="16.8" />
+          </label>
+        </div>
+        <div>
+          <label>Precio carga (€)
+            <input id="fPrice" type="number" step="0.1" placeholder="6.80" />
+          </label>
+        </div>
+        <div>
+          <label>Potencia kWh
+            <input id="fPower" type="number" step="0.1" placeholder="42.6" />
+          </label>
+        </div>
+        <div>
+          <label>Tiempo de carga (hh:mm)
+            <input id="fTime" type="text" placeholder="01:32" />
+          </label>
+        </div>
+        <div>
+          <label>KM estimados 100%
+            <input id="fRange" type="number" placeholder="480" />
+          </label>
+        </div>
+        <div>
+          <label>Batería %
+            <input id="fBattery" type="number" placeholder="86" />
+          </label>
+        </div>
+      </div>
+      <div class="modalActions">
+        <button class="btn" type="button" id="closeForm">Cancelar</button>
+        <button class="btn" type="button" id="saveForm">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const openForm = document.getElementById("openForm");
+    const viewResults = document.getElementById("viewResults");
+    const modal = document.getElementById("dataModal");
+    const closeForm = document.getElementById("closeForm");
+    const saveForm = document.getElementById("saveForm");
+
+    const kKm = document.getElementById("kKm");
+    const kCharged = document.getElementById("kCharged");
+    const kUsed = document.getElementById("kUsed");
+    const kPrice = document.getElementById("kPrice");
+    const kBattery = document.getElementById("kBattery");
+    const kRange = document.getElementById("kRange");
+    const kPower = document.getElementById("kPower");
+    const kTime = document.getElementById("kTime");
+
+    const fKm = document.getElementById("fKm");
+    const fCharged = document.getElementById("fCharged");
+    const fUsed = document.getElementById("fUsed");
+    const fPrice = document.getElementById("fPrice");
+    const fPower = document.getElementById("fPower");
+    const fTime = document.getElementById("fTime");
+    const fRange = document.getElementById("fRange");
+    const fBattery = document.getElementById("fBattery");
+
+    const openModal = () => {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    };
+    const closeModal = () => {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    };
+
+    if (openForm) openForm.addEventListener("click", () => {
+      const key = prompt("Clave de edición:");
+      if (key !== "Pilot0") {
+        alert("Clave incorrecta.");
+        return;
+      }
+      openModal();
+    });
+    if (closeForm) closeForm.addEventListener("click", closeModal);
+    if (viewResults) viewResults.addEventListener("click", () => {
+      document.getElementById("panelHero")?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    if (saveForm) {
+      saveForm.addEventListener("click", () => {
+        if (fKm?.value) kKm.textContent = fKm.value;
+        if (fCharged?.value) kCharged.textContent = fCharged.value;
+        if (fUsed?.value) kUsed.textContent = fUsed.value;
+        if (fPrice?.value) kPrice.textContent = `${fPrice.value}€`;
+        if (fPower?.value) kPower.textContent = fPower.value;
+        if (fTime?.value) kTime.textContent = fTime.value;
+        if (fRange?.value) kRange.textContent = fRange.value;
+        if (fBattery?.value) kBattery.textContent = `${fBattery.value}%`;
+        closeModal();
+      });
+    }
+  </script>
 </BaseLayout>

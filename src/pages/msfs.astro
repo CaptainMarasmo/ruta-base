@@ -3,6 +3,737 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Vuelo Virtual | Ruta Base" bgImage="/fondoavion.png">
-  <h1>Vuelo Virtual</h1>
-  <p class="muted">Vuelos en MSFS: rutas, procedimientos, cabina y escenarios.</p>
+  <style>
+    :global(main){
+      max-width: 1536px;
+      padding: 18px;
+    }
+    :root{
+      --navy-950:#030A12;
+      --navy-925:#051120;
+      --navy-900:#071A2D;
+      --navy-850:#0A2439;
+      --navy-800:#0D2F47;
+      --mist-050:#E7FDFF;
+      --mist-100:#CFF7FF;
+      --cyan-500:#20C6D8;
+      --cyan-350:#45DCEB;
+      --cyan-250:#73EAF1;
+      --teal-450:#2BC7B8;
+      --green-500:#78E36B;
+      --amber-500:#F2C14E;
+      --orange-500:#E6933A;
+      --blue-500:#2F7CFF;
+      --red-500:#FF4D6D;
+
+      --bg-canvas: var(--navy-950);
+      --bg-canvasAlt: var(--navy-925);
+      --bg-surface: rgba(7,26,45,0.72);
+      --bg-strong: rgba(10,36,57,0.82);
+      --bg-subtle: rgba(5,17,32,0.62);
+      --bg-panelHeader: rgba(5,17,32,0.78);
+
+      --text-primary: rgba(231,253,255,0.92);
+      --text-secondary: rgba(231,253,255,0.70);
+      --text-tertiary: rgba(231,253,255,0.52);
+      --text-muted: rgba(231,253,255,0.38);
+
+      --stroke-hair: rgba(207,247,255,0.18);
+      --stroke-soft: rgba(115,234,241,0.22);
+      --stroke-strong: rgba(69,220,235,0.40);
+
+      --panel-bg: linear-gradient(180deg, rgba(10,36,57,0.84) 0%, rgba(5,17,32,0.70) 100%);
+      --panel-edge: linear-gradient(90deg, rgba(69,220,235,0.00) 0%, rgba(69,220,235,0.42) 50%, rgba(69,220,235,0.00) 100%);
+      --meter-track: linear-gradient(90deg, rgba(115,234,241,0.14) 0%, rgba(115,234,241,0.05) 100%);
+      --meter-fill: linear-gradient(90deg, rgba(69,220,235,1.00) 0%, rgba(43,199,184,1.00) 55%, rgba(120,227,107,1.00) 100%);
+      --meter-warn: linear-gradient(90deg, rgba(69,220,235,0.95) 0%, rgba(242,193,78,0.98) 60%, rgba(230,147,58,1.00) 100%);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-panel: 0 10px 30px rgba(0,0,0,0.55);
+
+      --font-ui: "Rajdhani", "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font-num: "Orbitron", "Rajdhani", "Inter", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .msfs-app{
+      color: var(--text-primary);
+      background:
+        radial-gradient(circle at 50% 40%, rgba(32,198,216,0.18) 0%, rgba(3,10,18,0.92) 60%),
+        var(--bg-canvas);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      box-shadow: var(--shadow-panel);
+    }
+
+    .topbar{
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(5,17,32,0.74);
+      border-bottom: 1px solid rgba(115,234,241,0.10);
+      padding: 0 14px;
+      border-radius: var(--radius-lg);
+    }
+
+    .title{
+      font-family: var(--font-num);
+      font-size: 24px;
+      letter-spacing: 0.04em;
+    }
+
+    .quick{
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn{
+      background: rgba(10,36,57,0.60);
+      color: var(--text-primary);
+      border: 1px solid rgba(115,234,241,0.16);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    .btn:hover{
+      border-color: var(--stroke-strong);
+      box-shadow: 0 0 16px rgba(69,220,235,0.28);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .panel{
+      background: var(--panel-bg);
+      border: 1px solid var(--stroke-soft);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      position: relative;
+      box-shadow: var(--shadow-panel);
+    }
+    .panel::before{
+      content:"";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 9px;
+      height: 2px;
+      background: var(--panel-edge);
+      opacity: 0.8;
+    }
+
+    .panelHeader{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .panelHeader h3{
+      margin: 0;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .panelHeader small{
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .kpi{
+      display: grid;
+      gap: 10px;
+    }
+    .kpi-card{
+      background: rgba(5,17,32,0.58);
+      border: 1px solid rgba(115,234,241,0.16);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+    }
+    .kpi-label{
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .kpi-value{
+      font-family: var(--font-num);
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+    }
+    .kpi-value.mono{
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    .primary{
+      grid-column: span 2;
+    }
+
+    .route{
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(69,220,235,0.22);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .badge.route{ border-color: rgba(47,124,255,0.5); color: var(--mist-100); }
+
+    .meter{
+      height: 6px;
+      border-radius: 6px;
+      background: var(--meter-track);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .meter span{
+      display: block;
+      height: 100%;
+      background: var(--meter-fill);
+      width: 68%;
+    }
+
+    .table{
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .table th, .table td{
+      padding: 6px 4px;
+      border-bottom: 1px solid rgba(115,234,241,0.08);
+    }
+    .table th{
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-tertiary);
+      text-align: left;
+    }
+    .btnMini{
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid rgba(115,234,241,0.16);
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .btnMini:hover{
+      border-color: var(--stroke-strong);
+      color: var(--text-primary);
+    }
+
+    .calendar{
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      font-size: 12px;
+    }
+    .day{
+      padding: 8px;
+      border: 1px solid rgba(115,234,241,0.12);
+      border-radius: 6px;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+    .day.active{
+      border-color: var(--stroke-strong);
+      color: var(--text-primary);
+      box-shadow: 0 0 12px rgba(69,220,235,0.25);
+    }
+
+    .modal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.6);
+      z-index: 50;
+      padding: 16px;
+    }
+    .modal.open{ display: flex; }
+    .modalCard{
+      width: min(760px, 95vw);
+      background: var(--panel-bg);
+      border: 1px solid var(--stroke-strong);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--shadow-panel);
+    }
+    .modalCard h4{
+      margin: 0 0 12px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .formGrid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .formGrid label{
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .formGrid input{
+      width: 100%;
+      margin-top: 6px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(115,234,241,0.18);
+      background: rgba(5,17,32,0.70);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .modalActions{
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chart{
+      height: 140px;
+      display: grid;
+      align-items: end;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      gap: 8px;
+      padding: 10px;
+      border: 1px solid rgba(115,234,241,0.12);
+      border-radius: var(--radius-sm);
+      background: rgba(5,17,32,0.55);
+      margin-top: 10px;
+    }
+    .bar{
+      height: var(--h, 30%);
+      background: var(--meter-fill);
+      border-radius: 4px;
+      box-shadow: 0 0 12px rgba(69,220,235,0.25);
+    }
+
+    @keyframes pulseEdge {
+      0% { box-shadow: 0 0 8px rgba(69,220,235,0.18); }
+      50% { box-shadow: 0 0 18px rgba(69,220,235,0.35); }
+      100% { box-shadow: 0 0 8px rgba(69,220,235,0.18); }
+    }
+    .panel{ animation: pulseEdge 2s cubic-bezier(0.2,0.9,0.2,1.0) infinite; }
+
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: 1fr; }
+      .primary{ grid-column: span 1; }
+    }
+  </style>
+
+  <div class="msfs-app">
+    <div class="topbar">
+      <div class="title">A320 OPS HUD</div>
+      <div class="quick">
+        <button class="btn" type="button" id="openForm">+ Datos</button>
+        <button class="btn" type="button" id="viewResults">Ver resultados</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel primary" id="panelRoute">
+        <div class="panelHeader">
+          <h3>Ruta principal</h3>
+          <span class="badge route">ROUTE</span>
+        </div>
+        <div class="route">
+          <div class="kpi-card">
+            <div class="kpi-label">Salida (ICAO)</div>
+            <div class="kpi-value" id="kDep">LEMD</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Llegada (ICAO)</div>
+            <div class="kpi-value" id="kArr">LEBL</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Millas</div>
+            <div class="kpi-value" id="kMiles">311</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Ruta</div>
+            <div class="kpi-value mono" id="kRoute">BARDI1X BARDI UM985 BARDI1D</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Combustible (kg)</div>
+            <div class="kpi-value" id="kFuel">6.200</div>
+            <div class="meter"><span></span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Duración</div>
+            <div class="kpi-value" id="kDur">01:05</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="panelOps">
+        <div class="panelHeader">
+          <h3>Operación</h3>
+          <small>Flight #</small>
+        </div>
+        <div class="kpi">
+          <div class="kpi-card"><div class="kpi-label">Número de vuelo</div><div class="kpi-value" id="kFlight">RBX204</div></div>
+          <div class="kpi-card"><div class="kpi-label">Aerolínea</div><div class="kpi-value" id="kAirline">RutaBase Air</div></div>
+          <div class="kpi-card"><div class="kpi-label">Pasajeros</div><div class="kpi-value" id="kPax">156</div></div>
+          <div class="kpi-card"><div class="kpi-label">Hora salida</div><div class="kpi-value" id="kDepTime">08:10</div></div>
+          <div class="kpi-card"><div class="kpi-label">Hora llegada</div><div class="kpi-value" id="kArrTime">09:15</div></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panelCalendar">
+        <div class="panelHeader">
+          <h3>Calendario</h3>
+          <small>Fechas de vuelo</small>
+        </div>
+        <div class="calendar">
+          <div class="day">1</div><div class="day">2</div><div class="day active">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+          <div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day active">12</div><div class="day">13</div><div class="day">14</div>
+          <div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div>
+          <div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div>
+        </div>
+        <div class="sessions">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Vuelo</th>
+                <th>Ruta</th>
+                <th>Dur.</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="flightTable"></tbody>
+          </table>
+        </div>
+        <div class="chart" id="routeChart">
+          <div class="bar" style="--h: 45%"></div>
+          <div class="bar" style="--h: 62%"></div>
+          <div class="bar" style="--h: 38%"></div>
+          <div class="bar" style="--h: 70%"></div>
+          <div class="bar" style="--h: 55%"></div>
+          <div class="bar" style="--h: 80%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="dataModal" aria-hidden="true">
+    <div class="modalCard">
+      <h4>Nuevo vuelo</h4>
+      <div class="formGrid">
+        <div><label>Salida ICAO<input id="fDep" type="text" placeholder="LEMD" /></label></div>
+        <div><label>Llegada ICAO<input id="fArr" type="text" placeholder="LEBL" /></label></div>
+        <div><label>Millas<input id="fMiles" type="number" placeholder="311" /></label></div>
+        <div><label>Ruta<input id="fRoute" type="text" placeholder="BARDI1X ..." /></label></div>
+        <div><label>Combustible kg<input id="fFuel" type="number" placeholder="6200" /></label></div>
+        <div><label>Duración<input id="fDur" type="text" placeholder="01:05" /></label></div>
+        <div><label>Hora salida<input id="fDepTime" type="text" placeholder="08:10" /></label></div>
+        <div><label>Hora llegada<input id="fArrTime" type="text" placeholder="09:15" /></label></div>
+        <div><label>Nº vuelo<input id="fFlight" type="text" placeholder="RBX204" /></label></div>
+        <div><label>Pasajeros<input id="fPax" type="number" placeholder="156" /></label></div>
+        <div><label>Aerolínea<input id="fAirline" type="text" placeholder="RutaBase Air" /></label></div>
+        <div><label>Fecha<input id="fDate" type="date" /></label></div>
+      </div>
+      <div class="modalActions">
+        <button class="btn" type="button" id="closeForm">Cancelar</button>
+        <button class="btn" type="button" id="saveForm">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const openForm = document.getElementById("openForm");
+    const viewResults = document.getElementById("viewResults");
+    const modal = document.getElementById("dataModal");
+    const closeForm = document.getElementById("closeForm");
+    const saveForm = document.getElementById("saveForm");
+
+    const kDep = document.getElementById("kDep");
+    const kArr = document.getElementById("kArr");
+    const kMiles = document.getElementById("kMiles");
+    const kRoute = document.getElementById("kRoute");
+    const kFuel = document.getElementById("kFuel");
+    const kDur = document.getElementById("kDur");
+    const kDepTime = document.getElementById("kDepTime");
+    const kArrTime = document.getElementById("kArrTime");
+    const kFlight = document.getElementById("kFlight");
+    const kPax = document.getElementById("kPax");
+    const kAirline = document.getElementById("kAirline");
+
+    const fDep = document.getElementById("fDep");
+    const fArr = document.getElementById("fArr");
+    const fMiles = document.getElementById("fMiles");
+    const fRoute = document.getElementById("fRoute");
+    const fFuel = document.getElementById("fFuel");
+    const fDur = document.getElementById("fDur");
+    const fDepTime = document.getElementById("fDepTime");
+    const fArrTime = document.getElementById("fArrTime");
+    const fFlight = document.getElementById("fFlight");
+    const fPax = document.getElementById("fPax");
+    const fAirline = document.getElementById("fAirline");
+    const fDate = document.getElementById("fDate");
+
+    const forceUpper = (input) => {
+      if (!input) return;
+      input.addEventListener("input", () => {
+        input.value = input.value.toUpperCase();
+      });
+    };
+
+    [fDep, fArr, fRoute, fFlight, fAirline].forEach(forceUpper);
+
+    const fetchAirport = async (icao) => {
+      const q = encodeURIComponent(icao);
+      const primary = await fetch(`/.netlify/functions/aviationstack-airport?icao=${q}`);
+      if (primary.ok) return primary.json();
+      const fallback = await fetch(`/api/aviationstack-airport.json?icao=${q}`);
+      if (!fallback.ok) return null;
+      return fallback.json();
+    };
+
+    const toRad = (deg) => (deg * Math.PI) / 180;
+    const haversineNm = (lat1, lon1, lat2, lon2) => {
+      const R = 3440.065; // Earth radius in nautical miles
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    };
+
+    let depCoords = null;
+    let arrCoords = null;
+
+    const maybeCalcMiles = () => {
+      if (!depCoords || !arrCoords) return;
+      const miles = haversineNm(depCoords.lat, depCoords.lon, arrCoords.lat, arrCoords.lon);
+      const rounded = Math.round(miles);
+      kMiles.textContent = String(rounded);
+      if (fMiles) fMiles.value = String(rounded);
+    };
+
+    const onIcaoChange = async (input, targetSetter) => {
+      const val = (input?.value || "").trim().toUpperCase();
+      input.setCustomValidity("");
+      if (val.length < 4) {
+        targetSetter(null);
+        return;
+      }
+      input.setAttribute("data-status", "loading");
+      const data = await fetchAirport(val);
+      input.removeAttribute("data-status");
+      if (!data || data.error || data.lat == null || data.lon == null) {
+        targetSetter(null);
+        input.setCustomValidity("ICAO no válido");
+        input.reportValidity();
+        return;
+      }
+      targetSetter({ lat: Number(data.lat), lon: Number(data.lon) });
+      maybeCalcMiles();
+    };
+
+    if (fDep) fDep.addEventListener("input", () => onIcaoChange(fDep, (v) => { depCoords = v; }));
+    if (fArr) fArr.addEventListener("input", () => onIcaoChange(fArr, (v) => { arrCoords = v; }));
+
+    const openModal = () => {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    };
+    const closeModal = () => {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    };
+
+    const loadState = () => {
+      const raw = localStorage.getItem("msfsOps");
+      if (!raw) return;
+      try {
+        const data = JSON.parse(raw);
+        if (data.dep) kDep.textContent = data.dep;
+        if (data.arr) kArr.textContent = data.arr;
+        if (data.miles) kMiles.textContent = data.miles;
+        if (data.route) kRoute.textContent = data.route;
+        if (data.fuel) kFuel.textContent = data.fuel;
+        if (data.dur) kDur.textContent = data.dur;
+        if (data.depTime) kDepTime.textContent = data.depTime;
+        if (data.arrTime) kArrTime.textContent = data.arrTime;
+        if (data.flight) kFlight.textContent = data.flight;
+        if (data.pax) kPax.textContent = data.pax;
+        if (data.airline) kAirline.textContent = data.airline;
+      } catch {}
+    };
+    loadState();
+
+    const flightTable = document.getElementById("flightTable");
+    const flightDays = Array.from(document.querySelectorAll(".calendar .day"));
+    const flightsKey = "msfsFlights";
+
+    const formatDate = (iso) => {
+      if (!iso) return "";
+      const [y, m, d] = iso.split("-");
+      if (!y || !m || !d) return iso;
+      return `${d}/${m}`;
+    };
+
+    const loadFlights = () => {
+      const raw = localStorage.getItem(flightsKey);
+      if (!raw) return [];
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const saveFlights = (items) => {
+      localStorage.setItem(flightsKey, JSON.stringify(items));
+    };
+
+    const renderFlights = () => {
+      if (!flightTable) return;
+      const flights = loadFlights();
+      flightTable.innerHTML = flights
+        .map((f, idx) => {
+          const route = `${f.dep} → ${f.arr}`;
+          return `<tr>
+            <td>${formatDate(f.date)}</td>
+            <td>${f.flight}</td>
+            <td>${route}</td>
+            <td>${f.dur}</td>
+            <td><button class="btnMini" data-del="${idx}">Borrar</button></td>
+          </tr>`;
+        })
+        .join("");
+
+      flightDays.forEach((d) => d.classList.remove("active"));
+      const daysWithFlights = new Set(
+        flights.map((f) => {
+          if (!f.date) return null;
+          const parts = f.date.split("-");
+          return parts[2];
+        }).filter(Boolean)
+      );
+      flightDays.forEach((d) => {
+        if (daysWithFlights.has(d.textContent?.trim())) d.classList.add("active");
+      });
+    };
+    renderFlights();
+
+    if (flightTable) {
+      flightTable.addEventListener("click", (e) => {
+        const btn = e.target && e.target.closest ? e.target.closest("[data-del]") : null;
+        if (!btn) return;
+        const idx = Number(btn.getAttribute("data-del"));
+        const flights = loadFlights();
+        if (Number.isNaN(idx)) return;
+        flights.splice(idx, 1);
+        saveFlights(flights);
+        renderFlights();
+      });
+    }
+
+    if (openForm) openForm.addEventListener("click", () => {
+      const key = prompt("Clave de edición:");
+      if (key !== "Pilot0") {
+        alert("Clave incorrecta.");
+        return;
+      }
+      openModal();
+    });
+    if (closeForm) closeForm.addEventListener("click", closeModal);
+    if (viewResults) viewResults.addEventListener("click", () => {
+      document.getElementById("panelRoute")?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    if (saveForm) {
+      saveForm.addEventListener("click", () => {
+        if (fDep?.value) kDep.textContent = fDep.value.toUpperCase();
+        if (fArr?.value) kArr.textContent = fArr.value.toUpperCase();
+        if (fMiles?.value) kMiles.textContent = fMiles.value;
+        if (fRoute?.value) kRoute.textContent = fRoute.value.toUpperCase();
+        if (fFuel?.value) kFuel.textContent = fFuel.value;
+        if (fDur?.value) kDur.textContent = fDur.value;
+        if (fDepTime?.value) kDepTime.textContent = fDepTime.value;
+        if (fArrTime?.value) kArrTime.textContent = fArrTime.value;
+        if (fFlight?.value) kFlight.textContent = fFlight.value.toUpperCase();
+        if (fPax?.value) kPax.textContent = fPax.value;
+        if (fAirline?.value) kAirline.textContent = fAirline.value.toUpperCase();
+        const data = {
+          dep: kDep.textContent,
+          arr: kArr.textContent,
+          miles: kMiles.textContent,
+          route: kRoute.textContent,
+          fuel: kFuel.textContent,
+          dur: kDur.textContent,
+          depTime: kDepTime.textContent,
+          arrTime: kArrTime.textContent,
+          flight: kFlight.textContent,
+          pax: kPax.textContent,
+          airline: kAirline.textContent,
+        };
+        localStorage.setItem("msfsOps", JSON.stringify(data));
+
+        const flights = loadFlights();
+        const dateVal = fDate?.value || new Date().toISOString().slice(0, 10);
+        flights.unshift({
+          date: dateVal,
+          flight: kFlight.textContent || "N/A",
+          dep: kDep.textContent || "",
+          arr: kArr.textContent || "",
+          dur: kDur.textContent || "",
+        });
+        saveFlights(flights);
+        renderFlights();
+        closeModal();
+      });
+    }
+  </script>
 </BaseLayout>
+
+
+
+
+
+
+
+
+
