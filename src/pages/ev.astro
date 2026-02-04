@@ -227,17 +227,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       letter-spacing: 0.10em;
       color: var(--text-tertiary);
     }
+    .table,
+    .sessionRow,
+    .sessionRow td{
+      pointer-events: auto;
+    }
+    .sessionRow.active{
+      background: rgba(62,208,227,0.14);
+    }
 
     .calendar{
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-      font-size: 12px;
+      gap: 3px;
+      font-size: 8px;
     }
     .day{
-      padding: 8px;
+      padding: 3px;
       border: 1px solid rgba(98,224,229,0.12);
-      border-radius: 6px;
+      border-radius: 4px;
       text-align: center;
       color: var(--text-secondary);
     }
@@ -249,6 +257,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .sessions{
       margin-top: 10px;
+    }
+    .sessionRow{
+      cursor: pointer;
+    }
+    .sessionRow:hover{
+      background: rgba(62,208,227,0.08);
+    }
+    .btnMini{
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid rgba(98,224,229,0.18);
+      padding: 4px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .btnMini:hover{
+      border-color: var(--stroke-strong);
+      color: var(--text-primary);
     }
 
     .chip{
@@ -402,13 +431,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <th>kWh</th>
                 <th>Tiempo</th>
                 <th>Coste</th>
+                <th>Acciones</th>
               </tr>
             </thead>
-            <tbody id="sessionTable">
-              <tr><td>12/02</td><td>18.4</td><td>00:42</td><td>6.80€</td></tr>
-              <tr><td>09/02</td><td>22.1</td><td>00:50</td><td>7.90€</td></tr>
-              <tr><td>03/02</td><td>16.8</td><td>00:38</td><td>6.10€</td></tr>
-            </tbody>
+            <tbody id="sessionTable"></tbody>
           </table>
         </div>
       </div>
@@ -459,6 +485,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <input id="fBattery" type="number" placeholder="86" />
           </label>
         </div>
+        <div>
+          <label>Fecha
+            <input id="fDate" type="date" />
+          </label>
+        </div>
       </div>
       <div class="modalActions">
         <button class="btn" type="button" id="closeForm">Cancelar</button>
@@ -491,6 +522,97 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const fTime = document.getElementById("fTime");
     const fRange = document.getElementById("fRange");
     const fBattery = document.getElementById("fBattery");
+    const fDate = document.getElementById("fDate");
+    const sessionTable = document.getElementById("sessionTable");
+
+    const STORAGE_KEY = "evSessions";
+
+    const loadSessions = () => {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch {
+        return [];
+      }
+    };
+
+    const saveSessions = (sessions) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+    };
+
+    const setKpisFromSession = (s) => {
+      if (!s) return;
+      kKm.textContent = s.km ?? kKm.textContent;
+      kCharged.textContent = s.charged ?? kCharged.textContent;
+      kUsed.textContent = s.used ?? kUsed.textContent;
+      kPrice.textContent = s.price ? `${s.price}€` : kPrice.textContent;
+      kPower.textContent = s.power ?? kPower.textContent;
+      kTime.textContent = s.time ?? kTime.textContent;
+      kRange.textContent = s.range ?? kRange.textContent;
+      kBattery.textContent = s.battery ? `${s.battery}%` : kBattery.textContent;
+    };
+
+    const markCalendar = (sessions) => {
+      const days = Array.from(document.querySelectorAll(".calendar .day"));
+      days.forEach((d) => d.classList.remove("active"));
+      sessions.forEach((s) => {
+        if (!s.date) return;
+        const d = new Date(s.date);
+        if (Number.isNaN(d.getTime())) return;
+        const dayNum = d.getDate();
+        const cell = days.find((el) => el.textContent === String(dayNum));
+        if (cell) cell.classList.add("active");
+      });
+    };
+
+    const renderSessions = () => {
+      if (!sessionTable) return;
+      const sessions = loadSessions();
+      sessionTable.innerHTML = "";
+      sessions.forEach((s, index) => {
+        const tr = document.createElement("tr");
+        tr.className = "sessionRow";
+        tr.dataset.index = String(index);
+        tr.innerHTML = `
+          <td>${s.date || "—"}</td>
+          <td>${s.charged || "—"}</td>
+          <td>${s.time || "—"}</td>
+          <td>${s.price ? `${s.price}€` : "—"}</td>
+          <td><button class="btnMini" type="button" data-index="${index}">Borrar</button></td>
+        `;
+        tr.addEventListener("click", () => {
+          document.querySelectorAll(".sessionRow").forEach((row) => row.classList.remove("active"));
+          tr.classList.add("active");
+          setKpisFromSession(s);
+        });
+        sessionTable.appendChild(tr);
+      });
+      markCalendar(sessions);
+    };
+
+    if (sessionTable) {
+      sessionTable.addEventListener("click", (ev) => {
+        const target = ev.target;
+        if (!(target instanceof HTMLElement)) return;
+        const btn = target.closest("button.btnMini");
+        if (btn) {
+          const i = Number(btn.dataset.index);
+          if (!Number.isNaN(i)) {
+            const next = loadSessions();
+            next.splice(i, 1);
+            saveSessions(next);
+            renderSessions();
+          }
+          return;
+        }
+        const row = target.closest("tr.sessionRow");
+        if (!row) return;
+        const i = Number(row.dataset.index);
+        if (!Number.isNaN(i)) {
+          const sessions = loadSessions();
+          setKpisFromSession(sessions[i]);
+        }
+      });
+    }
 
     const openModal = () => {
       modal.classList.add("open");
@@ -524,8 +646,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         if (fTime?.value) kTime.textContent = fTime.value;
         if (fRange?.value) kRange.textContent = fRange.value;
         if (fBattery?.value) kBattery.textContent = `${fBattery.value}%`;
+
+        const sessions = loadSessions();
+        sessions.unshift({
+          id: Date.now(),
+          date: fDate?.value || "",
+          km: fKm?.value || kKm.textContent,
+          charged: fCharged?.value || kCharged.textContent,
+          used: fUsed?.value || kUsed.textContent,
+          price: fPrice?.value || kPrice.textContent.replace("â‚¬", ""),
+          power: fPower?.value || kPower.textContent,
+          time: fTime?.value || kTime.textContent,
+          range: fRange?.value || kRange.textContent,
+          battery: fBattery?.value || kBattery.textContent.replace("%", "")
+        });
+        saveSessions(sessions);
+        renderSessions();
         closeModal();
       });
     }
+    renderSessions();
   </script>
 </BaseLayout>
+

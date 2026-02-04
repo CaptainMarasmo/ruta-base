@@ -45,7 +45,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       --panel-bg: linear-gradient(180deg, rgba(10,36,57,0.84) 0%, rgba(5,17,32,0.70) 100%);
       --panel-edge: linear-gradient(90deg, rgba(69,220,235,0.00) 0%, rgba(69,220,235,0.42) 50%, rgba(69,220,235,0.00) 100%);
       --meter-track: linear-gradient(90deg, rgba(115,234,241,0.14) 0%, rgba(115,234,241,0.05) 100%);
-      --meter-fill: linear-gradient(90deg, rgba(69,220,235,1.00) 0%, rgba(43,199,184,1.00) 55%, rgba(120,227,107,1.00) 100%);
+      --meter-fill-safe: linear-gradient(90deg, rgba(69,220,235,1.00) 0%, rgba(43,199,184,1.00) 55%, rgba(120,227,107,1.00) 100%);
+      --meter-fill-warn: linear-gradient(90deg, rgba(69,220,235,1.00) 0%, rgba(120,227,107,1.00) 70%, rgba(242,193,78,1.00) 100%);
+      --meter-fill-danger: linear-gradient(90deg, rgba(69,220,235,1.00) 0%, rgba(120,227,107,1.00) 60%, rgba(242,193,78,1.00) 80%, rgba(255,77,109,1.00) 100%);
       --meter-warn: linear-gradient(90deg, rgba(69,220,235,0.95) 0%, rgba(242,193,78,0.98) 60%, rgba(230,147,58,1.00) 100%);
 
       --radius-sm: 8px;
@@ -110,15 +112,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .grid{
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .opsCalendar{
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 3fr 7fr;
       gap: 14px;
-      margin-top: 14px;
+      align-items: stretch;
+    }
+    #panelOps,
+    #panelCalendar{
+      min-height: 360px;
+      max-height: 360px;
+    }
+    #panelOps{
+      overflow: auto;
     }
 
     .panel{
       background: var(--panel-bg);
       border: 1px solid var(--stroke-soft);
       border-radius: var(--radius-md);
-      padding: 14px;
+      padding: 10px;
       position: relative;
       box-shadow: var(--shadow-panel);
     }
@@ -138,7 +155,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
     }
     .panelHeader h3{
       margin: 0;
@@ -155,13 +172,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .kpi{
       display: grid;
-      gap: 10px;
+      gap: 5px;
     }
     .kpi-card{
       background: rgba(5,17,32,0.58);
       border: 1px solid rgba(115,234,241,0.16);
       border-radius: var(--radius-sm);
-      padding: 10px;
+      padding: 5px 7px;
     }
     .kpi-label{
       font-size: 11px;
@@ -171,9 +188,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
     .kpi-value{
       font-family: var(--font-num);
-      font-size: 24px;
+      font-size: 18px;
       letter-spacing: 0.04em;
-      margin-top: 4px;
+      margin-top: 1px;
     }
     .kpi-value.mono{
       font-family: var(--font-mono);
@@ -214,7 +231,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     .meter span{
       display: block;
       height: 100%;
-      background: var(--meter-fill);
+      background: var(--meter-fill-safe);
       width: 68%;
     }
 
@@ -234,16 +251,38 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       color: var(--text-tertiary);
       text-align: left;
     }
+    .flightRow.active{
+      background: rgba(69,220,235,0.18);
+    }
+    .flightRow.active td{
+      background: rgba(69,220,235,0.32);
+      box-shadow:
+        inset 0 0 0 1px rgba(69,220,235,0.45),
+        inset 0 0 12px rgba(69,220,235,0.25);
+    }
     .btnMini{
-      background: transparent;
-      color: var(--text-secondary);
-      border: 1px solid rgba(115,234,241,0.16);
+      background: transparent !important;
+      background-color: transparent !important;
+      appearance: none;
+      -webkit-appearance: none;
+      color: #ffffff;
+      border: none;
       padding: 4px 8px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      box-shadow: none;
+    }
+    .btnMini svg{
+      display: block;
+      background: transparent !important;
+      background-color: transparent !important;
+      fill: currentColor;
+    }
+    .btnMini path{
+      fill: currentColor;
     }
     .btnMini:hover{
       border-color: var(--stroke-strong);
@@ -252,21 +291,120 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     .calendar{
       display: grid;
+      grid-template-rows: 1px auto;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid rgba(69,220,235,0.35);
+      border-radius: 10px;
+      background: rgba(7,26,45,0.55);
+      box-shadow:
+        0 0 18px rgba(69,220,235,0.18),
+        inset 0 0 12px rgba(69,220,235,0.12);
+    }
+    .monthBars{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      height: 6px;
+      align-items: end;
+      overflow: hidden;
+      justify-items: center;
+    }
+    .monthBars span{
+      display: block;
+      width: 80%;
+      background: rgba(69,220,235,0.35);
+      box-shadow: 0 0 10px rgba(69,220,235,0.35);
+      border-radius: 2px;
+      color: rgba(231,253,255,0.70);
+      font-size: 8px;
+      line-height: 1;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .calendarDays{
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-auto-rows: 22px;
+      gap: 6px;
+      font-size: 10px;
+      align-items: stretch;
+    }
+    .calendarLayout{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .resultsPanel{
+      margin-top: 14px;
+    }
+    .weekdays{
+      display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 6px;
-      font-size: 12px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
     }
-    .day{
-      padding: 8px;
-      border: 1px solid rgba(115,234,241,0.12);
-      border-radius: 6px;
+    .weekdays span{
       text-align: center;
+    }
+    .monthBar{
+      display: grid;
+      grid-template-columns: 32px 1fr 32px;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
       color: var(--text-secondary);
     }
+    .monthLabel{
+      text-align: center;
+    }
+    .monthBtn{
+      padding: 4px 0;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .day{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+      border: 1px solid rgba(69,220,235,0.45);
+      border-radius: 6px;
+      color: rgba(231,253,255,0.85);
+      min-height: 22px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      background: rgba(5,17,32,0.60);
+      box-shadow:
+        inset 0 0 10px rgba(69,220,235,0.12),
+        0 0 8px rgba(69,220,235,0.12);
+      justify-items: center;
+      padding-left: 0;
+    }
+    .dayNum{
+      display: block;
+      transform: translateX(16px);
+    }
+    .day.empty{
+      color: rgba(231,253,255,0.20);
+      border-color: rgba(69,220,235,0.18);
+      background: rgba(5,17,32,0.35);
+    }
     .day.active{
-      border-color: var(--stroke-strong);
-      color: var(--text-primary);
-      box-shadow: 0 0 12px rgba(69,220,235,0.25);
+      color: #FF4D6D;
+      border-color: rgba(255,77,109,0.75);
+      box-shadow:
+        inset 0 0 12px rgba(255,77,109,0.25),
+        0 0 10px rgba(255,77,109,0.25);
     }
 
     .modal{
@@ -351,9 +489,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     }
     .panel{ animation: pulseEdge 2s cubic-bezier(0.2,0.9,0.2,1.0) infinite; }
 
+    .primary{
+      grid-column: 1 / -1;
+    }
     @media (max-width: 1100px){
       .grid{ grid-template-columns: 1fr; }
       .primary{ grid-column: span 1; }
+      .opsCalendar{
+        grid-column: auto;
+        grid-row: auto;
+        grid-template-columns: 3fr 7fr;
+      }
     }
   </style>
 
@@ -392,7 +538,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="kpi-card">
             <div class="kpi-label">Combustible (kg)</div>
             <div class="kpi-value" id="kFuel">6.200</div>
-            <div class="meter"><span></span></div>
+            <div class="meter"><span id="fuelMeter"></span></div>
           </div>
           <div class="kpi-card">
             <div class="kpi-label">Duración</div>
@@ -401,30 +547,79 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </div>
       </div>
 
-      <div class="panel" id="panelOps">
-        <div class="panelHeader">
-          <h3>Operación</h3>
-          <small>Flight #</small>
+      <div class="opsCalendar">
+        <div class="panel" id="panelOps">
+          <div class="panelHeader">
+            <h3>Operación</h3>
+            <small>Flight #</small>
+          </div>
+          <div class="kpi">
+            <div class="kpi-card"><div class="kpi-label">Número de vuelo</div><div class="kpi-value" id="kFlight">RBX204</div></div>
+            <div class="kpi-card"><div class="kpi-label">Aerolínea</div><div class="kpi-value" id="kAirline">RutaBase Air</div></div>
+            <div class="kpi-card"><div class="kpi-label">Pasajeros</div><div class="kpi-value" id="kPax">156</div></div>
+            <div class="kpi-card"><div class="kpi-label">Hora salida</div><div class="kpi-value" id="kDepTime">08:10</div></div>
+            <div class="kpi-card"><div class="kpi-label">Hora llegada</div><div class="kpi-value" id="kArrTime">09:15</div></div>
+          </div>
         </div>
-        <div class="kpi">
-          <div class="kpi-card"><div class="kpi-label">Número de vuelo</div><div class="kpi-value" id="kFlight">RBX204</div></div>
-          <div class="kpi-card"><div class="kpi-label">Aerolínea</div><div class="kpi-value" id="kAirline">RutaBase Air</div></div>
-          <div class="kpi-card"><div class="kpi-label">Pasajeros</div><div class="kpi-value" id="kPax">156</div></div>
-          <div class="kpi-card"><div class="kpi-label">Hora salida</div><div class="kpi-value" id="kDepTime">08:10</div></div>
-          <div class="kpi-card"><div class="kpi-label">Hora llegada</div><div class="kpi-value" id="kArrTime">09:15</div></div>
+
+        <div class="panel" id="panelCalendar">
+          <div class="panelHeader">
+            <h3>Calendario</h3>
+            <small>Fechas de vuelo</small>
+          </div>
+          <div class="calendarLayout">
+            <div class="calendarBlock">
+              <div class="monthBar">
+                <button class="btnMini monthBtn" type="button" id="prevMonth" aria-label="Mes anterior">‹</button>
+                <div class="monthLabel" id="monthLabel">Mes</div>
+                <button class="btnMini monthBtn" type="button" id="nextMonth" aria-label="Mes siguiente">›</button>
+              </div>
+              <div class="monthBars" id="monthBars" aria-label="Vuelos por mes"></div>
+              <div class="weekdays">
+                <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+              </div>
+              <div class="calendar">
+                <div class="calendarDays" id="calendarDays"></div>
+              </div>
+            </div>
+            <div class="sessions">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Vuelo</th>
+                    <th>Ruta</th>
+                    <th>Dur.</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="flightTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="chart" id="routeChart" style="margin-top: 140px; height: 110px;">
+            <div class="bar" style="--h: 35%"></div>
+            <div class="bar" style="--h: 45%"></div>
+            <div class="bar" style="--h: 30%"></div>
+            <div class="bar" style="--h: 50%"></div>
+            <div class="bar" style="--h: 40%"></div>
+            <div class="bar" style="--h: 60%"></div>
+            <div class="bar" style="--h: 38%"></div>
+            <div class="bar" style="--h: 55%"></div>
+            <div class="bar" style="--h: 42%"></div>
+            <div class="bar" style="--h: 65%"></div>
+            <div class="bar" style="--h: 48%"></div>
+            <div class="bar" style="--h: 70%"></div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="panel" id="panelCalendar">
+    <div class="modal" id="resultsModal" aria-hidden="true">
+      <div class="modalCard">
         <div class="panelHeader">
-          <h3>Calendario</h3>
-          <small>Fechas de vuelo</small>
-        </div>
-        <div class="calendar">
-          <div class="day">1</div><div class="day">2</div><div class="day active">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
-          <div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day active">12</div><div class="day">13</div><div class="day">14</div>
-          <div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div>
-          <div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div>
+          <h3>Resultados</h3>
+          <small>Historial completo</small>
         </div>
         <div class="sessions">
           <table class="table">
@@ -437,16 +632,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 <th></th>
               </tr>
             </thead>
-            <tbody id="flightTable"></tbody>
+            <tbody id="flightTableAll"></tbody>
           </table>
         </div>
-        <div class="chart" id="routeChart">
-          <div class="bar" style="--h: 45%"></div>
-          <div class="bar" style="--h: 62%"></div>
-          <div class="bar" style="--h: 38%"></div>
-          <div class="bar" style="--h: 70%"></div>
-          <div class="bar" style="--h: 55%"></div>
-          <div class="bar" style="--h: 80%"></div>
+        <div class="modalActions">
+          <button class="btn" type="button" id="closeResults">Cerrar</button>
         </div>
       </div>
     </div>
@@ -480,7 +670,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const openForm = document.getElementById("openForm");
     const viewResults = document.getElementById("viewResults");
     const modal = document.getElementById("dataModal");
+    const resultsModal = document.getElementById("resultsModal");
     const closeForm = document.getElementById("closeForm");
+    const closeResults = document.getElementById("closeResults");
     const saveForm = document.getElementById("saveForm");
 
     const kDep = document.getElementById("kDep");
@@ -494,6 +686,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     const kFlight = document.getElementById("kFlight");
     const kPax = document.getElementById("kPax");
     const kAirline = document.getElementById("kAirline");
+    const fuelMeter = document.getElementById("fuelMeter");
 
     const fDep = document.getElementById("fDep");
     const fArr = document.getElementById("fArr");
@@ -573,13 +766,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     if (fDep) fDep.addEventListener("input", () => onIcaoChange(fDep, (v) => { depCoords = v; }));
     if (fArr) fArr.addEventListener("input", () => onIcaoChange(fArr, (v) => { arrCoords = v; }));
 
+    const setTodayDate = () => {
+      if (!fDate) return;
+      if (fDate.value) return;
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, "0");
+      const d = String(today.getDate()).padStart(2, "0");
+      fDate.value = `${y}-${m}-${d}`;
+    };
+
+    const toMinutes = (hhmm) => {
+      const match = String(hhmm || "").match(/^(\d{1,2}):(\d{2})$/);
+      if (!match) return null;
+      const h = Number(match[1]);
+      const m = Number(match[2]);
+      if (!Number.isFinite(h) || !Number.isFinite(m)) return null;
+      return (h * 60) + m;
+    };
+
+    const minutesToHHMM = (mins) => {
+      const total = ((mins % 1440) + 1440) % 1440;
+      const h = String(Math.floor(total / 60)).padStart(2, "0");
+      const m = String(total % 60).padStart(2, "0");
+      return `${h}:${m}`;
+    };
+
+    const maybeAutoArrival = () => {
+      if (!fDepTime || !fDur || !fArrTime) return;
+      const depMin = toMinutes(fDepTime.value);
+      const durMin = toMinutes(fDur.value);
+      if (depMin == null || durMin == null) return;
+      fArrTime.value = minutesToHHMM(depMin + durMin);
+    };
+
     const openModal = () => {
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
+      setTodayDate();
+      maybeAutoArrival();
     };
     const closeModal = () => {
       modal.classList.remove("open");
       modal.setAttribute("aria-hidden", "true");
+    };
+    const openResults = () => {
+      resultsModal?.classList.add("open");
+      resultsModal?.setAttribute("aria-hidden", "false");
+    };
+    const closeResultsModal = () => {
+      resultsModal?.classList.remove("open");
+      resultsModal?.setAttribute("aria-hidden", "true");
     };
 
     const loadState = () => {
@@ -598,12 +835,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         if (data.flight) kFlight.textContent = data.flight;
         if (data.pax) kPax.textContent = data.pax;
         if (data.airline) kAirline.textContent = data.airline;
+        updateFuelMeter(kFuel?.textContent);
       } catch {}
     };
     loadState();
 
     const flightTable = document.getElementById("flightTable");
-    const flightDays = Array.from(document.querySelectorAll(".calendar .day"));
+    const flightTableAll = document.getElementById("flightTableAll");
+    const calendarEl = document.getElementById("calendarDays");
+    const monthLabel = document.getElementById("monthLabel");
+    const monthBars = document.getElementById("monthBars");
+    const prevMonth = document.getElementById("prevMonth");
+    const nextMonth = document.getElementById("nextMonth");
     const flightsKey = "msfsFlights";
 
     const formatDate = (iso) => {
@@ -628,48 +871,282 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       localStorage.setItem(flightsKey, JSON.stringify(items));
     };
 
+    const applyFlightToKpis = (f) => {
+      if (!f) return;
+      let fallback = null;
+      try {
+        fallback = JSON.parse(localStorage.getItem("msfsOps") || "null");
+      } catch {}
+      const pick = (val, fb) => (val !== undefined && val !== null && val !== "" ? val : fb);
+      if (kDep) kDep.textContent = pick(f.dep, fallback?.dep);
+      if (kArr) kArr.textContent = pick(f.arr, fallback?.arr);
+      if (kMiles) kMiles.textContent = pick(f.miles, fallback?.miles);
+      if (kRoute) kRoute.textContent = pick(f.route, fallback?.route);
+      if (kFuel) kFuel.textContent = pick(f.fuel, fallback?.fuel);
+      if (kDur) kDur.textContent = pick(f.dur, fallback?.dur);
+      if (kDepTime) kDepTime.textContent = pick(f.depTime, fallback?.depTime);
+      if (kArrTime) kArrTime.textContent = pick(f.arrTime, fallback?.arrTime);
+      if (kFlight) kFlight.textContent = pick(f.flight, fallback?.flight);
+      if (kPax) kPax.textContent = pick(f.pax, fallback?.pax);
+      if (kAirline) kAirline.textContent = pick(f.airline, fallback?.airline);
+      updateFuelMeter(kFuel?.textContent);
+    };
+
+    const updateFuelMeter = (value) => {
+      if (!fuelMeter) return;
+      const raw = String(value || "");
+      const cleaned = raw
+        .replace(/\s/g, "")
+        .replace(/[^\d.,]/g, "")
+        .replace(/\.(?=.*\.)/g, "")
+        .replace(/\./g, "")
+        .replace(",", ".");
+      const num = Number(cleaned);
+      const max = 24210;
+      const pct = Number.isFinite(num) ? Math.max(0, Math.min(100, (num / max) * 100)) : 0;
+      fuelMeter.style.width = `${pct}%`;
+      if (!Number.isFinite(num)) return;
+      if (num >= 21000) {
+        fuelMeter.style.background = "var(--meter-fill-danger)";
+      } else if (num >= 18000) {
+        fuelMeter.style.background = "var(--meter-fill-warn)";
+      } else {
+        fuelMeter.style.background = "var(--meter-fill-safe)";
+      }
+    };
+
+    const monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+
+    const renderCalendarDays = () => {
+      if (!calendarEl) return;
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // 0=Sun
+      const offset = (firstDay + 6) % 7; // Monday start
+      const totalCells = 42;
+      const cells = [];
+      for (let i = 0; i < totalCells; i++) {
+        const dayNum = i - offset + 1;
+        if (dayNum >= 1 && dayNum <= daysInMonth) {
+          cells.push(`<div class="day"><span class="dayNum">${dayNum}</span></div>`);
+        } else {
+          cells.push(`<div class="day empty"></div>`);
+        }
+      }
+      calendarEl.innerHTML = cells.join("");
+      if (monthLabel) monthLabel.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    };
+
+    const renderMonthBars = (flights) => {
+      if (!monthBars) return;
+      const counts = Array.from({ length: 12 }, () => 0);
+      flights.forEach((f) => {
+        if (!f.date) return;
+        const parts = f.date.split("-");
+        if (parts.length !== 3) return;
+        const y = Number(parts[0]);
+        const m = Number(parts[1]) - 1;
+        if (y !== currentYear || m < 0 || m > 11) return;
+        counts[m] += 1;
+      });
+      const max = Math.max(1, ...counts);
+      monthBars.innerHTML = counts
+        .map((c) => {
+          if (c === 0) return `<span style="height:0; background:transparent; box-shadow:none;"></span>`;
+          let h = Math.round((c / max) * 10);
+          if (h < 1) h = 1;
+          return `<span style="height:${h}px;">${c}</span>`;
+        })
+        .join("");
+    };
+
+    const markCalendar = (flights) => {
+      const days = Array.from(document.querySelectorAll(".calendarDays .day"));
+      days.forEach((d) => {
+        d.classList.remove("active");
+        d.style.background = "";
+        d.style.borderColor = "";
+        d.style.color = "";
+        d.style.boxShadow = "";
+      });
+      flights.forEach((f) => {
+        if (!f.date) return;
+        const parts = f.date.split("-");
+        if (parts.length !== 3) return;
+        const y = Number(parts[0]);
+        const m = Number(parts[1]) - 1;
+        const day = parts[2];
+        if (y !== currentYear || m !== currentMonth) return;
+        const cell = days.find((el) => el.textContent?.trim() === day.replace(/^0/, ""));
+        if (cell) {
+          cell.classList.add("active");
+          cell.style.color = "#FF4D6D";
+        }
+      });
+    };
+
+    const ensureFlightIds = (items) => {
+      let changed = false;
+      const now = Date.now();
+      items.forEach((f, i) => {
+        if (!f.id) {
+          f.id = `${now}-${i}`;
+          changed = true;
+        }
+      });
+      if (changed) saveFlights(items);
+      return items;
+    };
+
     const renderFlights = () => {
-      if (!flightTable) return;
-      const flights = loadFlights();
-      flightTable.innerHTML = flights
-        .map((f, idx) => {
+      const flights = ensureFlightIds(loadFlights()).slice().sort((a, b) => {
+        const da = a.date || "";
+        const db = b.date || "";
+        return da.localeCompare(db);
+      });
+      const filtered = flights
+        .map((f) => ({ f }))
+        .filter(({ f }) => {
+          if (!f.date) return false;
+          const parts = f.date.split("-");
+          if (parts.length !== 3) return false;
+          const y = Number(parts[0]);
+          const m = Number(parts[1]) - 1;
+          return y === currentYear && m === currentMonth;
+        });
+      const rows = filtered
+        .map(({ f }) => {
           const route = `${f.dep} → ${f.arr}`;
-          return `<tr>
+          return `<tr class="flightRow" data-id="${f.id}">
             <td>${formatDate(f.date)}</td>
             <td>${f.flight}</td>
             <td>${route}</td>
             <td>${f.dur}</td>
-            <td><button class="btnMini" data-del="${idx}">Borrar</button></td>
+            <td><button class="btnMini" data-del="${f.id}" aria-label="Borrar" style="background: transparent; color: #fff; border: 0;">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z" fill="currentColor"/>
+              </svg>
+            </button></td>
           </tr>`;
-        })
-        .join("");
+        });
+      if (flightTable) flightTable.innerHTML = rows.slice(0, 12).join("");
+      if (flightTableAll) {
+        const allRows = flights.map((f) => {
+          const route = `${f.dep} → ${f.arr}`;
+          return `<tr class="flightRow" data-id="${f.id}">
+            <td>${formatDate(f.date)}</td>
+            <td>${f.flight}</td>
+            <td>${route}</td>
+            <td>${f.dur}</td>
+            <td><button class="btnMini" data-del="${f.id}" aria-label="Borrar" style="background: transparent; color: #fff; border: 0;">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z" fill="currentColor"/>
+              </svg>
+            </button></td>
+          </tr>`;
+        }).join("");
+        flightTableAll.innerHTML = allRows;
+      }
 
-      flightDays.forEach((d) => d.classList.remove("active"));
-      const daysWithFlights = new Set(
-        flights.map((f) => {
-          if (!f.date) return null;
-          const parts = f.date.split("-");
-          return parts[2];
-        }).filter(Boolean)
-      );
-      flightDays.forEach((d) => {
-        if (daysWithFlights.has(d.textContent?.trim())) d.classList.add("active");
-      });
+      markCalendar(flights);
+      renderMonthBars(flights);
     };
+    renderCalendarDays();
     renderFlights();
 
-    if (flightTable) {
-      flightTable.addEventListener("click", (e) => {
-        const btn = e.target && e.target.closest ? e.target.closest("[data-del]") : null;
-        if (!btn) return;
-        const idx = Number(btn.getAttribute("data-del"));
+    if (prevMonth) prevMonth.addEventListener("click", () => {
+      currentMonth -= 1;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear -= 1;
+      }
+      renderCalendarDays();
+      renderFlights();
+    });
+    if (nextMonth) nextMonth.addEventListener("click", () => {
+      currentMonth += 1;
+      if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear += 1;
+      }
+      renderCalendarDays();
+      renderFlights();
+    });
+
+    if (calendarEl) {
+      calendarEl.addEventListener("click", (e) => {
+        const target = e.target;
+        const cell = target && target.closest ? target.closest(".day") : null;
+        if (!cell) return;
+        const dayText = cell.textContent?.trim();
+        if (!dayText) return;
+        const dayNum = dayText.padStart(2, "0");
+        const monthNum = String(currentMonth + 1).padStart(2, "0");
+        const keyDate = `${currentYear}-${monthNum}-${dayNum}`;
         const flights = loadFlights();
-        if (Number.isNaN(idx)) return;
-        flights.splice(idx, 1);
-        saveFlights(flights);
-        renderFlights();
+        const match = flights.find((f) => f.date === keyDate);
+        if (!match) return;
+        applyFlightToKpis(match);
+        document.querySelectorAll(".flightRow").forEach((r) => {
+          r.classList.remove("active");
+          r.style.background = "";
+          r.querySelectorAll("td").forEach((td) => {
+            td.style.background = "";
+            td.style.boxShadow = "";
+          });
+        });
       });
     }
+
+    const attachTableHandlers = (tableEl) => {
+      if (!tableEl) return;
+      tableEl.addEventListener("click", (e) => {
+        const target = e.target;
+        const btn = target && target.closest ? target.closest("[data-del]") : null;
+        if (btn) {
+          const key = prompt("Contraseña para borrar:");
+          if (key !== "Pilot0") {
+            alert("Contraseña incorrecta.");
+            return;
+          }
+          const ok = confirm("¿Seguro que quieres borrar este vuelo?");
+          if (!ok) return;
+          const id = btn.getAttribute("data-del");
+          const flights = ensureFlightIds(loadFlights());
+          const idx = flights.findIndex((f) => f.id === id);
+          if (idx === -1) return;
+          flights.splice(idx, 1);
+          saveFlights(flights);
+          renderFlights();
+          return;
+        }
+        const row = target && target.closest ? target.closest("tr.flightRow") : null;
+        if (!row) return;
+        const id = row.getAttribute("data-id");
+        const flights = ensureFlightIds(loadFlights());
+        const found = flights.find((f) => f.id === id);
+        if (!found) return;
+        applyFlightToKpis(found);
+        document.querySelectorAll(".flightRow").forEach((r) => {
+          r.classList.remove("active");
+          r.style.background = "";
+          r.querySelectorAll("td").forEach((td) => {
+            td.style.background = "";
+            td.style.boxShadow = "";
+          });
+        });
+        row.classList.add("active");
+        row.style.background = "rgba(69,220,235,0.32)";
+        row.querySelectorAll("td").forEach((td) => {
+          td.style.background = "rgba(69,220,235,0.32)";
+          td.style.boxShadow = "inset 0 0 0 1px rgba(69,220,235,0.45), inset 0 0 12px rgba(69,220,235,0.25)";
+        });
+      });
+    };
+
+    attachTableHandlers(flightTable);
+    attachTableHandlers(flightTableAll);
 
     if (openForm) openForm.addEventListener("click", () => {
       const key = prompt("Clave de edición:");
@@ -680,8 +1157,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       openModal();
     });
     if (closeForm) closeForm.addEventListener("click", closeModal);
+    if (closeResults) closeResults.addEventListener("click", closeResultsModal);
     if (viewResults) viewResults.addEventListener("click", () => {
-      document.getElementById("panelRoute")?.scrollIntoView({ behavior: "smooth" });
+      openResults();
     });
 
     if (saveForm) {
@@ -697,6 +1175,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         if (fFlight?.value) kFlight.textContent = fFlight.value.toUpperCase();
         if (fPax?.value) kPax.textContent = fPax.value;
         if (fAirline?.value) kAirline.textContent = fAirline.value.toUpperCase();
+        updateFuelMeter(kFuel?.textContent);
         const data = {
           dep: kDep.textContent,
           arr: kArr.textContent,
@@ -715,17 +1194,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         const flights = loadFlights();
         const dateVal = fDate?.value || new Date().toISOString().slice(0, 10);
         flights.unshift({
+          id: `${Date.now()}`,
           date: dateVal,
           flight: kFlight.textContent || "N/A",
           dep: kDep.textContent || "",
           arr: kArr.textContent || "",
           dur: kDur.textContent || "",
+          miles: kMiles.textContent || "",
+          route: kRoute.textContent || "",
+          fuel: kFuel.textContent || "",
+          depTime: kDepTime.textContent || "",
+          arrTime: kArrTime.textContent || "",
+          pax: kPax.textContent || "",
+          airline: kAirline.textContent || "",
         });
         saveFlights(flights);
         renderFlights();
         closeModal();
       });
     }
+
+    if (fDepTime) fDepTime.addEventListener("input", maybeAutoArrival);
+    if (fDur) fDur.addEventListener("input", maybeAutoArrival);
   </script>
 </BaseLayout>
 
