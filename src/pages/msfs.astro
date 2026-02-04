@@ -139,6 +139,27 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       position: relative;
       box-shadow: var(--shadow-panel);
     }
+    .glow-frame{
+      position: relative;
+    }
+    .glow-frame::after{
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      pointer-events: none;
+      border: 1px solid rgba(230,147,58,0.65);
+      box-shadow:
+        0 0 18px rgba(230,147,58,0.45),
+        0 0 36px rgba(230,147,58,0.35);
+      opacity: 1;
+    }
+    .glow-frame{
+      box-shadow:
+        0 0 18px rgba(230,147,58,0.30),
+        0 0 32px rgba(230,147,58,0.22);
+      outline: 1px solid rgba(230,147,58,0.30);
+    }
     .panel::before{
       content:"";
       position: absolute;
@@ -513,7 +534,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="grid">
-      <div class="panel primary" id="panelRoute">
+      <div class="panel primary glow-frame" id="panelRoute">
         <div class="panelHeader">
           <h3>Ruta principal</h3>
           <span class="badge route">ROUTE</span>
@@ -548,7 +569,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
 
       <div class="opsCalendar">
-        <div class="panel" id="panelOps">
+        <div class="panel glow-frame" id="panelOps">
           <div class="panelHeader">
             <h3>Operación</h3>
             <small>Flight #</small>
@@ -562,7 +583,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
         </div>
 
-        <div class="panel" id="panelCalendar">
+        <div class="panel glow-frame" id="panelCalendar">
           <div class="panelHeader">
             <h3>Calendario</h3>
             <small>Fechas de vuelo</small>
