@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Francia";
 const cover = "/paris.png";
-const mapSrc = "/mapa_francia.png";
+const mapSrc = "/maps/mapfrancia.png";
 ---
 
 <BaseLayout title={`${title} | Ruta Base`}>
@@ -217,7 +217,11 @@ const mapSrc = "/mapa_francia.png";
   <details class="sec" id="resumen">
     <summary class="secSummary"><span>Resumen</span><span class="secCaret">▾</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <p>Francia fue mi primer amor viajero y se llama París. Fue la primera ciudad que visité en 1990 y, como pasa con los primeros amores, nunca se olvida: siempre vuelve a mi cabeza aunque haya visto mil sitios más. Y es que Francia, con el tiempo, se me convirtió en un mapa lleno de recuerdos.</p>
+      <p>Empecé por la Costa Azul, con Niza en agosto de 2004, y al año siguiente, en marzo de 2005, cambié el mar por la historia: los castillos del Loira, ese Francia elegante de piedra clara, jardines perfectos y ríos tranquilos. Años después llegó el norte: Normandía, con su mezcla de costa salvaje, pueblos serios y memoria, y seguí hasta Dunkerque en octubre de 2019, donde el Atlántico se pone áspero y el cielo parece inmenso.</p>
+      <p>En diciembre de 2022 tocó el suroeste: Toulouse y sus alrededores, con ese aire cálido y pausado, ladrillo, buena mesa y vida de calle. Y en diciembre de 2024 me fui a una Francia de postal navideña: Alsacia. Colmar fue el golpe definitivo, con su decoración, sus luces y ese ambiente que parece hecho a propósito para perderse sin prisa, rematando la ruta en Estrasburgo, grande y luminosa.</p>
+      <p>Y cuando pensé que ya lo tenía todo visto, llegó mayo de 2025 para recordarme que Francia siempre guarda otra sorpresa: la costa atlántica y el interior del suroeste. Biarritz, Burdeos y La Rochelle, cada una con su carácter, y el broche brutal: Rocamadour, colgada de la roca, de esas ciudades que no se visitan, se quedan contigo.</p>
+      <p>En definitiva, me he recorrido Francia a lo largo de los años, de punta a punta, y sigue siendo uno de mis destinos preferidos: por cercanía, sí, pero sobre todo por el encanto real de sus pueblos, por su manera de mezclar lo cotidiano con lo histórico, y por esa sensación de que, estés donde estés, siempre hay una próxima esquina que merece la pena.</p>
     </div>
   </details>
 
@@ -326,7 +330,53 @@ const mapSrc = "/mapa_francia.png";
       openFromHash();
     })();
   </script>
-</BaseLayout>
+  <script is:inline>
+    (function () {
+      const openMapBtn = document.getElementById("openMap");
+      const lightbox = document.getElementById("lightbox");
+      const backdrop = document.getElementById("lbBackdrop");
+      const btnClose = document.getElementById("lbClose");
+      const btnPrev = document.getElementById("lbPrev");
+      const btnNext = document.getElementById("lbNext");
+      const imgEl = document.getElementById("lbImg");
+      const counter = document.getElementById("lbCounter");
 
+      if (!openMapBtn || !lightbox || !imgEl) return;
 
+      const thumbImg = openMapBtn.querySelector("img");
+      const MAP_SRC = thumbImg ? (thumbImg.getAttribute("src") || "") : "";
 
+      const openLightbox = () => {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("noScroll");
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("noScroll");
+        imgEl.removeAttribute("src");
+        if (btnPrev) btnPrev.style.display = "none";
+        if (btnNext) btnNext.style.display = "none";
+      };
+
+      const openMap = () => {
+        if (lightbox.classList.contains("open")) {
+          closeLightbox();
+          return;
+        }
+        if (btnPrev) btnPrev.style.display = "none";
+        if (btnNext) btnNext.style.display = "none";
+        imgEl.setAttribute("src", MAP_SRC);
+        imgEl.setAttribute("alt", "Mapa");
+        if (counter) counter.textContent = "Mapa";
+        openLightbox();
+      };
+
+      openMapBtn.addEventListener("click", openMap);
+      if (btnClose) btnClose.addEventListener("click", closeLightbox);
+      if (backdrop) backdrop.addEventListener("click", closeLightbox);
+      imgEl.addEventListener("click", closeLightbox);
+    })();
+  </script></BaseLayout>

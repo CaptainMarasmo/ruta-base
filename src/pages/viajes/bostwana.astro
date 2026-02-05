@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Botswana";
 const cover = "/portadabotswana.jpg";
-const mapSrc = "/mapa_bostwana.png";
+const mapSrc = "/maps/maps/mapa_bostwana.png";
 ---
 
 <BaseLayout title={`${title} | Ruta Base`}>
@@ -327,7 +327,53 @@ const mapSrc = "/mapa_bostwana.png";
       openFromHash();
     })();
   </script>
-</BaseLayout>
+  <script is:inline>
+    (function () {
+      const openMapBtn = document.getElementById("openMap");
+      const lightbox = document.getElementById("lightbox");
+      const backdrop = document.getElementById("lbBackdrop");
+      const btnClose = document.getElementById("lbClose");
+      const btnPrev = document.getElementById("lbPrev");
+      const btnNext = document.getElementById("lbNext");
+      const imgEl = document.getElementById("lbImg");
+      const counter = document.getElementById("lbCounter");
 
+      if (!openMapBtn || !lightbox || !imgEl) return;
 
+      const thumbImg = openMapBtn.querySelector("img");
+      const MAP_SRC = thumbImg ? (thumbImg.getAttribute("src") || "") : "";
 
+      const openLightbox = () => {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("noScroll");
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("noScroll");
+        imgEl.removeAttribute("src");
+        if (btnPrev) btnPrev.style.display = "none";
+        if (btnNext) btnNext.style.display = "none";
+      };
+
+      const openMap = () => {
+        if (lightbox.classList.contains("open")) {
+          closeLightbox();
+          return;
+        }
+        if (btnPrev) btnPrev.style.display = "none";
+        if (btnNext) btnNext.style.display = "none";
+        imgEl.setAttribute("src", MAP_SRC);
+        imgEl.setAttribute("alt", "Mapa");
+        if (counter) counter.textContent = "Mapa";
+        openLightbox();
+      };
+
+      openMapBtn.addEventListener("click", openMap);
+      if (btnClose) btnClose.addEventListener("click", closeLightbox);
+      if (backdrop) backdrop.addEventListener("click", closeLightbox);
+      imgEl.addEventListener("click", closeLightbox);
+    })();
+  </script></BaseLayout>

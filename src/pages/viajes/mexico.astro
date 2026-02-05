@@ -138,6 +138,99 @@ const nextExistingDay = (day: number): number | null => {
       font-size: 18px;
     }
     /* Solo TOC arriba: ocultar títulos repetidos */
+
+    /* Hoteles */
+    .hotelList{
+      display: grid;
+      gap: 12px;
+    }
+    .hotelItem{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.6);
+      overflow: hidden;
+    }
+    .hotelToggle{
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: #1a0b2e;
+    }
+    .hotelTitle{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hotelStars{
+      color: #f3c94d;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .hotelCaret{
+      font-size: 18px;
+      opacity: 0.7;
+      transform: rotate(-90deg);
+      transition: transform 0.2s ease;
+    }
+    .hotelItem[open] .hotelCaret{
+      transform: rotate(0deg);
+    }
+    .hotelPanel{
+      padding: 12px 14px 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .hotelInfo{
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      color: #2a1a3d;
+    }
+    .hotelLabel{
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+    .hotelValue{
+      font-weight: 600;
+    }
+    .hotelLink{
+      font-weight: 700;
+      color: #3a1b6f;
+      text-decoration: none;
+    }
+    .hotelLink:hover{
+      text-decoration: underline;
+    }
+    .hotelMap{
+      width: 100%;
+      height: 240px;
+      border: 0;
+      border-radius: 12px;
+    }
+    .hotelPhotos{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .hotelPhoto{
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
     summary.secSummary{ display: none; }
 
     summary.secSummary::-webkit-details-marker{ display:none; }
@@ -513,7 +606,441 @@ const nextExistingDay = (day: number): number | null => {
   <details class="sec" id="hoteles">
     <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
     <div class="secBody">
-      <p class="dots">...</p>
+      <div class="hotelList">
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Barceló Guadalajara
+              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Av de Las Rosas 2933, Rinconada del Bosque, 44530 Guadalajara, Jal., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Nota</div>
+                <div class="hotelValue">Antes era un Hilton</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.barcelo.com/es-mx/barcelo-guadalajara/?utm_source=google&utm_medium=organic&utm_campaign=my_business&utm_content=41190" target="_blank" rel="noreferrer">barcelo.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">135€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hgua1.jpg" alt="Barceló Guadalajara - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hgua2.jpg" alt="Barceló Guadalajara - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hgua3.jpg" alt="Barceló Guadalajara - foto 3" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3572.9744412055816!2d-103.3921547605883!3d20.65355130063983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842145c130765ee9%3A0x4b8359e36be3e68d!2sBarcel%C3%B3%20Guadalajara!5e1!3m2!1ses!2ses!4v1770328171142!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Barceló Guadalajara"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Meliá Puerto Vallarta
+              <span class="hotelStars" aria-hidden="true">★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Av. Paseo de la Marina Sur, Marina Vallarta, 48333 Puerto Vallarta, Jal., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.melia.com/en/hotels/mexico/puerto-vallarta/melia-puerto-vallarta?utm_campaign=google&utm_content=5835&utm_medium=organic&utm_source=directories" target="_blank" rel="noreferrer">melia.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">327€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hpue1.jpg" alt="Meliá Puerto Vallarta - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hpue2.jpg" alt="Meliá Puerto Vallarta - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hpue3.jpg" alt="Meliá Puerto Vallarta - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hpue4.jpg" alt="Meliá Puerto Vallarta - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7466.396206454931!2d-105.2528342!3d20.6615179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842145ba3f88d58d%3A0xb80c7197bf4dfb73!2sMeli%C3%A1%20Puerto%20Vallarta!5e0!3m2!1ses!2ses!4v1770328643291!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Meliá Puerto Vallarta"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Camino Real Acapulco Diamante
+              <span class="hotelStars" aria-hidden="true">★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Escénica S/N, Pichilingue, 39880 Acapulco de Juárez, Gro., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.caminoreal.com/caminoreal/camino-real-acapulco-diamante" target="_blank" rel="noreferrer">caminoreal.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">155€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/haca1.jpg" alt="Camino Real Acapulco Diamante - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/haca2.jpg" alt="Camino Real Acapulco Diamante - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/haca3.jpg" alt="Camino Real Acapulco Diamante - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/haca4.jpg" alt="Camino Real Acapulco Diamante - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1587.954716122734!2d-99.84976415615142!3d16.811125930922472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ca59042c078513%3A0xdb371627e8552bdd!2sCamino%20Real%20Acapulco%20Diamante!5e1!3m2!1ses!2ses!4v1770330811868!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Camino Real Acapulco Diamante"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Barceló México Reforma
+              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Av. P.º de la Reforma 1, Tabacalera, Cuauhtémoc, 06030 Ciudad de México, CDMX, México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.barcelo.com/es-mx/barcelo-mexico-reforma/?utm_source=google&utm_medium=organic&utm_campaign=my_business&utm_content=7345" target="_blank" rel="noreferrer">barcelo.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">131€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hmex1.jpg" alt="Barceló México Reforma - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmex2.jpg" alt="Barceló México Reforma - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmex3.jpg" alt="Barceló México Reforma - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmex4.jpg" alt="Barceló México Reforma - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.4731313688053!2d-99.15361066053057!3d19.4351527819204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d201e1a9788123%3A0xa83028dc76da793c!2sBarcel%C3%B3%20M%C3%A9xico%20Reforma!5e0!3m2!1ses!2ses!4v1770331587046!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Barceló México Reforma"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Holiday Inn Express Oaxaca
+              <span class="hotelStars" aria-hidden="true">★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Díaz Quintas 115, Centro, 68000 Oaxaca de Juárez, Oax., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.ihg.com/holidayinnexpress/hotels/us/en/oaxaca/oaxmx/hoteldetail?cm_mmc=GoogleMaps-_-EX-_-MX-_-OAXMX" target="_blank" rel="noreferrer">ihg.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">166€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hoax1.jpg" alt="Holiday Inn Express Oaxaca - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hoax2.jpg" alt="Holiday Inn Express Oaxaca - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hoax3.jpg" alt="Holiday Inn Express Oaxaca - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hoax4.jpg" alt="Holiday Inn Express Oaxaca - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3814.0407339723724!2d-96.721947!3d17.070660099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7223b447e7053%3A0x481389e4c19e48c3!2sHoliday%20Inn%20Express!5e0!3m2!1ses!2ses!4v1770332414526!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Holiday Inn Express Oaxaca"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Marriott Tuxtla Gutiérrez
+              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Blvd. Belisario Domínguez 1195, Sin Nombre, Santa Elena, 29060 Tuxtla Gutiérrez, Chis., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.marriott.com/en-us/hotels/tgzmc-marriott-tuxtla-gutierrez-hotel/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0" target="_blank" rel="noreferrer">marriott.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">71€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/htux1.jpg" alt="Marriott Tuxtla Gutiérrez - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/htux2.jpg" alt="Marriott Tuxtla Gutiérrez - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/htux3.jpg" alt="Marriott Tuxtla Gutiérrez - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/htux4.jpg" alt="Marriott Tuxtla Gutiérrez - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3820.458111965002!2d-93.14217699999999!3d16.7538686!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd9040d530b65%3A0x9cda45cdd4a92b92!2sMarriott%20%5BTuxtla%20Guti%C3%A9rrez%5D!5e0!3m2!1ses!2ses!4v1770332923323!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Marriott Tuxtla Gutiérrez"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Hoteles Villa Mercedes San Cristóbal
+              <span class="hotelStars" aria-hidden="true">★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Diagonal Hermanos Paniagua 32, Barrio de Fátima, 29264 San Cristóbal de las Casas, Chis., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://hotelvmsancristobaldelascasas.com/?utm_source=Google&utm_medium=GMB&utm_campaign=FichaGoogle" target="_blank" rel="noreferrer">hotelvmsancristobaldelascasas.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">73€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hmer1.jpg" alt="Hoteles Villa Mercedes San Cristóbal - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmer2.jpg" alt="Hoteles Villa Mercedes San Cristóbal - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmer3.jpg" alt="Hoteles Villa Mercedes San Cristóbal - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmer4.jpg" alt="Hoteles Villa Mercedes San Cristóbal - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3820.8900980638728!2d-92.6538015!3d16.732334599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2023e42b369ed%3A0xabb8931c94f03aa6!2sHoteles%20Villa%20Mercedes%20San%20Cristobal!5e0!3m2!1ses!2ses!4v1770333295087!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Hoteles Villa Mercedes San Cristóbal"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Hotel Villa Mercedes Palenque
+              <span class="hotelStars" aria-hidden="true">★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Ruinas-Palenque km 2.9, 29960 Palenque, Chis., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://hotelvmpalenque.com/es/?utm_source=Google&utm_medium=GMB&utm_campaign=FichaGoogle" target="_blank" rel="noreferrer">hotelvmpalenque.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">88€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hpal1.jpg" alt="Hotel Villa Mercedes Palenque - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hpal2.jpg" alt="Hotel Villa Mercedes Palenque - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hpal3.jpg" alt="Hotel Villa Mercedes Palenque - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hpal4.jpg" alt="Hotel Villa Mercedes Palenque - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d866.4428022192801!2d-92.01741204201466!3d17.49789420252229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842737b2b20dc5c7%3A0x87fbbe2aea98f515!2sHotel%20Villa%20Mercedes%20Palenque!5e1!3m2!1ses!2ses!4v1770333929839!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Hotel Villa Mercedes Palenque"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Hotel Plaza Campeche
+              <span class="hotelStars" aria-hidden="true">★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">C. 10 126, Zona Centro, 24000 San Francisco de Campeche, Camp., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="http://www.hotelplazacampeche.com/" target="_blank" rel="noreferrer">hotelplazacampeche.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">96€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hcam1.jpg" alt="Hotel Plaza Campeche - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hcam2.jpg" alt="Hotel Plaza Campeche - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hcam3.jpg" alt="Hotel Plaza Campeche - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hcam4.jpg" alt="Hotel Plaza Campeche - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.5776779783027!2d-90.53650622505249!3d19.847047627315423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85f833fa2229b811%3A0x6e8b57191e04aaaa!2sHotel%20Plaza%20Campeche!5e1!3m2!1ses!2ses!4v1770334256323!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Hotel Plaza Campeche"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              NH Collection Mérida Paseo Montejo
+              <span class="hotelStars" aria-hidden="true">★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">C. 60 346, Zona Paseo Montejo, Centro, 97000 Mérida, Yuc., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.nh-hotels.com/en/hotel/nh-collection-merida-paseo-montejo?utm_campaign=local-gmb&utm_medium=organic_search&utm_source=google_gmb" target="_blank" rel="noreferrer">nh-hotels.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">111€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hmeri1.jpg" alt="NH Collection Mérida Paseo Montejo - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmeri2.jpg" alt="NH Collection Mérida Paseo Montejo - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmeri3.jpg" alt="NH Collection Mérida Paseo Montejo - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hmeri4.jpg" alt="NH Collection Mérida Paseo Montejo - foto 4" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.153785526872!2d-89.6199704!3d20.9837354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5671a3811bdca9%3A0xf71f55e1b79aeb9d!2sHotel%20NH%20Collection%20M%C3%A9rida%20Paseo%20Montejo!5e1!3m2!1ses!2ses!4v1770334621764!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa NH Collection Mérida Paseo Montejo"
+            ></iframe>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Ocean Riviera Paradise
+              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">Crta. Federal Cancún Chetumal, km 296 Manzana 020 Lote 007-1, 77710 Playa del Carmen, Q.R., México</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.oceanhotels.com/en/riviera-maya-hotels/ocean-riviera-paradise?utm_source=google_my_business&utm_medium=boton_sitio_web&utm_campaign=orp" target="_blank" rel="noreferrer">oceanhotels.com</a>
+              </div>
+              <div>
+                <div class="hotelLabel">Precio</div>
+                <div class="hotelValue">358€ la noche</div>
+              </div>
+            </div>
+            <div class="hotelPhotos">
+              <img class="hotelPhoto" src="/hoteles/hqui1.jpg" alt="Ocean Riviera Paradise - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hqui2.jpg" alt="Ocean Riviera Paradise - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hqui3.jpg" alt="Ocean Riviera Paradise - foto 3" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hqui4.jpg" alt="Ocean Riviera Paradise - foto 4" loading="lazy" />
+              <img class="hotelPhoto" src="/hoteles/hqui5.jpg" alt="Ocean Riviera Paradise - foto 5" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1866.4879457842158!2d-87.0355423!3d20.6705598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4e5d724fc7d22f%3A0x8cae5bc250ba1813!2sOcean%20Riviera%20Paradise!5e0!3m2!1ses!2ses!4v1770335114007!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Ocean Riviera Paradise"
+            ></iframe>
+          </div>
+        </details>
+      </div>
     </div>
   </details>
   <details class="sec" id="mapa">
@@ -524,7 +1051,7 @@ const nextExistingDay = (day: number): number | null => {
       <div class="mapWrap">
         <div class="mapBox">
           <button class="mapBtn" type="button" id="openMap">
-            <img class="mapImg" src="/mapa_mexico.png" alt="Mapa de México (ruta)" />
+            <img class="mapImg" src="/maps/mapmex.png" alt="Mapa de México (ruta)" />
           </button>
         </div>
       </div>
@@ -679,11 +1206,12 @@ const nextExistingDay = (day: number): number | null => {
 
       if (!lightbox || !imgEl) return;
 
-      const MAP_SRC = "/mapa_mexico.png";
+      const MAP_SRC = "/maps/mapmex.png";
 
       const imgs = grid ? Array.from(grid.querySelectorAll("img")) : [];
       let index = 0;
-      let mode = "photos"; // "photos" | "map"
+      let mode = "photos"; // "photos" | "map" | "hotel"
+      let activeImgs = imgs;
 
       const showNav = () => {
         if (btnPrev) btnPrev.style.display = "";
@@ -696,13 +1224,13 @@ const nextExistingDay = (day: number): number | null => {
       };
 
       const setImage = (i) => {
-        if (!imgs.length) return;
-        index = (i + imgs.length) % imgs.length;
-        const src = imgs[index].getAttribute("src") || "";
-        const alt = imgs[index].getAttribute("alt") || "";
+        if (!activeImgs.length) return;
+        index = (i + activeImgs.length) % activeImgs.length;
+        const src = activeImgs[index].getAttribute("src") || "";
+        const alt = activeImgs[index].getAttribute("alt") || "";
         imgEl.setAttribute("src", src);
         imgEl.setAttribute("alt", alt);
-        if (counter) counter.textContent = (index + 1) + " / " + imgs.length;
+        if (counter) counter.textContent = (index + 1) + " / " + activeImgs.length;
       };
 
       const openLightbox = () => {
@@ -718,16 +1246,29 @@ const nextExistingDay = (day: number): number | null => {
         imgEl.removeAttribute("src");
         showNav();
         mode = "photos";
+        activeImgs = imgs;
       };
 
       const openPhoto = (i) => {
         mode = "photos";
+        activeImgs = imgs;
+        showNav();
+        setImage(i);
+        openLightbox();
+      };
+      const openHotel = (i, list) => {
+        mode = "hotel";
+        activeImgs = list;
         showNav();
         setImage(i);
         openLightbox();
       };
 
       const openMap = () => {
+        if (lightbox.classList.contains("open") && mode === "map") {
+          closeLightbox();
+          return;
+        }
         mode = "map";
         hideNav();
         imgEl.setAttribute("src", MAP_SRC);
@@ -747,19 +1288,31 @@ const nextExistingDay = (day: number): number | null => {
           if (i >= 0) openPhoto(i);
         });
       }
+      const hotelImgs = Array.from(document.querySelectorAll(".hotelPhoto"));
+      if (hotelImgs.length) {
+        hotelImgs.forEach((img) => {
+          img.addEventListener("click", () => {
+            const hotelItem = img.closest(".hotelItem");
+            const list = hotelItem ? Array.from(hotelItem.querySelectorAll(".hotelPhoto")) : [];
+            const i = list.indexOf(img);
+            if (i >= 0) openHotel(i, list);
+          });
+        });
+      }
 
       if (openMapBtn) openMapBtn.addEventListener("click", openMap);
 
       if (btnClose) btnClose.addEventListener("click", closeLightbox);
       if (backdrop) backdrop.addEventListener("click", closeLightbox);
+      if (imgEl) imgEl.addEventListener("click", () => { if (mode === "map") closeLightbox(); });
 
-      if (btnPrev) btnPrev.addEventListener("click", () => { if (mode === "photos") prev(); });
-      if (btnNext) btnNext.addEventListener("click", () => { if (mode === "photos") next(); });
+      if (btnPrev) btnPrev.addEventListener("click", () => { if (mode === "photos" || mode === "hotel") prev(); });
+      if (btnNext) btnNext.addEventListener("click", () => { if (mode === "photos" || mode === "hotel") next(); });
 
       window.addEventListener("keydown", (e) => {
         if (!lightbox.classList.contains("open")) return;
         if (e.key === "Escape") closeLightbox();
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         if (e.key === "ArrowLeft") prev();
         if (e.key === "ArrowRight") next();
       });
@@ -769,20 +1322,20 @@ const nextExistingDay = (day: number): number | null => {
 
       const onTouchStart = (e) => {
         if (!lightbox.classList.contains("open")) return;
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         startX = e.touches[0].clientX;
         dx = 0;
       };
 
       const onTouchMove = (e) => {
         if (!lightbox.classList.contains("open")) return;
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         dx = e.touches[0].clientX - startX;
       };
 
       const onTouchEnd = () => {
         if (!lightbox.classList.contains("open")) return;
-        if (mode !== "photos") return;
+        if (mode !== "photos" && mode !== "hotel") return;
         if (Math.abs(dx) > 45) {
           if (dx > 0) prev();
           else next();
@@ -797,6 +1350,9 @@ const nextExistingDay = (day: number): number | null => {
     })();
   </script>
 </BaseLayout>
+
+
+
 
 
 
