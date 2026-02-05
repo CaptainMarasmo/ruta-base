@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Botswana";
-const cover = "/covers/bostwana.png";
+const cover = "/portadabotswana.jpg";
 const mapSrc = "/mapa_bostwana.png";
 ---
 
@@ -22,6 +22,7 @@ const mapSrc = "/mapa_bostwana.png";
       width: 100%;
       height: 320px;
       object-fit: cover;
+      object-position: center 32%;
       display: block;
       border-radius: 16px;
       border: 1px solid rgba(0,0,0,0.08);
@@ -194,7 +195,7 @@ const mapSrc = "/mapa_bostwana.png";
       <a class="titleArrow" href="/viajes/alaska" aria-label="Anterior"><img src="/giroizquierda.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
       <a class="titleArrow" href="/viajes/canada" aria-label="Siguiente" style="margin-left:-8px;"><img src="/giroderecha.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
     </div>
-    <h1 class="pageTitle">{title}<span class="flag-badge" style="--flag: linear-gradient(#6cc3ff 0 40%, #ffffff 40% 45%, #000000 45% 55%, #ffffff 55% 60%, #6cc3ff 60% 100%);" aria-hidden="true"></span></h1>
+    <h1 class="pageTitle">{title}<img src="/flags/flagbotswana.gif" alt="Bandera de Botswana" style="height: 28px; width: auto; object-fit: contain; vertical-align: -0.1em; margin-left: 8px;" /></h1>
   </div>
 
   <div class="hero">

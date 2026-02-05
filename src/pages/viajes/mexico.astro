@@ -75,16 +75,14 @@ const nextExistingDay = (day: number): number | null => {
       gap: 8px;
     }
     .flag-mx{
-      width: 1em;
-      height: 1em;
+      height: 28px;
+      width: auto;
       display: inline-block;
       border-radius: 3px;
       border: 1px solid rgba(0,0,0,0.15);
-      background:
-        radial-gradient(circle at 50% 50%, #8a4b2a 0 18%, transparent 19%),
-        linear-gradient(90deg, #0f7a3b 0 33%, #ffffff 33% 66%, #c92b2b 66% 100%);
       box-shadow: 0 1px 3px rgba(0,0,0,0.15);
       vertical-align: -0.1em;
+      object-fit: contain;
     }
 
     .toc{
@@ -427,7 +425,7 @@ const nextExistingDay = (day: number): number | null => {
   <div class="titleNav" style="position:absolute; top:-16px; right:-6px; z-index:5; display:flex; align-items:center;"><a class="titleArrow" href="/viajes/argentina" aria-label="Anterior"><img src="/giroizquierda.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a><a class="titleArrow" href="/viajes/francia" aria-label="Siguiente" style="margin-left:-8px;"><img src="/giroderecha.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a></div>
   <h1 class="pageTitle">
       México
-      <span class="flag-mx" aria-hidden="true"></span>
+      <img class="flag-mx" src="/flags/flagmexico.gif" alt="Bandera de México" />
     </h1>
 </div>
   </div>

@@ -75,19 +75,14 @@ const nextExistingDay = (day: number): number | null => {
       gap: 8px;
     }
     .flag-arg{
-      width: 1em;
-      height: 1em;
+      height: 28px;
+      width: auto;
       display: inline-block;
       border-radius: 3px;
       border: 1px solid rgba(0,0,0,0.15);
-      background:
-        radial-gradient(circle at 50% 50%, #f6c343 0 20%, transparent 21%),
-        linear-gradient(135deg, rgba(255,255,255,0.25) 0 30%, rgba(255,255,255,0) 30% 60%, rgba(0,0,0,0.08) 60% 100%),
-        linear-gradient(#6cc3ff 0 33%, #ffffff 33% 66%, #6cc3ff 66% 100%);
       box-shadow: 0 1px 3px rgba(0,0,0,0.15);
       vertical-align: -0.1em;
-      background-size: 100% 100%, 200% 200%, 100% 100%;
-      background-position: center, 20% 30%, center;
+      object-fit: contain;
     }
 
     .toc{
@@ -526,7 +521,7 @@ const nextExistingDay = (day: number): number | null => {
     </div>
     <h1 class="pageTitle">
       Argentina
-      <span class="flag-arg" aria-hidden="true"></span>
+      <img class="flag-arg" src="/flags/flagargentina.gif" alt="Bandera de Argentina" />
     </h1>
   </div>
 
