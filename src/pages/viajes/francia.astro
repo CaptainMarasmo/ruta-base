@@ -335,7 +335,7 @@ const mapSrc = "/maps/mapfrancia.png";
     <div class="secBody">
       <p>Francia fue mi primer amor viajero y se llama París. Fue la primera ciudad que visité en 1990 y, como pasa con los primeros amores, nunca se olvida: siempre vuelve a mi cabeza aunque haya visto mil sitios más. Y es que Francia, con el tiempo, se me convirtió en un mapa lleno de recuerdos.</p>
       <p>Empecé por la Costa Azul, con Niza en agosto de 2004, y al año siguiente, en marzo de 2005, cambié el mar por la historia: los castillos del Loira, ese Francia elegante de piedra clara, jardines perfectos y ríos tranquilos. Años después llegó el norte: Normandía, con su mezcla de costa salvaje, pueblos serios y memoria, y seguí hasta Dunkerque en octubre de 2019, donde el Atlántico se pone áspero y el cielo parece inmenso.</p>
-      <p>En diciembre de 2022 tocó el suroeste: Toulouse y sus alrededores, con ese aire cálido y pausado, ladrillo, buena mesa y vida de calle. Y en diciembre de 2024 me fui a una Francia de postal navideña: Alsacia. Colmar fue el golpe definitivo, con su decoración, sus luces y ese ambiente que parece hecho a propósito para perderse sin prisa, rematando la ruta en Estrasburgo, grande y luminosa.</p>
+      <p>En agosto de 2022 tocó el suroeste: Toulouse y sus alrededores, con ese aire cálido y pausado, ladrillo, buena mesa y vida de calle. Y en diciembre de 2024 me fui a una Francia de postal navideña: Alsacia. Colmar fue el golpe definitivo, con su decoración, sus luces y ese ambiente que parece hecho a propósito para perderse sin prisa, rematando la ruta en Estrasburgo, grande y luminosa.</p>
       <p>Y cuando pensé que ya lo tenía todo visto, llegó mayo de 2025 para recordarme que Francia siempre guarda otra sorpresa: la costa atlántica y el interior del suroeste. Biarritz, Burdeos y La Rochelle, cada una con su carácter, y el broche brutal: Rocamadour, colgada de la roca, de esas ciudades que no se visitan, se quedan contigo.</p>
       <p>En definitiva, me he recorrido Francia a lo largo de los años, de punta a punta, y sigue siendo uno de mis destinos preferidos: por cercanía, sí, pero sobre todo por el encanto real de sus pueblos, por su manera de mezclar lo cotidiano con lo histórico, y por esa sensación de que, estés donde estés, siempre hay una próxima esquina que merece la pena.</p>
     </div>
@@ -415,6 +415,30 @@ const mapSrc = "/maps/mapfrancia.png";
             <p><strong>Lo que se quedó</strong></p>
             <p>Esa parte de Francia nos encantó: castillos, carreteras, el río acompañando, comidas buenas, y el punto especial de que era nuestro primer viaje al extranjero por nuestra cuenta. Todo salió rodado, sin sustos serios, con anécdotas de las que se recuerdan con risa (la rotonda del Arco de Triunfo es para enmarcarla) y con un momento inolvidable que lo remató todo: ver el Loira desde un globo, en silencio, con champagne al aterrizar.</p>
             <p>Fue un viaje de los que te enseñan algo simple: cuando te organizas, te lanzas y te lo tomas en serio, el mundo te sale bien.</p>
+          </div>
+        </details>
+        <details class="day">
+          <summary class="daySummary">Normandía - Dunkerque (octubre de 2019)</summary>
+          <div class="dayBody">
+            <p class="dots">…</p>
+          </div>
+        </details>
+        <details class="day">
+          <summary class="daySummary">Toulouse - Occitania (agosto de 2022)</summary>
+          <div class="dayBody">
+            <p class="dots">…</p>
+          </div>
+        </details>
+        <details class="day">
+          <summary class="daySummary">Alsacia - Estrasburgo (diciembre de 2024)</summary>
+          <div class="dayBody">
+            <p class="dots">…</p>
+          </div>
+        </details>
+        <details class="day">
+          <summary class="daySummary">Aquitania - Rocamadour (mayo de 2025)</summary>
+          <div class="dayBody">
+            <p class="dots">…</p>
           </div>
         </details>
       </div>
@@ -566,6 +590,45 @@ const mapSrc = "/maps/mapfrancia.png";
 
       window.addEventListener("hashchange", openFromHash);
       openFromHash();
+
+      // Itinerario: solo un bloque abierto a la vez
+      const dayDetails = Array.from(document.querySelectorAll("details.day"));
+      dayDetails.forEach((d) => {
+        d.addEventListener("toggle", () => {
+          if (!d.open) return;
+          dayDetails.forEach((other) => {
+            if (other !== d) other.open = false;
+          });
+        });
+      });
+    })();
+  </script>
+  <script is:inline>
+    (function () {
+      const hotelItems = Array.from(document.querySelectorAll("#hoteles .hotelItem"));
+      if (!hotelItems.length) return;
+
+      const closeOthers = (current) => {
+        hotelItems.forEach((other) => {
+          if (other !== current) other.open = false;
+        });
+      };
+
+      hotelItems.forEach((item) => {
+        const summary = item.querySelector("summary");
+        if (summary) {
+          summary.addEventListener("click", (e) => {
+            e.preventDefault();
+            const willOpen = !item.open;
+            closeOthers(item);
+            item.open = willOpen;
+          });
+        }
+
+        item.addEventListener("toggle", () => {
+          if (item.open) closeOthers(item);
+        });
+      });
     })();
   </script>
   <script is:inline>
