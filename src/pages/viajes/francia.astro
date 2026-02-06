@@ -91,6 +91,85 @@ const mapSrc = "/maps/mapfrancia.png";
       background: rgba(155,120,255,0.22);
     }
 
+    /* Hoteles */
+    .hotelList{
+      display: grid;
+      gap: 12px;
+    }
+    .hotelItem{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.6);
+      overflow: hidden;
+    }
+    .hotelToggle{
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: #1a0b2e;
+    }
+    .hotelTitle{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hotelStars{
+      color: #f3c94d;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .hotelCaret{
+      font-size: 18px;
+      opacity: 0.7;
+      transform: rotate(-90deg);
+      transition: transform 0.2s ease;
+    }
+    .hotelItem[open] .hotelCaret{
+      transform: rotate(0deg);
+    }
+    .hotelPanel{
+      padding: 12px 14px 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .hotelInfo{
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      color: #2a1a3d;
+    }
+    .hotelLabel{
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+    .hotelValue{
+      font-weight: 600;
+    }
+    .hotelLink{
+      font-weight: 700;
+      color: #3a1b6f;
+      text-decoration: none;
+    }
+    .hotelLink:hover{
+      text-decoration: underline;
+    }
+    .hotelMap{
+      width: 100%;
+      height: 240px;
+      border: 0;
+      border-radius: 12px;
+    }
+
     details.sec{
       border: 0;
       background: transparent;
@@ -115,6 +194,43 @@ const mapSrc = "/maps/mapfrancia.png";
     .secCaret{ display:none; }
 
     .dots{ color:#666; margin:10px 0 0 0; }
+
+    /* Itinerario */
+    .dayList{
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    details.day{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.65);
+      overflow: hidden;
+    }
+
+    summary.daySummary{
+      list-style: none;
+      cursor: pointer;
+      padding: 12px;
+      font-weight: 800;
+      color: #1a0b2e;
+      user-select: none;
+    }
+
+    summary.daySummary::-webkit-details-marker{ display:none; }
+
+    .dayBody{
+      padding: 0 12px 12px 12px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .dayText{
+      margin: 10px 0 0 0;
+      color: #222;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
 
     .mapWrap{ display:flex; justify-content:center; margin-top:10px; }
 
@@ -228,7 +344,80 @@ const mapSrc = "/maps/mapfrancia.png";
   <details class="sec" id="itinerario">
     <summary class="secSummary"><span>Itinerario</span><span class="secCaret">▾</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <div class="dayList">
+        <details class="day">
+          <summary class="daySummary">Castillos del Loira (10–20 de marzo de 2005)</summary>
+          <div class="dayBody">
+            <p><strong>París como puerta de entrada, y un Scénic como brújula</strong></p>
+            <p>Salimos el 10 de marzo de 2005 con esa mezcla de emoción y vértigo que tienen los viajes “por nuestra cuenta”, de los que no dependen de nadie más que de ti y de lo que lleves en la cabeza. Íbamos Manolo, Rogelia, Vicky y yo. París fue la primera parada y también la primera noche: la ciudad funcionó como prólogo perfecto, porque París siempre impone, pero a la vez te coloca en modo viaje al minuto.</p>
+            <p>Nada más aterrizar en París, ya de noche, recogimos el coche en el aeropuerto: un Renault Scénic de alquiler, práctico, amplio, de esos que parecen diseñados para meter maletas, chaquetas, mapas y un poco de caos organizado. Y ahí empezó de verdad el plan: salir de París, dejar atrás el tráfico y poner rumbo al Loira, al país de los castillos.</p>
+            <p><strong>El cuartel general: Château de la Bourdaisière</strong></p>
+            <p><strong>Dormir en un castillo casi a solas</strong></p>
+            <p>Nuestra base fue el Château de la Bourdaisière, y no fue casualidad: estaba en el centro de la región, con los castillos “a tiro de piedra”. Era el típico punto estratégico que te ahorra kilómetros y discusiones. Pero lo mejor no fue la ubicación; lo mejor fue el ambiente.</p>
+            <p>Era marzo, temporada baja. No había apenas huéspedes. Y eso, en un castillo, cambia el viaje por completo: pasillos silenciosos, puertas que crujen, techos altos, y esa sensación de estar habitando por unos días un sitio que no está hecho para la prisa. Tenía un punto de misterio, sin exagerar, pero se notaba.</p>
+            <p>Por la mañana, temprano, nos preparaban un desayuno francés de manual en un ala del castillo: pan, mantequilla, mermeladas, café… y esa calma que te obliga a bajar revoluciones. Después del desayuno, siempre caía un paseo por los jardines. En esas mañanas frías, caminar entre árboles y setos era como resetear el cuerpo: aire limpio, silencio y la idea de que el día iba a ser largo y bien aprovechado.</p>
+            <p><strong>Primera gran visita: Château de Chambord</strong></p>
+            <p><strong>El gigante del Loira</strong></p>
+            <p>El primer castillo que visitamos fue Chambord, y no podía ser otro: es el más grande y el más descomunal a primera vista. Chambord no es un castillo “cuqui”; Chambord es una declaración de poder.</p>
+            <p>Por fuera impresiona por su escala: torres, chimeneas, tejados y una silueta que parece más una ciudad de piedra que una residencia. Fue mandado construir por Francisco I en pleno Renacimiento, y aunque se usó como pabellón de caza y símbolo de prestigio, por dentro te deja claro que aquello se pensó para deslumbrar.</p>
+            <p>Lo que se te queda grabado es la sensación de infinitas salas, escaleras, estancias que se encadenan. Y, sobre todo, la famosa escalera de doble hélice, atribuida muchas veces a la inspiración de Leonardo da Vinci: dos personas pueden subir y bajar sin cruzarse, como si el castillo tuviera su propio truco de magia arquitectónico.</p>
+            <p>Estuvimos unas dos horas recorriéndolo, y salimos con la cabeza llena de piedra, techos altísimos y esa pregunta que siempre te haces en sitios así: “¿Cómo se vivía aquí sin volverse loco… o sin congelarse?”</p>
+            <p><strong>Chenonceau (tercer día)</strong></p>
+            <p><strong>El castillo sobre el río y el castillo de las mujeres</strong></p>
+            <p>El tercer día tocó el Château de Chenonceau, y fue un cambio total de estilo. Si Chambord es grande y teatral, Chenonceau es elegante, fino y con una personalidad distinta.</p>
+            <p>Está construido sobre el río Cher, con esa galería que atraviesa el agua como un puente palaciego. Es conocido como el “castillo de las damas”, porque su historia está marcada por mujeres que lo transformaron y lo gobernaron: Diana de Poitiers, Catalina de Médici… Entras y notas que hay más detalle, más gusto por lo doméstico refinado, más idea de residencia vivida, no solo de monumento.</p>
+            <p>Y aquí salió otro tema muy 2005: las cámaras digitales. Ya las teníamos, sí, pero no era “hago 500 fotos y se suben solas a la nube”. No. Eran tarjetas de memoria que se llenaban, y para seguir disparando había que llevar un sistema de supervivencia: un disco duro externo donde metías la tarjeta, volcabas las fotos, liberabas memoria y seguías. Hoy suena a prehistoria, pero entonces era tecnología punta de andar por casa.</p>
+            <p><strong>Comer en Francia y descubrir la Tarte Tatin</strong></p>
+            <p>La comida nos encajó desde el primer día. Francia, España e Italia comparten esa verdad simple: saben cocinar. Comías bien casi sin esfuerzo: platos sencillos, producto decente, salsas con sentido, pan que no es de relleno… y de postre apareció la estrella inesperada, al menos para mí: la Tarte Tatin, esa tarta de manzana caramelizada al revés, que entra como si no tuviera importancia y luego te acuerdas de ella semanas.</p>
+            <p>Mientras tanto, el Loira nos acompañaba casi siempre: carreteras boscosas, pueblos pequeños, campos y el río apareciendo de fondo como si fuera parte del decorado obligatorio.</p>
+            <p>Y otro detalle de época: sin GPS. En 2005 era algo moderno y nada habitual; ni los coches lo llevaban de serie y los teléfonos, menos todavía. Y lo de los smartphones de Apple ni existía aún (eso llegaría después). Así que tocaban mapas, señales, intuición, y alguna parada “técnica” cuando no cuadraba una rotonda.</p>
+            <p>El cielo estaba gris, pero no amenazaba lluvia. Ese gris le daba al paisaje un toque… nublimístico (sí: nublado + místico). Todo parecía un poco más serio, más de piedra, más de historia.</p>
+            <p><strong>Amboise: Château Royal d’Amboise</strong></p>
+            <p><strong>El Loira desde arriba y la sombra de Leonardo</strong></p>
+            <p>Después de comer visitamos el Château Royal d’Amboise, en el pueblo de Amboise. Subir ahí arriba te regala lo mejor: vista abierta del Loira, la ciudad a tus pies y las llanuras del valle extendiéndose con esa calma enorme que tienen los ríos grandes.</p>
+            <p>El castillo tiene historia real de la pesada: fue residencia de reyes franceses y está ligado al Renacimiento. Además, Amboise respira Leonardo por todas partes: vivió sus últimos años muy cerca, y en la zona siempre lo notas como una presencia cultural. Dentro del castillo nos topamos con una copia de la Mona Lisa, y nos hizo gracia: veníamos de días de castillos y, de repente, ahí estaba “La Gioconda”, versión Loira.</p>
+            <p>La noche cae pronto a mediados de marzo, así que volvimos al cuartel general: La Bourdaisière, a cenar y a ese silencio de castillo casi vacío.</p>
+            <p><strong>Villandry y Ussé</strong></p>
+            <p><strong>Los jardines más finos y el castillo de cuento</strong></p>
+            <p>Al día siguiente seguimos con el ritual: desayuno, paseo por jardines y coche. Visitamos el Château de Villandry, que para muchos es “el de los jardines” por una razón clara: allí los jardines son casi el protagonista. Parterres geométricos, setos recortados, huertos ornamentales… es un sitio donde te das cuenta de que un jardín también puede ser arquitectura.</p>
+            <p>Antes de comer pasamos por el Château d’Ussé, en Rigny-Ussé. Tiene esa estampa perfecta de castillo de cuento, y no es casual que se diga que inspiró a Disney para La Bella Durmiente. Torres, aspecto romántico y un aire de postal antigua.</p>
+            <p>Y ese momento se quedó grabado: era hora de comer, encontramos terraza al sol, nos sentamos los cuatro y comimos mirando el castillo. No era un “restaurante Michelin”, era algo mejor: un rato de viaje redondo, con el sitio delante y el cuerpo descansando.</p>
+            <p><strong>Chinon, Azay-le-Rideau y la ciudad al atardecer</strong></p>
+            <p>Pasamos por Chinon, con su aire medieval y su fortaleza dominando la zona. Chinon tiene historia fuerte (Juana de Arco y Carlos VII están por ahí, en el imaginario del lugar) y también ambiente de vino y pueblo con vida real, no de decorado.</p>
+            <p>Luego fuimos al Château d’Azay-le-Rideau, una joya renacentista plantada junto al agua, reflejándose como si lo hubieran puesto ahí adrede para que saliera bien en las fotos. Es de esos castillos que no necesitan ser enormes: tienen proporción, luz y un punto elegante.</p>
+            <p>Al atardecer paseamos por la ciudad de Azay-le-Rideau: calles tranquilas, ambiente de final de día, y esa sensación de estar en un lugar donde la gente vive normal… pero con un castillo al lado como si fuera lo más lógico del mundo.</p>
+            <p>Esa noche, al volver, La Bourdaisière estaba especialmente iluminada. Y ahí sí: el castillo de noche, con luces cálidas, parecía un escenario.</p>
+            <p>Las habitaciones tenían nombre, como si el sitio insistiera en recordarte que estás durmiendo dentro de una historia. Las nuestras eran Gabrielle d’Estrées y Henri IV:</p>
+            <p>Gabrielle d’Estrées fue una de las grandes figuras de la corte, amante de Enrique IV, símbolo de poder e intriga cortesana en un momento en el que la política se cocinaba también en salones.</p>
+            <p>Henri IV (Enrique IV) es un personaje clave: rey pragmático, famoso por buscar estabilidad tras guerras religiosas y por el Edicto de Nantes. Un nombre así en una puerta te mete aún más en la película.</p>
+            <p><strong>Futuroscope (Poitiers)</strong></p>
+            <p><strong>Un salto del Loira al futuro</strong></p>
+            <p>La mañana siguiente tocó cambio total: se acabaron los castillos por un día y nos fuimos a Poitiers a visitar el Parque Futuroscope. Y ahí el viaje cambió de época de golpe: arquitectura moderna, experiencias audiovisuales, ciencia, tecnología, espectáculos. Un parque muy de “ver cosas distintas”, y lo fue.</p>
+            <p>Pasamos el día entero y por la tarde-noche llegó el broche: un espectáculo de luces y fuego que te dejaba con esa sensación de final de jornada bien cerrada.</p>
+            <p><strong>Chaumont, Blois y el gran momento: el globo</strong></p>
+            <p>Al volver hacia París, antes hicimos una parada en el Château de Chaumont-sur-Loire, con su ubicación privilegiada y su aire de castillo serio, de los que han visto pasar siglos sin necesidad de presumir. Es un sitio con presencia.</p>
+            <p>Luego comimos en Blois, en la Pl. du Château, en terraza al sol. Y aquí viene lo surrealista: 27º el 15 de marzo. Un lujo para Francia, y un regalo para nosotros.</p>
+            <p>Visitamos el Château Royal de Blois, que es casi un resumen de estilos arquitectónicos en un solo edificio. Fue residencia real y escenario de intrigas de alto nivel, con alas de épocas distintas y una de las escaleras más famosas del Renacimiento francés. Blois es de esos castillos que te cuentan la historia de Francia sin necesidad de exagerar.</p>
+            <p>Pero lo mejor estaba guardado para la tarde. Un año antes, en Kenia, nos quedamos con las ganas de subir en globo al amanecer por el Masái Mara. Pues aquí llegó la revancha.</p>
+            <p>Alquilamos un globo aerostático para los cuatro y sobrevolamos el valle del Loira en plena golden hour. Silencio, altura, el río abajo como una cinta, los campos extendiéndose, y esa paz rara que te entra cuando el mundo se ve desde arriba.</p>
+            <p>Nos trataron de maravilla y, al aterrizar, nos invitaron a copas de champagne. No habíamos subido nunca en globo, y lo que más sorprende es eso: lo suave que es todo. Despegar sin drama, volar como si flotaras, aterrizar casi sin darte cuenta. Las caras de emoción lo decían todo. Fue, sin discusión, uno de los momentos del viaje.</p>
+            <p><strong>Orleans y el último castillo: Sully-sur-Loire</strong></p>
+            <p>Hicimos noche en Orleans, y al día siguiente, antes de volver a París, visitamos el Château de Sully-sur-Loire, una fortaleza de verdad, más medieval, más defensiva, con foso y presencia de castillo “serio”. Es de esos que no parecen un palacio: parecen un sitio que estaba preparado para aguantar.</p>
+            <p>Y entonces tocaba cerrar el círculo: regresar a París para devolver el coche. Detalle importante: todo el viaje condujo Vicky, porque yo todavía no tenía el carné (sí, con 37 años y aún sin carné, pero ya me quedaba poco para sacármelo).</p>
+            <p>Llegar a París fue una prueba de paciencia. Teníamos que devolver el coche cerca del Arco de Triunfo, y ahí nos comimos el atasco de verdad: la rotonda bloqueada, tráfico parado, y yo mirando alrededor y viendo escenas que parecían un sketch. Gente leyendo un libro con calma, otro tocando el clarinete… como si el atasco fuera un estado permanente.</p>
+            <p>Tardamos 1 hora y 10 minutos en dar casi la vuelta completa a la rotonda. Tardamos tanto que cerró la oficina donde debíamos devolver el coche. Resultado: parking, metro al hotel, y al día siguiente, después de desayunar, vuelta al parking, sacar el coche y devolverlo. Y sí: un día extra pagado, por listo y por París.</p>
+            <p><strong>El hotel era el 9 Hotel République, cerca de la Place de la République.</strong></p>
+            <p><strong>Los días finales en París</strong></p>
+            <p>París estaba en modo candidatura para los Juegos Olímpicos de 2012, aunque al final se los llevó Londres. Nosotros hicimos lo típico, pero bien hecho: Torre Eiffel, paseo en Bateau-Mouche, Notre-Dame, y los atardeceres en Sacré-Cœur, donde las escalinatas se llenan de música y gente joven, creando un ambiente sencillo y vivo.</p>
+            <p>Cenamos en La Crémaillère en Montmartre, barrio de artistas por definición, y nos amenizaron con la canción “Valencia”, que emocionó a Rogelia. Al día siguiente nos fuimos a La Défense, luego Tullerías y los exteriores del Louvre (el museo ya lo habíamos visitado en otro viaje y, además, “la Gioconda” ya la habíamos visto en el Loira… jajajaja).</p>
+            <p>Y esa noche, de gala, fuimos al Moulin Rouge. El espectáculo está bien montado, eso sí, pero sigo pensando lo mismo: lo de ir con los pechos al aire no le aporta nada al show. En 2005 se veía como “tradición”, pero hoy canta más a costumbre vieja que a otra cosa.</p>
+            <p><strong>Al día siguiente, vuelo de vuelta a casa.</strong></p>
+            <p><strong>Lo que se quedó</strong></p>
+            <p>Esa parte de Francia nos encantó: castillos, carreteras, el río acompañando, comidas buenas, y el punto especial de que era nuestro primer viaje al extranjero por nuestra cuenta. Todo salió rodado, sin sustos serios, con anécdotas de las que se recuerdan con risa (la rotonda del Arco de Triunfo es para enmarcarla) y con un momento inolvidable que lo remató todo: ver el Loira desde un globo, en silencio, con champagne al aterrizar.</p>
+            <p>Fue un viaje de los que te enseñan algo simple: cuando te organizas, te lanzas y te lo tomas en serio, el mundo te sale bien.</p>
+          </div>
+        </details>
+      </div>
     </div>
   </details>
 
@@ -249,7 +438,56 @@ const mapSrc = "/maps/mapfrancia.png";
   <details class="sec" id="hoteles">
     <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
     <div class="secBody">
-      <p class="dots">...</p>
+      <div class="hotelList">
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              Chateau de la Bourdaisière
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">25 Rue de la Bourdaisière, 37270 Montlouis-sur-Loire, Francia</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="https://www.labourdaisiere.com/" target="_blank" rel="noreferrer">labourdaisiere.com</a>
+              </div>
+            </div>
+          </div>
+        </details>
+        <details class="hotelItem">
+          <summary class="hotelToggle">
+            <span class="hotelTitle">
+              9 Hotel Republique
+            </span>
+            <span class="hotelCaret">▾</span>
+          </summary>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div>
+                <div class="hotelLabel">Dirección</div>
+                <div class="hotelValue">9 Rue Pierre Chausson, 75010 Paris, Francia</div>
+              </div>
+              <div>
+                <div class="hotelLabel">Web</div>
+                <a class="hotelLink" href="http://www.9-hotel-republique-paris.fr/" target="_blank" rel="noreferrer">9-hotel-republique-paris.fr</a>
+              </div>
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.710908349641!2d2.3623066837950737!3d48.86741180247175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e0e9cfe1207%3A0xa1cbef491421b230!2s9Hotel%20R%C3%A9publique!5e1!3m2!1ses!2ses!4v1770415627176!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa 9 Hotel Republique"
+            ></iframe>
+          </div>
+        </details>
+      </div>
     </div>
   </details>
   <details class="sec" id="mapa">
