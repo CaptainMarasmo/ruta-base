@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Laponia";
@@ -58,13 +58,13 @@ const mapSrc = "/maps/maps/mapa_laponia.png";
       margin-bottom: 10px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 8px;`r`n      line-height: 1.15;`r`n      overflow: visible;
     }
 
     .toc{
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 8px;`r`n      line-height: 1.15;`r`n      overflow: visible;
       margin: 10px 0 16px;
       position: sticky;
       top: 10px;
@@ -194,7 +194,7 @@ const mapSrc = "/maps/maps/mapa_laponia.png";
       <a class="titleArrow" href="/viajes/jordania" aria-label="Anterior"><img src="/giroizquierda.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
       <a class="titleArrow" href="/viajes/marruecos" aria-label="Siguiente" style="margin-left:-8px;"><img src="/giroderecha.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
     </div>
-    <h1 class="pageTitle">{title}<span class="flag-badge" style="--flag: linear-gradient(90deg, #ffffff 0 30%, #003580 30% 45%, #ffffff 45% 100%), linear-gradient(#ffffff 0 42%, #003580 42% 58%, #ffffff 58% 100%);" aria-hidden="true"></span></h1>
+    <h1 class="pageTitle">{title} <img class="flag-badge" src="/flags/flaglaponia.jpg" alt="Bandera de Laponia" style="width:60px; height:32px; object-fit:contain; background:transparent; border:0; box-shadow:none;" /></h1>
   </div>
 
   <div class="hero">
@@ -211,45 +211,45 @@ const mapSrc = "/maps/maps/mapa_laponia.png";
     <a href="#costes">Costes</a>
     <a href="#hoteles">Hoteles</a>
     <a href="#mapa">Mapa</a>
-    <a href="#galeria">Galeria</a>
+    <a href="#galeria">Galería</a>
   </div>
 
   <details class="sec" id="resumen">
-    <summary class="secSummary"><span>Resumen</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Resumen</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <p>...</p>
     </div>
   </details>
 
   <details class="sec" id="itinerario">
-    <summary class="secSummary"><span>Itinerario</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Itinerario</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <p>...</p>
     </div>
   </details>
 
   <details class="sec" id="imprescindibles">
-    <summary class="secSummary"><span>Imprescindibles</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Imprescindibles</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <p class="dots">...</p>
     </div>
   </details>
 
   <details class="sec" id="costes">
-    <summary class="secSummary"><span>Costes</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Costes</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <p class="dots">...</p>
     </div>
   </details>
 
   <details class="sec" id="hoteles">
-    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
+    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <p class="dots">...</p>
     </div>
   </details>
   <details class="sec" id="mapa">
-    <summary class="secSummary"><span>Mapa</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Mapa</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <div class="mapWrap">
         <div class="mapBox">
@@ -263,7 +263,7 @@ const mapSrc = "/maps/maps/mapa_laponia.png";
   </details>
 
   <details class="sec" id="galeria">
-    <summary class="secSummary"><span>Galería</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Galería</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <h3>Videos</h3>
       <div class="videoGrid"></div>
@@ -376,3 +376,11 @@ const mapSrc = "/maps/maps/mapa_laponia.png";
       imgEl.addEventListener("click", closeLightbox);
     })();
   </script></BaseLayout>
+
+
+
+
+
+
+
+

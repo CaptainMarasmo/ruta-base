@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import itinerarioRaw from "../../data/mexico.js";
 
@@ -524,7 +524,7 @@ const nextExistingDay = (day: number): number | null => {
   </div>
 
   <div class="hero">
-    <img class="heroImg" src="/mexicoyo.jpg" alt="M�xico" />
+    <img class="heroImg" src="/mexicoyo.jpg" alt="México" />
     <div class="pad">
       <p class="muted caption">México y su cultura azteca.</p>
     </div>
@@ -537,12 +537,12 @@ const nextExistingDay = (day: number): number | null => {
     <a href="#costes">Costes</a>
     <a href="#hoteles">Hoteles</a>
     <a href="#mapa">Mapa</a>
-    <a href="#galeria">Galeria</a>
+    <a href="#galeria">Galería</a>
   </div>
 
   <details class="sec" id="resumen">
     <summary class="secSummary">
-      <span>Resumen</span><span class="secCaret">▾</span>
+      <span>Resumen</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
       <p>
@@ -557,7 +557,7 @@ const nextExistingDay = (day: number): number | null => {
 
   <details class="sec" id="itinerario">
     <summary class="secSummary">
-      <span>Itinerario</span><span class="secCaret">▾</span>
+      <span>Itinerario</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
       <div class="dayList">
@@ -570,7 +570,7 @@ const nextExistingDay = (day: number): number | null => {
               <summary class="daySummary">Día {d.day} — {d.title}</summary>
 
               <div class="dayBody">
-                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">…</p>}
+                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots"><</p>}
 
                 {nextDay && (
                   <div class="nextRow">
@@ -587,33 +587,33 @@ const nextExistingDay = (day: number): number | null => {
 
   <details class="sec" id="imprescindibles">
     <summary class="secSummary">
-      <span>Imprescindibles</span><span class="secCaret">▾</span>
+      <span>Imprescindibles</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <p class="dots"><</p>
     </div>
   </details>
 
   <details class="sec" id="costes">
     <summary class="secSummary">
-      <span>Costes</span><span class="secCaret">▾</span>
+      <span>Costes</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <p class="dots"><</p>
     </div>
   </details>
 
   <details class="sec" id="hoteles">
-    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
+    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <div class="hotelList">
         <details class="hotelItem">
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Barceló Guadalajara
-              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -631,7 +631,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">135€ la noche</div>
+                <div class="hotelValue">135 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -653,9 +653,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Meliá Puerto Vallarta
-              <span class="hotelStars" aria-hidden="true">★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -669,7 +669,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">327€ la noche</div>
+                <div class="hotelValue">327 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -692,9 +692,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Camino Real Acapulco Diamante
-              <span class="hotelStars" aria-hidden="true">★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -708,7 +708,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">155€ la noche</div>
+                <div class="hotelValue">155 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -731,9 +731,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Barceló México Reforma
-              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -747,7 +747,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">131€ la noche</div>
+                <div class="hotelValue">131 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -770,9 +770,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Holiday Inn Express Oaxaca
-              <span class="hotelStars" aria-hidden="true">★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -786,7 +786,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">166€ la noche</div>
+                <div class="hotelValue">166 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -809,9 +809,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Marriott Tuxtla Gutiérrez
-              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -825,7 +825,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">71€ la noche</div>
+                <div class="hotelValue">71 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -848,9 +848,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Hoteles Villa Mercedes San Cristóbal
-              <span class="hotelStars" aria-hidden="true">★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -864,7 +864,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">73€ la noche</div>
+                <div class="hotelValue">73 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -887,9 +887,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Hotel Villa Mercedes Palenque
-              <span class="hotelStars" aria-hidden="true">★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -903,7 +903,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">88€ la noche</div>
+                <div class="hotelValue">88 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -926,9 +926,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Hotel Plaza Campeche
-              <span class="hotelStars" aria-hidden="true">★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -942,7 +942,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">96€ la noche</div>
+                <div class="hotelValue">96 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -965,9 +965,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               NH Collection Mérida Paseo Montejo
-              <span class="hotelStars" aria-hidden="true">★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -981,7 +981,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">111€ la noche</div>
+                <div class="hotelValue">111 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -1004,9 +1004,9 @@ const nextExistingDay = (day: number): number | null => {
           <summary class="hotelToggle">
             <span class="hotelTitle">
               Ocean Riviera Paradise
-              <span class="hotelStars" aria-hidden="true">★★★★★</span>
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </span>
-            <span class="hotelCaret">▾</span>
+            <span class="hotelCaret">&#9662;</span>
           </summary>
           <div class="hotelPanel">
             <div class="hotelInfo">
@@ -1020,7 +1020,7 @@ const nextExistingDay = (day: number): number | null => {
               </div>
               <div>
                 <div class="hotelLabel">Precio</div>
-                <div class="hotelValue">358€ la noche</div>
+                <div class="hotelValue">358 &euro; la noche</div>
               </div>
             </div>
             <div class="hotelPhotos">
@@ -1045,7 +1045,7 @@ const nextExistingDay = (day: number): number | null => {
   </details>
   <details class="sec" id="mapa">
     <summary class="secSummary">
-      <span>Mapa</span><span class="secCaret">▾</span>
+      <span>Mapa</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
       <div class="mapWrap">
@@ -1062,7 +1062,7 @@ const nextExistingDay = (day: number): number | null => {
 
   <details class="sec" id="galeria">
     <summary class="secSummary">
-      <span>Galería</span><span class="secCaret">▾</span>
+      <span>Galería</span><span class="secCaret">&#9662;</span>
     </summary>
 
     <div class="secBody">
@@ -1112,9 +1112,9 @@ const nextExistingDay = (day: number): number | null => {
         <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
           <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
 
-          <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
+          <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior"><</button>
           <img class="lbImg" id="lbImg" alt="" />
-          <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
+          <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">></button>
 
           <div class="lbCounter" id="lbCounter">1 / 1</div>
         </div>
@@ -1350,6 +1350,14 @@ const nextExistingDay = (day: number): number | null => {
     })();
   </script>
 </BaseLayout>
+
+
+
+
+
+
+
+
 
 
 

@@ -1,9 +1,29 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import itinerarioRaw from "../../data/alaska.js";
+
+type Dia = {
+  day: number;
+  title: string;
+  text?: string;
+};
+
+const itinerario: Dia[] = Array.isArray(itinerarioRaw)
+  ? [...(itinerarioRaw as Dia[])].sort((a, b) => (a.day ?? 0) - (b.day ?? 0))
+  : [];
+
+const daysSet = new Set(itinerario.map((d) => d.day));
+
+const nextExistingDay = (day: number): number | null => {
+  for (let i = day + 1; i <= 365; i++) {
+    if (daysSet.has(i)) return i;
+  }
+  return null;
+};
 
 const title = "Alaska";
 const cover = "/portadaalaska.jpg";
-const mapSrc = "/maps/maps/mapa_alaska.png";
+const mapSrc = "/maps/mapa_alaska.png";
 ---
 
 <BaseLayout title={`${title} | Ruta Base`}>
@@ -116,6 +136,144 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
 
     .dots{ color:#666; margin:10px 0 0 0; }
 
+    /* Hoteles */
+    .hotelItem{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.7);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .hotelToggle{
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      font-weight: 800;
+      font-size: 16px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+    .hotelTitle{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+    .hotelStars{
+      color: #f2c84b;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+    .hotelToggle .hotelCaret{
+      font-size: 18px;
+      opacity: 0.7;
+      transform: rotate(-90deg);
+      transition: transform 0.18s ease;
+    }
+    .hotelItem.open .hotelToggle .hotelCaret{
+      transform: rotate(0deg);
+    }
+    .hotelPanel{
+      display: none;
+      padding: 0 14px 14px 14px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .hotelItem.open .hotelPanel{
+      display: block;
+    }
+    .hotelInfo{
+      display: grid;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .hotelMedia{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .hotelPhoto{
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    }
+    .hotelMap{
+      width: 100%;
+      height: 240px;
+      border: 0;
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    /* Itinerario */
+    .dayList{
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    details.day{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.65);
+      overflow: hidden;
+    }
+
+    summary.daySummary{
+      list-style: none;
+      cursor: pointer;
+      padding: 12px;
+      font-weight: 800;
+      color: #1a0b2e;
+      user-select: none;
+    }
+
+    summary.daySummary::-webkit-details-marker{ display:none; }
+
+    .dayBody{
+      padding: 0 12px 12px 12px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .dayText{
+      margin: 10px 0 0 0;
+      color: #222;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .nextRow{
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .nextBtn{
+      display: inline-block;
+      text-decoration: none;
+      color: #1a0b2e;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(155,120,255,0.22);
+      border: 1px solid rgba(155,120,255,0.45);
+    }
+
+    .nextBtn:hover{
+      background: rgba(155,120,255,0.30);
+    }
+
     .mapWrap{ display:flex; justify-content:center; margin-top:10px; }
 
     .mapBox{
@@ -211,45 +369,217 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
     <a href="#costes">Costes</a>
     <a href="#hoteles">Hoteles</a>
     <a href="#mapa">Mapa</a>
-    <a href="#galeria">Galeria</a>
+    <a href="#galeria">Galería</a>
   </div>
 
-  <details class="sec" id="resumen">
-    <summary class="secSummary"><span>Resumen</span><span class="secCaret">▾</span></summary>
+    <details class="sec" id="resumen">
+    <summary class="secSummary"><span>Resumen</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <p>
+        2005 pedía a gritos su gran viaje. No uno cualquiera, sino de esos que se recuerdan años después con una sonrisa tonta, como si el mundo se hubiera abierto un poco más. Había que buscarlo, y Vicky se puso a ello: se metió en internet, a navegar sin un destino claro, solo con la idea de encontrar algo distinto. Y entonces apareció Alaska. Lo soltó al grupo habitual y fue inmediato: a todos nos sonó a aventura limpia, a territorio grande, a viaje de verdad.
+      </p>
+      <p>
+        El problema era el de siempre: las agencias de toda la vida no lo ofrecían, o lo ofrecían como si fuera un sueño imposible. Pero dimos con el sitio perfecto para contratarlo. El único “pero” era enorme para la época: la agencia estaba en Barcelona y, en 2005, sí, existía internet, pero no era nada habitual pagar un viaje a través de una web que no conocías. No era solo cuestión de dinero; era cuestión de confianza. Entonces comprar online tenía algo de salto al vacío.
+      </p>
+      <p>
+        Así que hicimos lo lógico: aprovechar la festividad local de San Vicente en Valencia y plantarnos en Barcelona para verlo con nuestros propios ojos. Fuimos a la Plaça Regomir, nº 1, en pleno Barrio Gótico. Allí estaba Agama Taller de Viatges. Nos atendió Frances Nolla, el propietario, y desde el primer minuto quedó claro que aquello no era una agencia al uso.
+      </p>
+      <p>
+        No vendían catálogos infinitos ni destinos repetidos. Tenían pocos viajes, pero eran suyos: los fabricaban ellos, con rutas pensadas y una forma de trabajar muy particular. Se hacían solo si se completaba un mínimo de 6 participantes, y siempre en grupos reducidos, nada de autobuses llenos: 10 o 12 personas como máximo. Los guías venían desde España, especializados en la zona, porque repetían itinerario y lo conocían de verdad: la historia, los detalles, el terreno. No era turismo de escaparate; era viaje diseñado con intención.
+      </p>
+      <p>
+        Contratamos. Y entonces llegó la parte más inquietante: esperar a que el grupo se completara. Porque nosotros cuatro no bastábamos. Era la primera vez que organizábamos un viaje de ese tipo, y además era nuestra primera reserva “moderna”, con internet de por medio, algo casi futurista para 2005.
+      </p>
+      <p>
+        Y ahí empezó el ritual: entrar periódicamente en la web y mirar aquellos muñequitos que aparecían como iconos del viaje. Siempre los mismos cuatro. Día tras día, semana tras semana, ahí estábamos: nosotros, solos, como si Alaska nos estuviera poniendo a prueba.
+      </p>
+      <p>
+        Hasta que un día, sin aviso, aparecieron tres más.
+      </p>
+      <p>
+        Siete.
+      </p>
+      <p>
+        Y con siete ya nos íbamos.
+      </p>
+      <p>
+        En ese momento, el viaje dejó de ser una idea y se convirtió en una promesa. Alaska ya no era un nombre en una pantalla: era una aventura con fecha, con grupo, con historia a punto de empezar.
+      </p>
     </div>
   </details>
 
   <details class="sec" id="itinerario">
-    <summary class="secSummary"><span>Itinerario</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Itinerario</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <div class="dayList">
+        {itinerario.map((d) => {
+          const nextDay = nextExistingDay(d.day);
+          const hasText = typeof d.text === "string" && d.text.trim().length > 0;
+
+          return (
+            <details class="day" id={`dia-${d.day}`}>
+              <summary class="daySummary">Día {d.day} - {d.title}</summary>
+
+              <div class="dayBody">
+                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">...</p>}
+
+                {nextDay && (
+                  <div class="nextRow">
+                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día &#10148;</a>
+                  </div>
+                )}
+              </div>
+            </details>
+          );
+        })}
+      </div>
     </div>
   </details>
 
   <details class="sec" id="imprescindibles">
-    <summary class="secSummary"><span>Imprescindibles</span><span class="secCaret">▾</span></summary>
-    <div class="secBody">
-      <p class="dots">…</p>
-    </div>
-  </details>
-
-  <details class="sec" id="costes">
-    <summary class="secSummary"><span>Costes</span><span class="secCaret">▾</span></summary>
-    <div class="secBody">
-      <p class="dots">…</p>
-    </div>
-  </details>
-
-  <details class="sec" id="hoteles">
-    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
+    <summary class="secSummary"><span>Imprescindibles</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <p class="dots">...</p>
     </div>
   </details>
+
+  <details class="sec" id="costes">
+    <summary class="secSummary"><span>Costes</span><span class="secCaret">&#9662;</span></summary>
+    <div class="secBody">
+      <p class="dots">...</p>
+    </div>
+  </details>
+
+  <details class="sec" id="hoteles">
+    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">&#9662;</span></summary>
+    <div class="secBody">
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Hilton Anchorage
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
+          </span>
+          <span class="hotelCaret">&#9662;</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Precio: <strong>Pendiente</strong></div>
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1825.8841354318388!2d-149.8952856584464!3d61.219325975685855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x56c8bd8774423c83%3A0xdad26af3accad76!2sHilton%20Anchorage!5e1!3m2!1ses!2ses!4v1770663567310!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Hilton Anchorage"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Talkeetna Inn
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;</span>
+          </span>
+          <span class="hotelCaret">&#9662;</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Precio: <strong>Pendiente</strong></div>
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d926.6534256095399!2d-150.1181181437039!3d62.32154459729255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x56ce95d2f0288585%3A0x8afedd464ca49347!2sTalkeetna%20Inn!5e0!3m2!1ses!2ses!4v1770664234237!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Talkeetna Inn"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Denali Park Hotel
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;</span>
+          </span>
+          <span class="hotelCaret">&#9662;</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">Precio: <strong>Pendiente</strong></div>
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1671.606462274517!2d-149.0173255582595!3d63.846508777203184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x56cd25e6c028d2fb%3A0x34d0c881021e1aa6!2sDenali%20Park%20Hotel!5e1!3m2!1ses!2ses!4v1770663531974!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Denali Park Hotel"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Lake Louise Lodge
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;</span>
+          </span>
+          <span class="hotelCaret">&#9662;</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">25600 South Lake Louise Rd, Glennallen, AK 99588, Estados Unidos</div>
+            <div class="muted">Precio: <strong>141 &euro;</strong> / noche</div>
+            <div class="muted">Web: <a href="http://www.lakelouiselodge.com/" target="_blank" rel="noopener">lakelouiselodge.com</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/hlak1.jpg" alt="Lake Louise Lodge - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hlak2.jpg" alt="Lake Louise Lodge - foto 2" loading="lazy" />
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1855.9905950432296!2d-146.51683645837153!3d62.2780150762734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x56ca6a15cd74cead%3A0x241ca8a74e47ad5c!2sLake%20Louise%20Lodge!5e0!3m2!1ses!2ses!4v1770747324418!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Lake Louise Lodge"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            The Taroka Inn
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;</span>
+          </span>
+          <span class="hotelCaret">&#9662;</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">235 3rd Ave, Seward, AK 99664, Estados Unidos</div>
+            <div class="muted">Precio: <strong>Pendiente</strong></div>
+            <div class="muted">Web: <a href="https://thetidesinnak.com/" target="_blank" rel="noopener">thetidesinnak.com</a></div>
+            <div class="muted">Nota: ahora se llama The Tides Inn</div>
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1890.308540257139!2d-149.44507672295683!3d60.10277127499809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x56c79c63c0f2f851%3A0x9264627c1cecc115!2sThe%20Tides%20Inn!5e1!3m2!1ses!2ses!4v1770747207708!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa The Taroka Inn"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </details>
   <details class="sec" id="mapa">
-    <summary class="secSummary"><span>Mapa</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Mapa</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <div class="mapWrap">
         <div class="mapBox">
@@ -263,9 +593,9 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
   </details>
 
   <details class="sec" id="galeria">
-    <summary class="secSummary"><span>Galería</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Galería</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <h3>Videos</h3>
+      <h3>Vídeos</h3>
       <div class="videoGrid"></div>
       <h3>Fotos</h3>
       <div class="photoGrid" id="photoGrid"></div>
@@ -306,6 +636,21 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
           closeAllSectionsExcept("resumen");
           return;
         }
+
+        if (raw.startsWith("dia-")) {
+          const it = openSection("itinerario");
+          closeAllSectionsExcept("itinerario");
+
+          const dayEl = document.getElementById(raw);
+          if (dayEl && dayEl.tagName.toLowerCase() === "details") {
+            dayEl.open = true;
+            setTimeout(() => dayEl.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          } else if (it) {
+            setTimeout(() => it.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          }
+          return;
+        }
+
         const sec = openSection(raw);
         if (sec) {
           closeAllSectionsExcept(raw);
@@ -324,6 +669,28 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
 
       window.addEventListener("hashchange", openFromHash);
       openFromHash();
+
+      const dayDetails = Array.from(document.querySelectorAll("details.day"));
+      dayDetails.forEach((d) => {
+        d.addEventListener("toggle", () => {
+          if (!d.open) return;
+          dayDetails.forEach((other) => {
+            if (other !== d) other.open = false;
+          });
+        });
+      });
+
+      const hotelItems = Array.from(document.querySelectorAll("[data-hotel]"));
+      hotelItems.forEach((item) => {
+        const btn = item.querySelector(".hotelToggle");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          hotelItems.forEach((other) => {
+            if (other !== item) other.classList.remove("open");
+          });
+          item.classList.toggle("open");
+        });
+      });
     })();
   </script>
   <script is:inline>
@@ -337,10 +704,14 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
       const imgEl = document.getElementById("lbImg");
       const counter = document.getElementById("lbCounter");
 
-      if (!openMapBtn || !lightbox || !imgEl) return;
+      if (!lightbox || !imgEl) return;
 
       const thumbImg = openMapBtn.querySelector("img");
       const MAP_SRC = thumbImg ? (thumbImg.getAttribute("src") || "") : "";
+      const hotelImgs = Array.from(document.querySelectorAll(".hotelPhoto"));
+      let activeImgs = hotelImgs;
+      let index = 0;
+      let mode = "map"; // "map" | "hotel"
 
       const openLightbox = () => {
         lightbox.classList.add("open");
@@ -355,6 +726,7 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
         imgEl.removeAttribute("src");
         if (btnPrev) btnPrev.style.display = "none";
         if (btnNext) btnNext.style.display = "none";
+        mode = "map";
       };
 
       const openMap = () => {
@@ -367,12 +739,67 @@ const mapSrc = "/maps/maps/mapa_alaska.png";
         imgEl.setAttribute("src", MAP_SRC);
         imgEl.setAttribute("alt", "Mapa");
         if (counter) counter.textContent = "Mapa";
+        mode = "map";
         openLightbox();
       };
 
-      openMapBtn.addEventListener("click", openMap);
+      const setImage = (i) => {
+        if (!activeImgs.length) return;
+        index = (i + activeImgs.length) % activeImgs.length;
+        const src = activeImgs[index].getAttribute("src") || "";
+        const alt = activeImgs[index].getAttribute("alt") || "";
+        imgEl.setAttribute("src", src);
+        imgEl.setAttribute("alt", alt);
+        if (counter) counter.textContent = (index + 1) + " / " + activeImgs.length;
+      };
+
+      const openHotel = (i, list) => {
+        activeImgs = list;
+        mode = "hotel";
+        if (btnPrev) btnPrev.style.display = "";
+        if (btnNext) btnNext.style.display = "";
+        setImage(i);
+        openLightbox();
+      };
+
+      if (openMapBtn) openMapBtn.addEventListener("click", openMap);
+      if (hotelImgs.length) {
+        hotelImgs.forEach((img) => {
+          img.addEventListener("click", () => {
+            const hotelItem = img.closest(".hotelItem");
+            const list = hotelItem ? Array.from(hotelItem.querySelectorAll(".hotelPhoto")) : [];
+            const i = list.indexOf(img);
+            if (i >= 0) openHotel(i, list);
+          });
+        });
+      }
+
       if (btnClose) btnClose.addEventListener("click", closeLightbox);
       if (backdrop) backdrop.addEventListener("click", closeLightbox);
-      imgEl.addEventListener("click", closeLightbox);
+      imgEl.addEventListener("click", () => {
+        if (mode === "hotel") return;
+        closeLightbox();
+      });
+
+      if (btnPrev) btnPrev.addEventListener("click", () => {
+        if (mode !== "hotel") return;
+        setImage(index - 1);
+      });
+      if (btnNext) btnNext.addEventListener("click", () => {
+        if (mode !== "hotel") return;
+        setImage(index + 1);
+      });
     })();
   </script></BaseLayout>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import itinerarioRaw from "../../data/argentina.js";
+import Imprescindibles3D from "../../components/Imprescindibles3D.jsx";
 
 type Dia = {
   day: number;
@@ -34,7 +35,7 @@ const nextExistingDay = (day: number): number | null => {
       margin-bottom: 12px;
     }
 
-    .heroImg{
+    .heroImg{     object-position: 30% 15%;
       width: 100%;
       height: 320px;
       object-fit: cover;
@@ -53,6 +54,7 @@ const nextExistingDay = (day: number): number | null => {
       display: flex;
       justify-content: flex-start;
       background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%);
+      z-index: 2;
     }
     .caption{
       display: inline-block;
@@ -67,6 +69,7 @@ const nextExistingDay = (day: number): number | null => {
       color: #fff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.35);
     }
+
     .pageTitle{
       margin-top: 0;
       margin-bottom: 10px;
@@ -275,6 +278,144 @@ const nextExistingDay = (day: number): number | null => {
       margin: 10px 0 0 0;
     }
 
+    .impGrid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .impGlow{
+      position: relative;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(0,0,0,0.08);
+      overflow: visible;
+    }
+
+    .impGlow::before{
+      content: "";
+      position: absolute;
+      inset: -10px;
+      border-radius: 22px;
+      background: linear-gradient(90deg, rgba(120,180,255,0.0) 0%, rgba(120,180,255,0.85) 20%, rgba(255,255,255,0.75) 50%, rgba(120,180,255,0.85) 80%, rgba(120,180,255,0.0) 100%);
+      filter: blur(14px);
+      opacity: 1;
+      pointer-events: none;
+      animation: none;
+      z-index: 0;
+    }
+
+    .impGlow::after{
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 20px;
+      border: 1px solid rgba(120,180,255,0.7);
+      box-shadow: 0 0 14px rgba(120,180,255,0.35), 0 0 26px rgba(255,255,255,0.22);
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    .impGlow::marker{ content: ""; }
+
+    .impGlow::backdrop{ }
+
+
+    .impGlow > *{
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .impCard{
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.35);
+      padding: 12px;
+      box-shadow: 0 10px 24px rgba(16,24,40,0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .impTitle{
+      font-weight: 900;
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #1a0b2e;
+    }
+
+    .impText{
+      margin: 0;
+      color: #222;
+      line-height: 1.5;
+      font-size: 13px;
+    }
+
+    :global(.imp3d){
+      position: relative;
+      perspective: 900px;
+    }
+
+    :global(.imp3d__grid){
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    :global(.impCard3d){
+      position: relative;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.45);
+      box-shadow: 0 8px 18px rgba(16,24,40,0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transform-style: preserve-3d;
+      overflow: hidden;
+      transition: box-shadow 0.22s ease, transform 0.22s ease;
+    }
+
+    :global(.impCard3d):hover{
+      box-shadow: 0 18px 36px rgba(16,24,40,0.18), 0 8px 20px rgba(90,170,255,0.25);
+    }
+
+    :global(.impCard3d)::before{
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, rgba(120,180,255,0.2), rgba(255,255,255,0.25), rgba(120,180,255,0.2));
+      box-shadow: 0 0 18px rgba(120,180,255,0.35);
+      filter: blur(6px);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    :global(.impCard3d__inner){
+      position: relative;
+      padding: 14px;
+      transform: translateZ(14px);
+    }
+
+    :global(.impCard3d__title){
+      font-weight: 900;
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #1a0b2e;
+    }
+
+    :global(.impCard3d__text){
+      margin: 0;
+      color: #222;
+      line-height: 1.5;
+      font-size: 13px;
+    }
+
+
+
     /* Itinerario */
     .dayList{
       display: grid;
@@ -400,6 +541,31 @@ const nextExistingDay = (day: number): number | null => {
       background: rgba(0,0,0,0.04);
     }
 
+    .videoBtn{
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      display: block;
+    }
+
+    .videoBtn iframe{
+      pointer-events: none;
+    }
+
+    .videoGrid{
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .videoGrid iframe{
+      min-height: 180px;
+    }
+
+    @media (max-width: 900px){
+      .videoGrid{ grid-template-columns: 1fr; }
+      .videoGrid iframe{ min-height: 200px; }
+    }
+
     .photoGrid{
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -426,6 +592,104 @@ const nextExistingDay = (day: number): number | null => {
 
     .photoBtn:hover img{
       transform: scale(1.03);
+    }
+
+    .galItem{
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.75);
+      overflow: hidden;
+    }
+
+    .galGrid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 700px){
+      .galGrid{ grid-template-columns: 1fr; }
+    }
+
+    .galSummary{
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      padding: 0;
+      min-height: 170px;
+      overflow: hidden;
+    }
+
+    .galSummary::-webkit-details-marker{ display:none; }
+
+    .galPreview{
+      position: absolute;
+      inset: 0;
+      background-image: var(--bg);
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.02);
+      transform: scale(1);
+      transition: transform 0.25s ease;
+    }
+
+    .galOverlay{
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 6px;
+      min-height: 170px;
+      padding: 14px 16px;
+      color: #fff;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    }
+
+    .galTitle{
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .galMeta{
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0.9;
+    }
+
+    .galCaret{
+      font-size: 18px;
+      opacity: 0.7;
+      transform: rotate(-90deg);
+      transition: transform 0.18s ease;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+    }
+
+    details[open] .galCaret{
+      transform: rotate(0deg);
+    }
+
+    .galBody{
+      padding: 0 12px 12px 12px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .galItem:hover .galPreview{
+      transform: scale(1.04);
     }
 
     .noScroll{
@@ -511,6 +775,50 @@ const nextExistingDay = (day: number): number | null => {
       font-weight: 700;
       font-size: 12px;
     }
+
+    .videoLightbox{
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9999;
+    }
+
+    .videoLightbox.open{
+      display: block;
+    }
+
+    .videoPanel{
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .videoFrame{
+      width: min(92vw, 980px);
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .videoClose{
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      font-size: 26px;
+      line-height: 36px;
+      cursor: pointer;
+      z-index: 2;
+    }
   </style>
 
   <div class="titleRow" style="position:relative; width:100%;">
@@ -539,12 +847,12 @@ const nextExistingDay = (day: number): number | null => {
     <a href="#costes">Costes</a>
     <a href="#hoteles">Hoteles</a>
     <a href="#mapa">Mapa</a>
-    <a href="#galeria">Galeria</a>
+    <a href="#galeria">Galería</a>
   </div>
 
   <details class="sec" id="resumen">
     <summary class="secSummary">
-      <span>Resumen</span><span class="secCaret">▾</span>
+      <span>Resumen</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
       <p>
@@ -555,7 +863,7 @@ const nextExistingDay = (day: number): number | null => {
 
   <details class="sec" id="itinerario">
     <summary class="secSummary">
-      <span>Itinerario</span><span class="secCaret">▾</span>
+      <span>Itinerario</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
       <div class="dayList">
@@ -565,10 +873,10 @@ const nextExistingDay = (day: number): number | null => {
 
           return (
             <details class="day" id={`dia-${d.day}`}>
-              <summary class="daySummary">Día {d.day} — {d.title}</summary>
+              <summary class="daySummary">Día {d.day} - {d.title}</summary>
 
               <div class="dayBody">
-                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">…</p>}
+                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">...</p>}
 
                 {nextDay && (
                   <div class="nextRow">
@@ -585,37 +893,37 @@ const nextExistingDay = (day: number): number | null => {
 
   <details class="sec" id="imprescindibles">
     <summary class="secSummary">
-      <span>Imprescindibles</span><span class="secCaret">▾</span>
+      <span>Imprescindibles</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <Imprescindibles3D client:load />
     </div>
   </details>
 
   <details class="sec" id="costes">
     <summary class="secSummary">
-      <span>Costes</span><span class="secCaret">▾</span>
+      <span>Costes</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <p class="dots">...</p>
     </div>
   </details>
 
   <details class="sec" id="hoteles">
-    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
+    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <div class="hotelItem" data-hotel>
         <button class="hotelToggle" type="button">
           <span class="hotelTitle">
             Hotel Recoleta Grand Buenos Aires
-            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           </span>
-          <span class="hotelCaret">▾</span>
+          <span class="hotelCaret">&#9662;</span>
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
             <div class="muted">Av. Gral. Las Heras 1745, C1018 Cdad. Autónoma de Buenos Aires, Argentina</div>
-            <div class="muted">Precio: <strong>362€</strong> la noche</div>
+            <div class="muted">Precio: <strong>362 &euro;</strong> / noche</div>
             <div class="muted">Web: <a href="https://www.recoletagrand.com/" target="_blank" rel="noopener">recoletagrand.com</a></div>
           </div>
           <div class="hotelMedia">
@@ -636,30 +944,30 @@ const nextExistingDay = (day: number): number | null => {
       <div class="hotelItem" data-hotel>
         <button class="hotelToggle" type="button">
           <span class="hotelTitle">
-            Loi Suites Iguazu Hotel
-            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            Loi Suites Iguazú Hotel
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           </span>
-          <span class="hotelCaret">▾</span>
+          <span class="hotelCaret">&#9662;</span>
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
             <div class="muted">Selva Iryapú s/n, N3370 Puerto Iguazú, Misiones, Argentina</div>
-            <div class="muted">Precio: <strong>266€</strong> la noche</div>
+            <div class="muted">Precio: <strong>266 &euro;</strong> / noche</div>
             <div class="muted">Web: <a href="https://loisuites.com.ar/iguazu.html" target="_blank" rel="noopener">loisuites.com.ar</a></div>
           </div>
           <div class="hotelMedia">
-            <img class="hotelPhoto" src="/hoteles/higu2.jpg" alt="Loi Suites Iguazu - foto 1" loading="lazy" />
-            <img class="hotelPhoto" src="/hoteles/higu3.jpg" alt="Loi Suites Iguazu - foto 2" loading="lazy" />
-            <img class="hotelPhoto" src="/hoteles/higu4.jpg" alt="Loi Suites Iguazu - foto 3" loading="lazy" />
-            <img class="hotelPhoto" src="/hoteles/higu5.jpg" alt="Loi Suites Iguazu - foto 4" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/higu2.jpg" alt="Loi Suites Iguazú - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/higu3.jpg" alt="Loi Suites Iguazú - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/higu4.jpg" alt="Loi Suites Iguazú - foto 3" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/higu5.jpg" alt="Loi Suites Iguazú - foto 4" loading="lazy" />
           </div>
           <iframe
             class="hotelMap"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7196.500340204833!2d-54.545521!3d-25.596601999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f693bf9a59d3e7%3A0xa9a6f8a4d5921302!2sLoi%20Suites%20Iguaz%C3%BA%20Hotel!5e0!3m2!1ses!2ses!4v1770143421747!5m2!1ses!2ses"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7196.500340204833!2d-54.545521!3d-25.596601999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f693bf9a59d3e7%3A0xa9a6f8a4d5921302!2sLoi%20Suites%20Iguazú%C3%BA%20Hotel!5e0!3m2!1ses!2ses!4v1770143421747!5m2!1ses!2ses"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Mapa Loi Suites Iguazu"
+            title="Mapa Loi Suites Iguazú"
           ></iframe>
         </div>
       </div>
@@ -667,14 +975,14 @@ const nextExistingDay = (day: number): number | null => {
         <button class="hotelToggle" type="button">
           <span class="hotelTitle">
             Hotel Legado Mítico Salta
-            <span class="hotelStars" aria-hidden="true">★★★★</span>
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
           </span>
-          <span class="hotelCaret">▾</span>
+          <span class="hotelCaret">&#9662;</span>
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
             <div class="muted">Bartolomé Mitre 647, A4400 EHM, Salta, Argentina</div>
-            <div class="muted">Precio: <strong>224€</strong> la noche</div>
+            <div class="muted">Precio: <strong>224 &euro;</strong> / noche</div>
             <div class="muted">Web: <a href="https://legadomitico.com/salta/" target="_blank" rel="noopener">legadomitico.com</a></div>
           </div>
           <div class="hotelMedia">
@@ -697,9 +1005,9 @@ const nextExistingDay = (day: number): number | null => {
         <button class="hotelToggle" type="button">
           <span class="hotelTitle">
             Hotel El Manantial del Silencio
-            <span class="hotelStars" aria-hidden="true">★★★★</span>
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</span>
           </span>
-          <span class="hotelCaret">▾</span>
+          <span class="hotelCaret">&#9662;</span>
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
@@ -727,14 +1035,14 @@ const nextExistingDay = (day: number): number | null => {
         <button class="hotelToggle" type="button">
           <span class="hotelTitle">
             Los Cauquenes Resort + Spa + Experiences
-            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           </span>
-          <span class="hotelCaret">▾</span>
+          <span class="hotelCaret">&#9662;</span>
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
             <div class="muted">Barrio Bahía Cauquén, De la Ermita 3462, V9410 Ushuaia, Tierra del Fuego, Argentina</div>
-            <div class="muted">Precio: <strong>336€</strong> la noche</div>
+            <div class="muted">Precio: <strong>336 &euro;</strong> / noche</div>
             <div class="muted">Web: <a href="https://www.loscauquenes.com/es/" target="_blank" rel="noopener">loscauquenes.com</a></div>
           </div>
           <div class="hotelMedia">
@@ -757,14 +1065,14 @@ const nextExistingDay = (day: number): number | null => {
         <button class="hotelToggle" type="button">
           <span class="hotelTitle">
             Xelena Hotel & Suites
-            <span class="hotelStars" aria-hidden="true">★★★★★</span>
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           </span>
-          <span class="hotelCaret">▾</span>
+          <span class="hotelCaret">&#9662;</span>
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
             <div class="muted">Rene Favaloro 3500, Z9405 El Calafate, Santa Cruz, Argentina</div>
-            <div class="muted">Precio: <strong>199€</strong> la noche</div>
+            <div class="muted">Precio: <strong>199 &euro;</strong> / noche</div>
             <div class="muted">Web: <a href="http://www.hotelxelena.com/" target="_blank" rel="noopener">hotelxelena.com</a></div>
           </div>
           <div class="hotelMedia">
@@ -787,13 +1095,13 @@ const nextExistingDay = (day: number): number | null => {
   </details>
   <details class="sec" id="mapa">
     <summary class="secSummary">
-      <span>Mapa</span><span class="secCaret">▾</span>
+      <span>Mapa</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
       <div class="mapWrap">
         <div class="mapBox">
           <button class="mapBtn" type="button" id="openMap">
-            <img class="mapImg" src="/maps/maps/mapa_argentina.png" alt="Mapa de Argentina (ruta)" />
+            <img class="mapImg" src="/maps/mapa_argentina.png" alt="Mapa de Argentina (ruta)" />
           </button>
         </div>
       </div>
@@ -804,42 +1112,84 @@ const nextExistingDay = (day: number): number | null => {
 
   <details class="sec" id="galeria">
     <summary class="secSummary">
-      <span>Galería</span><span class="secCaret">▾</span>
+      <span>Galería</span><span class="secCaret">&#9662;</span>
     </summary>
     <div class="secBody">
-      <h3>Vídeos</h3>
-      <div class="videoGrid">
-        <iframe src="https://www.youtube.com/embed/9EjcFCl4EgE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/9gDVJ3nsbjE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/MuWJ-onE2Rw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/xYxQ_LIKkXs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/Hms2foj1WPQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/7GNv-GpOZA0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/l6qduhBFv20" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/wEbehw_ghtg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/zLfggdJgItE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
+      <div class="galGrid">
+        <details class="galItem">
+          <summary class="galSummary">
+            <div class="galPreview" style="--bg: url('/perito.png');"></div>
+            <div class="galOverlay">
+              <span class="galTitle">Vídeos</span>
+              <span class="galMeta">9 vídeos</span>
+            </div>
+            <span class="galCaret">&#9662;</span>
+          </summary>
+          <div class="galBody">
+          <div class="videoGrid">
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/9EjcFCl4EgE">
+              <iframe src="https://www.youtube.com/embed/9EjcFCl4EgE" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/9gDVJ3nsbjE">
+              <iframe src="https://www.youtube.com/embed/9gDVJ3nsbjE" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/MuWJ-onE2Rw">
+              <iframe src="https://www.youtube.com/embed/MuWJ-onE2Rw" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/xYxQ_LIKkXs">
+              <iframe src="https://www.youtube.com/embed/xYxQ_LIKkXs" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/Hms2foj1WPQ">
+              <iframe src="https://www.youtube.com/embed/Hms2foj1WPQ" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/7GNv-GpOZA0">
+              <iframe src="https://www.youtube.com/embed/7GNv-GpOZA0" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/l6qduhBFv20">
+              <iframe src="https://www.youtube.com/embed/l6qduhBFv20" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/wEbehw_ghtg">
+              <iframe src="https://www.youtube.com/embed/wEbehw_ghtg" allowfullscreen></iframe>
+            </button>
+            <button class="videoBtn" type="button" data-video="https://www.youtube.com/embed/zLfggdJgItE">
+              <iframe src="https://www.youtube.com/embed/zLfggdJgItE" allowfullscreen></iframe>
+            </button>
+          </div>
+          </div>
+        </details>
 
-      <h3>Fotos</h3>
-      <div class="photoGrid" id="photoGrid">
-        <button class="photoBtn" type="button"><img src="/galeria/arg1.jpg" alt="Argentina 1" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg2.jpg" alt="Argentina 2" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg3.jpg" alt="Argentina 3" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg4.jpg" alt="Argentina 4" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg5.jpg" alt="Argentina 5" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg6.jpg" alt="Argentina 6" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg7.jpg" alt="Argentina 7" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg8.png" alt="Argentina 8" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg9.jpg" alt="Argentina 9" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg10.jpg" alt="Argentina 10" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg11.jpg" alt="Argentina 11" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg12.jpg" alt="Argentina 12" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg13.jpg" alt="Argentina 13" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg14.jpg" alt="Argentina 14" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg15.jpg" alt="Argentina 15" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg16.jpg" alt="Argentina 16" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg17.jpg" alt="Argentina 17" loading="lazy" /></button>
-        <button class="photoBtn" type="button"><img src="/galeria/arg18.jpg" alt="Argentina 18" loading="lazy" /></button>
+        <details class="galItem">
+          <summary class="galSummary">
+            <div class="galPreview" style="--bg: url('/galeria/arg1.jpg');"></div>
+            <div class="galOverlay">
+              <span class="galTitle">Fotos</span>
+              <span class="galMeta">18 fotos</span>
+            </div>
+            <span class="galCaret">&#9662;</span>
+          </summary>
+          <div class="galBody">
+            <div class="photoGrid" id="photoGrid">
+              <button class="photoBtn" type="button"><img src="/galeria/arg1.jpg" alt="Argentina 1" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg2.jpg" alt="Argentina 2" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg3.jpg" alt="Argentina 3" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg4.jpg" alt="Argentina 4" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg5.jpg" alt="Argentina 5" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg6.jpg" alt="Argentina 6" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg7.jpg" alt="Argentina 7" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg8.png" alt="Argentina 8" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg9.jpg" alt="Argentina 9" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg10.jpg" alt="Argentina 10" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg11.jpg" alt="Argentina 11" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg12.jpg" alt="Argentina 12" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg13.jpg" alt="Argentina 13" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg14.jpg" alt="Argentina 14" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg15.jpg" alt="Argentina 15" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg16.jpg" alt="Argentina 16" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg17.jpg" alt="Argentina 17" loading="lazy" /></button>
+              <button class="photoBtn" type="button"><img src="/galeria/arg18.jpg" alt="Argentina 18" loading="lazy" /></button>
+            </div>
+          </div>
+        </details>
       </div>
 
     </div>
@@ -857,6 +1207,15 @@ const nextExistingDay = (day: number): number | null => {
       <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
 
       <div class="lbCounter" id="lbCounter">1 / 1</div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX (vídeos) -->
+  <div class="videoLightbox" id="videoLightbox" aria-hidden="true">
+    <div class="lbBackdrop" id="videoBackdrop"></div>
+    <div class="videoPanel" role="dialog" aria-modal="true" aria-label="Vídeo">
+      <button class="videoClose" type="button" id="videoClose" aria-label="Cerrar">×</button>
+      <iframe class="videoFrame" id="videoFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -946,7 +1305,7 @@ const nextExistingDay = (day: number): number | null => {
 
       if (!lightbox || !imgEl) return;
 
-      const MAP_SRC = "/maps/maps/mapa_argentina.png";
+      const MAP_SRC = "/maps/mapa_argentina.png";
 
       const imgs = grid ? Array.from(grid.querySelectorAll("img")) : [];
       let index = 0;
@@ -1050,12 +1409,49 @@ const nextExistingDay = (day: number): number | null => {
       if (btnPrev) btnPrev.addEventListener("click", () => { if (mode === "photos" || mode === "hotel") prev(); });
       if (btnNext) btnNext.addEventListener("click", () => { if (mode === "photos" || mode === "hotel") next(); });
 
+      // --- LIGHTBOX (vídeos) ---
+      const videoButtons = Array.from(document.querySelectorAll(".videoBtn"));
+      const videoLightbox = document.getElementById("videoLightbox");
+      const videoBackdrop = document.getElementById("videoBackdrop");
+      const videoClose = document.getElementById("videoClose");
+      const videoFrame = document.getElementById("videoFrame");
+
+      const openVideo = (src) => {
+        if (!videoLightbox || !videoFrame) return;
+        videoFrame.setAttribute("src", src + "?autoplay=1");
+        videoLightbox.classList.add("open");
+        videoLightbox.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("noScroll");
+      };
+
+      const closeVideo = () => {
+        if (!videoLightbox || !videoFrame) return;
+        videoLightbox.classList.remove("open");
+        videoLightbox.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("noScroll");
+        videoFrame.setAttribute("src", "");
+      };
+
+      videoButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const src = btn.getAttribute("data-video");
+          if (src) openVideo(src);
+        });
+      });
+
+      if (videoBackdrop) videoBackdrop.addEventListener("click", closeVideo);
+      if (videoClose) videoClose.addEventListener("click", closeVideo);
+
       window.addEventListener("keydown", (e) => {
         if (!lightbox.classList.contains("open")) return;
         if (e.key === "Escape") closeLightbox();
         if (mode !== "photos" && mode !== "hotel") return;
         if (e.key === "ArrowLeft") prev();
         if (e.key === "ArrowRight") next();
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeVideo();
       });
 
       const hotelItems = Array.from(document.querySelectorAll("[data-hotel]"));
@@ -1103,6 +1499,25 @@ const nextExistingDay = (day: number): number | null => {
     })();
   </script>
 </BaseLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

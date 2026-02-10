@@ -1,8 +1,8 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = "Costa Rica";
-const cover = "/covers/costarica.png";
+const cover = "/portadacostarica.jpg";
 const mapSrc = "/maps/maps/mapa_costarica.png";
 ---
 
@@ -58,13 +58,13 @@ const mapSrc = "/maps/maps/mapa_costarica.png";
       margin-bottom: 10px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 8px;`r`n      line-height: 1.15;`r`n      overflow: visible;
     }
 
     .toc{
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 8px;`r`n      line-height: 1.15;`r`n      overflow: visible;
       margin: 10px 0 16px;
       position: sticky;
       top: 10px;
@@ -187,14 +187,17 @@ const mapSrc = "/maps/maps/mapa_costarica.png";
     .lbPrev{ left:14px; }
     .lbNext{ right:14px; }
     .lbCounter{ position:absolute; bottom:14px; left:50%; transform: translateX(-50%); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color:#fff; font-weight:700; font-size:12px; }
-  </style>
+      .flag-costarica{ width: 60px; height: 32px; object-fit: contain; }\r\n  </style>
 
   <div class="titleRow" style="position:relative; width:100%;">
     <div class="titleNav" style="position:absolute; top:-16px; right:-6px; z-index:5; display:flex; align-items:center;">
       <a class="titleArrow" href="/viajes/canada" aria-label="Anterior"><img src="/giroizquierda.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
       <a class="titleArrow" href="/viajes/egipto" aria-label="Siguiente" style="margin-left:-8px;"><img src="/giroderecha.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
     </div>
-    <h1 class="pageTitle">{title}<span class="flag-badge" style="--flag: linear-gradient(#2d4ea2 0 20%, #ffffff 20% 32%, #ce1126 32% 68%, #ffffff 68% 80%, #2d4ea2 80% 100%);" aria-hidden="true"></span></h1>
+    <h1 class="pageTitle">
+      {title}
+      <img class="flag-badge flag-costarica" src="/flags/flagcostarica.gif" alt="Bandera de Costa Rica" style="width:60px; height:32px; object-fit:contain;" />
+    </h1>
   </div>
 
   <div class="hero">
@@ -211,45 +214,45 @@ const mapSrc = "/maps/maps/mapa_costarica.png";
     <a href="#costes">Costes</a>
     <a href="#hoteles">Hoteles</a>
     <a href="#mapa">Mapa</a>
-    <a href="#galeria">Galeria</a>
+    <a href="#galeria">Galería</a>
   </div>
 
   <details class="sec" id="resumen">
-    <summary class="secSummary"><span>Resumen</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Resumen</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <p>...</p>
     </div>
   </details>
 
   <details class="sec" id="itinerario">
-    <summary class="secSummary"><span>Itinerario</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Itinerario</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p>…</p>
+      <p>...</p>
     </div>
   </details>
 
   <details class="sec" id="imprescindibles">
-    <summary class="secSummary"><span>Imprescindibles</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Imprescindibles</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <p class="dots">...</p>
     </div>
   </details>
 
   <details class="sec" id="costes">
-    <summary class="secSummary"><span>Costes</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Costes</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
-      <p class="dots">…</p>
+      <p class="dots">...</p>
     </div>
   </details>
 
   <details class="sec" id="hoteles">
-    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">?</span></summary>
+    <summary class="secSummary"><span>Hoteles</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <p class="dots">...</p>
     </div>
   </details>
   <details class="sec" id="mapa">
-    <summary class="secSummary"><span>Mapa</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Mapa</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <div class="mapWrap">
         <div class="mapBox">
@@ -263,7 +266,7 @@ const mapSrc = "/maps/maps/mapa_costarica.png";
   </details>
 
   <details class="sec" id="galeria">
-    <summary class="secSummary"><span>Galería</span><span class="secCaret">▾</span></summary>
+    <summary class="secSummary"><span>Galería</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <h3>Videos</h3>
       <div class="videoGrid"></div>
@@ -376,3 +379,13 @@ const mapSrc = "/maps/maps/mapa_costarica.png";
       imgEl.addEventListener("click", closeLightbox);
     })();
   </script></BaseLayout>
+
+
+
+
+
+
+
+
+
+
