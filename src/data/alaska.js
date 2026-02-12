@@ -135,21 +135,88 @@ Al terminar, seguimos ruta hacia Seward, donde nos alojamos en el The Taroka Inn
   {
     day: 9,
     title: "Hielo, huskies y helicóptero",
-    text: `Hoy tocaba volar… pero a lo grande: en helicóptero. Salimos de Seward y, antes de nada, hicimos una parada breve en un glaciar cercano para la foto de rigor: viento frío en la cara, el blanco metiéndosete en los ojos, y esa sensación de estar pisando algo que no pertenece al calendario.
+    text: `Hoy tocaba volar… pero a lo grande: en helicóptero. Y antes de subirnos, hicimos una parada que nos dejó pensando más de la cuenta: el Exit Glacier.
 
-Después fuimos al cuartel general de Godwin Glacier Dog Sled Tours y nos subimos a un Aérospatiale/Eurocopter AS350B1 Écureuil (AStar). En cuestión de minutos, el mundo se volvió mineral: montañas, hielo y grietas como cicatrices azules. El helicóptero nos dejó en un campamento base sobre el Godwin Glacier, un islote humano en mitad de la nada blanca.
+El Exit Glacier es una lengua de hielo accesible por carretera desde Seward, una puerta directa al mundo glaciar de la península de Kenai. Al llegar, el sendero estaba “rayado” por la historia: estacas clavadas que marcaban hasta dónde había llegado el glaciar en distintos años. Al principio, las fechas antiguas aparecían muy juntas, como si el retroceso hubiera sido lento, casi discreto. Pero conforme nos acercábamos a los años más recientes, las marcas se abrían a lo bestia: cientos de metros entre una y otra. Ahí lo entendimos sin necesidad de discursos: el hielo no solo se está yendo… se está yendo deprisa. Fue la primera vez en el viaje que el cambio climático dejó de ser una idea abstracta y se convirtió en distancia real bajo nuestros pies.
 
-Allí nos esperaban los protagonistas: huskies y alaskan malamutes, energía pura con patas. Nos engancharon al trineo y salimos a hacer mushing por el glaciar durante una hora, siguiendo el trazo de la guía —una pelirroja curtida, con la piel castigada por el sol—. Y es que allí arriba el reflejo no perdona: la nieve actúa como un espejo brutal, te quema la cara como si te apuntaran con un foco constante.
+Después fuimos al cuartel general de Godwin Glacier Dog Sled Tours y nos subimos a un Aérospatiale/Eurocopter AS350B1 Écureuil (AStar). En pocos minutos el paisaje se volvió mineral: montañas, grietas azules y un blanco que lo invadía todo. Nos dejaron en un campamento base en la cima de un glaciar, rodeados de huskies y alaskan malamutes listos para lo suyo.
 
-La gran tentación eran las crías. Eran tan irresistibles que, si hubiese sido legal, media expedición habría vuelto a España con un cachorro escondido en la chaqueta. Los perros, además, disfrutaban: la llegada de visitantes les servía como entrenamiento, una forma de mantener el músculo y la cabeza afinados para la cultura del trineo que en Alaska es casi religión. Y ahí entra la leyenda: el Iditarod, la carrera de larga distancia que recorre más de mil millas y está ligada al histórico Iditarod Trail, un trazado invernal entre Seward y Nome (con rutas y ramales que conectan comunidades) reconocido como National Historic Trail.
+Nos engancharon al trineo y salimos a hacer mushing durante una hora, siguiendo a la guía —una pelirroja curtida, con la cara castigada por el sol—. Allí arriba la nieve refleja la luz como un espejo brutal, y te “cocina” la piel igual que un foco pegado a la cara.
 
-De vuelta al helicóptero, Alaska nos soltó un regalo final: un alce enorme en mitad del bosque. Desde arriba lo veías con una nitidez absurda, como si el animal fuese un punto fijo y todo lo demás, decorado.
+La gran tentación eran las crías. Eran tan bonitas que nos habríamos llevado a todas. Y los perros, encantados con el trabajo: para ellos era entrenamiento puro, una preparación constante para la cultura del trineo y para la gran leyenda de Alaska: la Iditarod, la carrera que atraviesa el estado siguiendo rutas históricas en pleno invierno, un desafío de resistencia humana y canina.
 
-Ya por la tarde, en Seward, visitamos el Alaska SeaLife Center, que no es solo un acuario: combina divulgación, investigación y, sobre todo, rescate y rehabilitación de fauna marina; es el gran centro permanente de mamíferos marinos del estado, pegado a la bahía.
+De vuelta al helicóptero, Alaska todavía nos guardaba un regalo: vimos un alce enorme en medio del bosque. Desde arriba, con esa perspectiva limpia, parecía un animal prehistórico: inmenso, quieto, dueño del claro.
 
-Y aún había escena de puerto: nos acercamos a ver cómo llegaba el pescado, cómo lo pesaban, lo limpiaban y lo empaquetaban en neveras portátiles listas para el viaje. En Seward la pesca deportiva es un imán —salmón, fletán y compañía—, y de pronto todo encajaba: luego en los aeropuertos lo confirmaríamos con cintas de equipaje repletas de neveras como si fueran maletas oficiales.
+Ya en Seward, por la tarde, visitamos el Alaska SeaLife Center, un sitio perfecto para entender el lado marino del estado: leones marinos, focas, aves, y un trabajo serio de educación y rescate. Y aún hubo escena de puerto: nos acercamos a ver cómo llegaba el pescado, cómo lo pesaban, lo limpiaban y lo guardaban en neveras portátiles listas para viajar. Luego lo comprobaríamos en los aeropuertos: cintas de equipaje llenas de neveras como si fueran maletas oficiales.
 
-La noche la cerramos sin inventar nada: repetimos en Ray’s Waterfront. Cuando un sitio te sale tan bien, lo inteligente es no discutirlo.`
+Y como nos había gustado tanto, esa noche repetimos en Ray’s Waterfront. La noche caía y el viaje ya estaba en sus últimos días, pero Seward todavía nos apuraba el vaso.`
+  },
+  {
+    day: 10,
+    title: "Kenai: hielo y océano",
+    text: `Por la mañana, después de desayunar, nos embarcamos rumbo a Kenai Fjords National Park y ya se notaba que no era “un paseo en barco”: era un día entero metiéndote en un territorio donde montaña, hielo y océano se chocan sin pedir permiso. El parque vive del Harding Icefield, una enorme masa de hielo que alimenta decenas de glaciares y ha tallado fiordos y una costa rota, abrupta, casi teatral.
+
+La navegación fue una sucesión de paredes escarpadas, rocas negras cortadas a cuchillo y cascadas que caían por todos lados, nacidas del deshielo. A ratos el agua estaba salpicada de trozos de hielo como si el mar hubiese decidido llenarse de cristales. Y cuando te acercas a una lengua glaciar, todo cambia: el silencio pesa más y el oído se queda esperando ese crujido seco que anuncia que algo puede desprenderse en cualquier momento.
+
+La fauna iba saliendo como si el crucero fuese un mirador móvil. Nutrias marinas flotando boca arriba —muchas en pareja, agarradas para no separarse—; focas subidas a placas de hielo; leones marinos ocupando peñones como si fueran su palco privado; águilas calvas vigilando desde arriba; cormoranes y colonias de aves marinas en los acantilados; y los frailecillos, simpáticos y ridículamente fotogénicos. En un momento incluso pasó bajo nosotros una sombra rápida, de esas que te hacen mirar el agua con respeto. Y sí: aparecieron orcas y alguna ballena, poniendo el broche grande al día.
+
+Lo pasamos prácticamente entero a bordo, saliendo a cubierta cada dos por tres y llenándonos de sal, viento y paisaje. De vuelta a Seward, el final del día cayó tranquilo, con esa sensación de haber visto la Alaska marítima en su versión más bestia y más bonita a la vez.`
+  },
+  {
+    day: 11,
+    title: "Bosque, fireweed y Homer",
+    text: `Salimos rumbo a Homer, pero antes hicimos parada en Cooper Landing para pegarnos un trekking por la zona de Lower Russian Lake. Es un rincón clásico de la península de Kenai: sendero de tierra mullida, coníferas altas, silencio de esos que suenan, y el Russian River marcando el ritmo a tu lado, frío y transparente, como si estuviera recién estrenado. Caminamos junto a la orilla viendo setas de todos los tamaños y bayas del bosque escondidas entre el verde. Una ruta de las que se disfrutan sin mirar el reloj: pasos tranquilos, aire limpio y esa sensación de estar en Alaska de verdad.
+
+De vuelta a la carretera seguimos por la Sterling Highway y paramos en un mirador para asomarnos a la ensenada de Cook: agua enorme, horizonte ancho y luz cambiante. En el camino también nos encontramos campos repletos de fireweed, esa flor alta y fucsia que en verano pinta Alaska como si alguien hubiese pasado una brocha rosa por las cunetas. Es bonita y salvaje a la vez, y cuando la ves en masa parece que el paisaje está celebrando algo.
+
+Y por fin Homer. Un pueblo con alma marinera y artística, donde el mundo se acaba en el agua: casitas, galerías, ambiente tranquilo y el puerto como centro de gravedad. Nos acercamos al muelle y allí estaba la prueba de que aquí se viene a pescar en serio: un gigante Hallibut. de 235,4 libras, que son unos 106,8 kg.
+
+Ya con hambre, cenamos en El Pescador Bar & Grill, y después nos fuimos al Beluga Lake Lodge: descanso merecido, con ese punto perfecto de hotel de carretera alaskana donde el día se apaga rápido y el cuerpo lo agradece todavía más.`
+  },
+  {
+    day: 12,
+    title: "Ferri a Seldovia",
+    text: `Estábamos con la sensación de ir gastando los últimos cartuchos. A primera hora cogimos el ferri para cruzar la bahía de Kachemak desde Homer hasta Seldovia, y el trayecto fue casi tan bueno como el destino: islotes convertidos en auténticas colonias de aves, tan abarrotadas que apenas asomaba la roca bajo el plumaje y el guano.
+
+Nada más subir, ya había carteles avisando de las nutrias marinas: aquí son un espectáculo, sí, pero también animales salvajes, y conviene mirarlas con distancia. Las vimos flotando panza arriba, a veces en pareja, dejándose llevar como si el mar fuese una hamaca. Y de pronto, el momento que lo ordena todo: una ballena sacó el soplido al coger aire, esa exhalación que suena a vida grande y te deja clavado en la borda.
+
+Seldovia apareció recogida y tranquila, una villa marinera al borde del bosque, con carácter propio y sin conexión por carretera con el resto de comunidades: se llega en barco o en avioneta, y eso se nota en el ambiente, más pausado, más “fin del mundo” bien llevado.
+
+Entramos al Seldovia Visitor Center & Museum, pequeño pero con mucha miga: exposiciones que cuentan las capas de historia del lugar (influencias nativas, rusas y las posteriores), junto a muestras de flora y fauna local. Un sitio perfecto para entender que aquí la costa no es postal: es forma de vida.
+
+De vuelta a Homer, ya sin la euforia del mar, seguimos carretera hasta Cooper Landing. Era nuestra penúltima noche en Alaska y llegamos con la oscuridad encima al Cooper Landing Lodge: madera, calma, olor a bosque y ese aire de refugio junto al Kenai River, pensado para caer rendido y dormir como se duerme cuando el viaje aprieta de verdad.`
+  },
+  {
+    day: 13,
+    title: "Últimas horas en Anchorage",
+    text: `Salimos temprano de Cooper Landing rumbo a Anchorage. Era nuestro último día en Alaska y se notaba: esa mezcla de calma y prisa, como si el viaje quisiera estirarse un poco más aunque el calendario ya no lo permita.
+
+Llegamos con margen para exprimir las horas finales: visita al museo y últimas compras, pequeños recuerdos que sirven de ancla cuando vuelves a casa. Anchorage, comparada con todo lo anterior, es casi un choque: tráfico, tiendas, semáforos. Es lo más parecido a civilización que habíamos olido en días, y aun así, incluso allí, Alaska sigue asomando por el borde del paisaje.
+
+Volvimos al Hotel Hilton, cerramos maletas y nos obligamos a hacer lo sensato: acostarnos pronto. A las 4:00 nos tenían que recoger para llevarnos al aeropuerto. Y con ese horario, el último lujo del viaje no fue una excursión más, sino algo mucho más simple: dormir sabiendo que la aventura ya estaba escrita.`
+  },
+  {
+    day: 14,
+    title: "Un final tormentoso",
+    text: `Nuestro vuelo salía a las 7:25 del aeropuerto de Anchorage, y lo que venía por delante no era un regreso: era una travesía. Treinta y seis horas hasta casa, el trayecto más largo que habíamos hecho jamás. Sabíamos que no iba a ser fácil, pero en ese momento solo queríamos una cosa: avanzar.
+
+La primera escala fue Minneapolis. Todo, en teoría, encajaba: Minneapolis, luego Ámsterdam, después Barcelona, y de allí el tren de vuelta a Valencia. Una cadena larga, pero ordenada, como esas rutas que funcionan siempre que el mundo se comporte.
+
+Y entonces el mundo dejó de comportarse.
+
+Al llegar a Barcelona, una tormenta brutal se había adueñado del cielo. El capitán habló por megafonía con esa voz que intenta sonar tranquila cuando la situación no lo es: no se podía aterrizar en El Prat y nos desviaban… a Valencia. Para nosotros fue como escuchar un milagro. Directos a casa. Fin del viaje sin más drama.
+
+Pero Alaska, incluso al despedirse, quiso poner su sello.
+
+Porque lo que parecía un final perfecto se torció en el último minuto: el avión terminó aterrizando en Reus, a una hora de Barcelona. Allí nos quedamos dentro, en pista, casi una hora larga, esperando a que la tormenta aflojara y autorizaran el salto final. Cuando por fin despegamos de nuevo y aterrizamos en Barcelona, la alegría duró poco: el retraso había hecho su trabajo. Habíamos perdido el tren a Valencia.
+
+Y no había plan B. Ni devolución, ni billete alternativo: Renfe y KLM no comparten problemas, así que cada uno se lava las manos en su frontera. Y nosotros, con la mochila llena de cansancio y la urgencia de llegar, hicimos lo único sensato: alquiler de coche en Avis y carretera.
+
+Nos quedaban 350 kilómetros de asfalto hasta Valencia. Los hicimos como se hacen estas cosas: sin épica, con el cuerpo agotado y la cabeza en modo automático, persiguiendo la única meta que importa cuando llevas dos días enlazando aeropuertos: la puerta de casa.
+
+Y al final, llegamos. Se acabó.
+
+Alaska, mientras tanto, no se fue. Se quedó para siempre en el lugar donde se quedan los viajes grandes: en el recuerdo, intacta, como si aún oliera a hielo, a bosque y a mar.`
   }
 ];
 

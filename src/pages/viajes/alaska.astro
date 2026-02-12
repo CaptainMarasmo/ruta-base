@@ -23,7 +23,7 @@ const nextExistingDay = (day: number): number | null => {
 
 const title = "Alaska";
 const cover = "/portadaalaska.jpg";
-const mapSrc = "/maps/mapa_alaska.png";
+const mapSrc = "/maps/mapalaska.png";
 ---
 
 <BaseLayout title={`${title} | Ruta Base`}>
@@ -42,6 +42,7 @@ const mapSrc = "/maps/mapa_alaska.png";
       width: 100%;
       height: 320px;
       object-fit: cover;
+      object-position: 100% 80%;
       display: block;
       border-radius: 16px;
       border: 1px solid rgba(0,0,0,0.08);
@@ -376,7 +377,7 @@ const mapSrc = "/maps/mapa_alaska.png";
     <summary class="secSummary"><span>Resumen</span><span class="secCaret">&#9662;</span></summary>
     <div class="secBody">
       <p>
-        2005 pedía a gritos su gran viaje. No uno cualquiera, sino de esos que se recuerdan años después con una sonrisa tonta, como si el mundo se hubiera abierto un poco más. Había que buscarlo, y Vicky se puso a ello: se metió en internet, a navegar sin un destino claro, solo con la idea de encontrar algo distinto. Y entonces apareció Alaska. Lo soltó al grupo habitual y fue inmediato: a todos nos sonó a aventura limpia, a territorio grande, a viaje de verdad.
+        El año 2005 pedía a gritos su gran viaje. No uno cualquiera, sino de esos que se recuerdan años después con una sonrisa tonta, como si el mundo se hubiera abierto un poco más. Había que buscarlo, y Vicky se puso a ello: se metió en internet, a navegar sin un destino claro, solo con la idea de encontrar algo distinto. Y entonces apareció Alaska. Lo soltó al grupo habitual y fue inmediato: a todos nos sonó a aventura limpia, a territorio grande, a viaje de verdad.
       </p>
       <p>
         El problema era el de siempre: las agencias de toda la vida no lo ofrecían, o lo ofrecían como si fuera un sueño imposible. Pero dimos con el sitio perfecto para contratarlo. El único “pero” era enorme para la época: la agencia estaba en Barcelona y, en 2005, sí, existía internet, pero no era nada habitual pagar un viaje a través de una web que no conocías. No era solo cuestión de dinero; era cuestión de confianza. Entonces comprar online tenía algo de salto al vacío.
@@ -463,7 +464,14 @@ const mapSrc = "/maps/mapa_alaska.png";
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
-            <div class="muted">Precio: <strong>Pendiente</strong></div>
+            <div class="muted">500 W 3rd Ave, Anchorage, AK 99501, Estados Unidos</div>
+            <div class="muted">Precio: <strong>177 &euro;</strong> / noche</div>
+            <div class="muted">Web: <a href="https://www.hilton.com/en/hotels/ancahhf-hilton-anchorage/?SEO_id=GMB-AMER-HH-ANCAHHF&y_source=1_MTIyMDkxNS03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D" target="_blank" rel="noopener">hilton.com</a></div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/hhil1.jpg" alt="Hilton Anchorage - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hhil2.jpg" alt="Hilton Anchorage - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hhil3.jpg" alt="Hilton Anchorage - foto 3" loading="lazy" />
           </div>
           <iframe
             class="hotelMap"
@@ -486,7 +494,12 @@ const mapSrc = "/maps/mapa_alaska.png";
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
-            <div class="muted">Precio: <strong>Pendiente</strong></div>
+            <div class="muted">Precio: <strong>93 &euro;</strong> / noche</div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/htal1.jpg" alt="Talkeetna Inn - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/htal2.jpg" alt="Talkeetna Inn - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/htal3.jpg" alt="Talkeetna Inn - foto 3" loading="lazy" />
           </div>
           <iframe
             class="hotelMap"
@@ -509,7 +522,12 @@ const mapSrc = "/maps/mapa_alaska.png";
         </button>
         <div class="hotelPanel">
           <div class="hotelInfo">
-            <div class="muted">Precio: <strong>Pendiente</strong></div>
+            <div class="muted">Precio: <strong>253 &euro;</strong> / noche</div>
+          </div>
+          <div class="hotelMedia">
+            <img class="hotelPhoto" src="/hoteles/hden1.jpg" alt="Denali Park Hotel - foto 1" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hden2.jpg" alt="Denali Park Hotel - foto 2" loading="lazy" />
+            <img class="hotelPhoto" src="/hoteles/hden3.jpg" alt="Denali Park Hotel - foto 3" loading="lazy" />
           </div>
           <iframe
             class="hotelMap"
@@ -573,6 +591,56 @@ const mapSrc = "/maps/mapa_alaska.png";
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             title="Mapa The Taroka Inn"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Beluga Lake Lodge
+            <span class="hotelStars" aria-hidden="true">&#9733;&#9733;</span>
+          </span>
+          <span class="hotelCaret">&#9662;</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">204 Ocean Dr Loop #7964, Homer, AK 99603, Estados Unidos</div>
+            <div class="muted">Precio: <strong>90 &euro;</strong> / noche</div>
+            <div class="muted">Web: <a href="http://www.belugalakelodging.com/" target="_blank" rel="noopener">belugalakelodging.com</a></div>
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2413.036538377712!2d-151.52109739768645!3d59.63765363303385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x56c12d92d146cc63%3A0x99c9d86f7fc80fc7!2sBeluga%20Lake%20Lodge!5e0!3m2!1ses!2ses!4v1770900544321!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Beluga Lake Lodge"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="hotelItem" data-hotel>
+        <button class="hotelToggle" type="button">
+          <span class="hotelTitle">
+            Cooper Landing Lodge
+            <span class="hotelStars" aria-hidden="true">&#9733;</span>
+          </span>
+          <span class="hotelCaret">&#9662;</span>
+        </button>
+        <div class="hotelPanel">
+          <div class="hotelInfo">
+            <div class="muted">18166 Sterling Hwy, Cooper Landing, AK 99572, Estados Unidos</div>
+            <div class="muted">Precio: <strong>Pendiente</strong></div>
+            <div class="muted">Web: <a href="http://www.cllodge.com/?utm_source=GMB%20Listing&utm_medium=Organic" target="_blank" rel="noopener">cllodge.com</a></div>
+          </div>
+          <iframe
+            class="hotelMap"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1965.2716544631955!2d-149.83198182311656!3d60.490246417560314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x56c7b75faa57e19f%3A0x3dfef80461c073a3!2sCooper%20Landing%20Lodge!5e0!3m2!1ses!2ses!4v1770900643114!5m2!1ses!2ses"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa Cooper Landing Lodge"
           ></iframe>
         </div>
       </div>
