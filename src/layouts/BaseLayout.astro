@@ -1,9 +1,19 @@
-﻿---
+---
+import es from "../i18n/es.json";
+import en from "../i18n/en.json";
+
 const {
   title = "Ruta Base",
   useVideoBg = false,
   bgImage = "/fondo.png",
 } = Astro.props;
+
+const switchTo = (targetLang) => {
+  const next = new URL(Astro.url);
+  if (targetLang === "en") next.searchParams.set("lang", "en");
+  else next.searchParams.delete("lang");
+  return `${next.pathname}${next.search}${next.hash}`;
+};
 ---
 
 <!doctype html>
@@ -24,12 +34,12 @@ const {
         min-height: 100vh;
       }
 
-      /* Si hay vÃ­deo en esta pÃ¡gina, quitamos la imagen */
+      /* Si hay video en esta pagina, quitamos la imagen */
       body[data-video="1"]{
         background: none;
       }
 
-      /* VÃ­deo solo en Inicio cuando se active */
+      /* Video solo en Inicio cuando se active */
       #bg-video{
         position: fixed;
         inset: 0;
@@ -81,7 +91,7 @@ const {
         border-radius: 14px;
         animation: headerFlow 10s ease-in-out infinite;
       }
-      /* TU ESTILO (tal cual) */
+
       nav a{
         display: inline-block;
         text-decoration: none;
@@ -93,12 +103,31 @@ const {
         font-size: 16px;
         line-height: 34px;
       }
+
       .navHidden{
         display: none !important;
       }
 
       nav a:hover{
         background: rgba(255,255,255,0.35);
+      }
+
+      .langSwitch{
+        display: inline-flex;
+        gap: 4px;
+        margin-left: 2px;
+      }
+
+      .langSwitch a{
+        min-width: 30px;
+        text-align: center;
+        padding: 0 8px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .langSwitch a.active{
+        background: rgba(70, 46, 118, 0.22);
       }
 
       main{
@@ -164,7 +193,16 @@ const {
         box-shadow: 0 1px 3px rgba(0,0,0,0.15);
         vertical-align: -0.1em;
         margin-left: 6px;
-      }\r\n\r\n      :global(img.flag-badge){\r\n        width: 1.6em;\r\n        height: 1em;\r\n        object-fit: contain;\r\n        display: inline-block;\r\n        background: transparent;\r\n        border: 0;\r\n        box-shadow: none;\r\n      }
+      }
+      :global(img.flag-badge){
+        width: 1.6em;
+        height: 1em;
+        object-fit: contain;
+        display: inline-block;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+      }
     </style>
   </head>
 
@@ -177,32 +215,65 @@ const {
 
     <header>
       <nav>
-        <a href="/">Inicio</a>
-        <a href="/viajes">Viajes</a>
-        <a href="/mapas">Mapas</a>
-        <a href="/consejos">Consejos</a>
-        <a href="/galeria">Galería</a>
-        <a href="/sobre">Sobre mí</a>
-        <a href="/ev" class="navHidden">EV</a>
-        <a href="/msfs" class="navHidden">Vuelo Virtual</a>
-        <a href="/chat" class="navHidden">Chat</a>
-        <a href="/registro" class="navHidden">Regístrate</a>
+        <a href="/" data-i18n="home">Inicio</a>
+        <a href="/viajes" data-i18n="trips">Viajes</a>
+        <a href="/mapas" data-i18n="maps">Mapa</a>
+        <a href="/consejos" data-i18n="tips">Consejos</a>
+        <a href="/galeria" data-i18n="gallery">Galería</a>
+        <a href="/sobre" data-i18n="about">Sobre mí</a>
+        <a href="/ev" class="navHidden" data-i18n="ev">EV</a>
+        <a href="/msfs" class="navHidden" data-i18n="sim">Vuelo Virtual</a>
+        <a href="/chat" class="navHidden" data-i18n="chat">Chat</a>
+        <a href="/registro" class="navHidden" data-i18n="signup">Regístrate</a>
+        <div class="langSwitch" aria-label="Language switch">
+          <a href={switchTo("es")} data-lang-switch="es" class="active" aria-label="Cambiar a español">ES</a>
+          <a href={switchTo("en")} data-lang-switch="en" aria-label="Switch to English">EN</a>
+        </div>
       </nav>
     </header>
 
     <main>
       <slot />
     </main>
+
+    <script is:inline define:vars={{ es, en }}>
+      (() => {
+        const ui = { es, en };
+        const url = new URL(location.href);
+        const queryLang = url.searchParams.get("lang");
+        const savedLang = localStorage.getItem("rb_lang");
+        const lang = queryLang === "en" || (queryLang !== "es" && savedLang === "en") ? "en" : "es";
+        const isEnglish = lang === "en";
+
+        localStorage.setItem("rb_lang", lang);
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (key && ui[lang][key]) el.textContent = ui[lang][key];
+        });
+
+        const switchLinks = Array.from(document.querySelectorAll("[data-lang-switch]"));
+        switchLinks.forEach((link) => {
+          const target = link.getAttribute("data-lang-switch");
+          const next = new URL(location.href);
+          if (target === "en") next.searchParams.set("lang", "en");
+          else next.searchParams.delete("lang");
+          link.setAttribute("href", `${next.pathname}${next.search}${next.hash}`);
+          link.classList.toggle("active", target === lang);
+          link.addEventListener("click", () => localStorage.setItem("rb_lang", target || "es"));
+        });
+
+        document.querySelectorAll('a[href^="/"]').forEach((a) => {
+          if (a.hasAttribute("data-lang-switch")) return;
+          const raw = a.getAttribute("href");
+          if (!raw) return;
+          const linkUrl = new URL(raw, location.origin);
+          if (isEnglish) linkUrl.searchParams.set("lang", "en");
+          else linkUrl.searchParams.delete("lang");
+          a.setAttribute("href", `${linkUrl.pathname}${linkUrl.search}${linkUrl.hash}`);
+        });
+      })();
+    </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
