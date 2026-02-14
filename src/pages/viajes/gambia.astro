@@ -1,0 +1,518 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+type Dia = {
+  day: number;
+  title: string;
+  text?: string;
+};
+
+const title = "Gambia";
+const cover = "/portadagambia.jpg";
+const mapSrc = "/maps/mapgambia.jpg";
+
+const itinerario: Dia[] = [
+  {
+    day: 1,
+    title: "Llegada a Banjul",
+    text: `Salimos de Valencia el 27 de julio de 2006, a las 10:00, rumbo a Banjul, la capital de Gambia, vía Madrid con Spanair. A esas horas todo parecía fácil: maletas recién cerradas, cabeza despejada y la sensación de que lo duro todavía no había empezado.
+
+En Barajas el viaje cambió de pulso: pantallas, colas, anuncios por megafonía y, de golpe, el grupo completo cuando nos juntamos con los amigos que venían desde Barcelona. Ese reencuentro en un aeropuerto siempre tiene algo especial: abrazos rápidos, bromas de “ya estamos” y la certeza de que, a partir de ahí, la aventura ya no es individual, es de equipo.
+
+Llegamos al Aeropuerto Internacional de Banjul pasadas las 20:00 y ya era noche. El primer contacto fue intenso: la salida se volvió algo caótica y en el control de aduanas vimos un sistema que no iba fino; la escena daba la impresión de improvisación y de autoridad ejercida a mano, con registros que podían acabar en requisas incluso de material que algunos viajeros traían con intención humanitaria. No era la mejor bienvenida, pero sí una de esas que te aterrizan de golpe en otro continente.
+
+Subimos a un autobús que nos fue repartiendo por los hoteles, y por las ventanillas empezó a dibujarse Banjul: una capital pequeña y administrativa, asentada en una isla baja (St. Mary’s Island) entre el río Gambia y el Atlántico. No es una ciudad de rascacielos ni de grandes avenidas; es más bien un lugar de puerto, ministerios y mercados, con calles sencillas, vida al ritmo del calor y una frontera muy marcada entre lo oficial y lo cotidiano. En el centro late el Albert Market, el típico mercado donde se entiende el país sin necesidad de guías: fruta, telas, olor a especias, voces y regateo. Y como telón de fondo, el río, que en Banjul no es paisaje: es ruta, trabajo y salida al mundo.
+
+Nuestro destino final fue el Senegambia Beach Hotel, a 17 km de Banjul, en primera línea de playa. Llegamos ya con la noche cerrada y esa mezcla de cansancio y euforia de los comienzos grandes. En la habitación nos esperaba una carta de bienvenida de Club Vacaciones: breve, directa y con cita marcada para el día siguiente a las 11:00, meeting oficial para organizar la semana. Era como si el viaje, después del caos de aeropuertos y aduanas, por fin hubiera encontrado su compás.`,
+  },
+  {
+    day: 2,
+    title: "Cocodrilos, barro y fuego en la costa gambiana",
+    text: `Después del briefing de Gambia Tours, la mañana se nos quedó mansa: playa del hotel, calor pegado a la piel y esa calma engañosa previa al primer golpe de realidad. Aguantamos allí hasta después de comer, cuando por fin arrancó la primera excursión.
+
+A media tarde apareció el jeep y nos llevó hacia Bakau, al Kachikally Crocodile Pool, uno de esos lugares que no se visitan: se atraviesan con respeto. Nada más bajar y plantar el pie en tierra, nos rodeó una tropa de críos como salida de la nada: risas, manos buscando las tuyas, ganas de caminar pegados a ti. Lo más llamativo fue lo que no hicieron: no venían a mendigar; venían a saludar, a curiosear, a darte la bienvenida a su manera.
+
+El recinto del Kachikally es un pequeño santuario urbano con museo y un estanque considerado sagrado, famoso por los rituales y creencias vinculadas a fertilidad, prosperidad y protección. Allí los cocodrilos no son solo animales: forman parte del imaginario del lugar, de la tradición, de la relación entre la gente y el agua.
+Y sí, estaban por todas partes, quietos, antiguos, con esa calma que impone más que un rugido. Nos hicimos fotos a pocos centímetros, en cuclillas, creyendo que controlábamos la escena… hasta que te das cuenta de lo rápido que puede cambiar todo si un reptil de ese tamaño decide moverse. Salimos enteros, pero con la lección aprendida.
+
+Antes de marcharnos nos hicimos otra foto junto a una ceiba enorme, el árbol del kapok o “algodón de seda”, de esas presencias vegetales que parecen un monumento natural. Se decía que rondaba los trescientos años, y no costaba creerlo: tronco poderoso, sombra seria y ese aire de árbol importante que en África occidental suele venir acompañado de historias.
+
+El siguiente golpe fue el mercado de Serrekunda, un laberinto vivo en la ciudad más poblada del país: calles de tierra, puestos interminables, telas, fruta, cacharros, voces cruzadas y un pulso que te arrastra sin pedir permiso. Es el tipo de mercado que funciona como un corazón: no es “turístico”, es cotidiano, y por eso engancha.
+Las lluvias de días anteriores habían dejado algunas zonas convertidas en un barrizal de manual; caminar era elegir cada paso. Y aun así, todo seguía: vender, comprar, regatear, cargar, reír.
+
+Paramos a tomar una Coca-Cola. De allí fuimos a Tanji Village, un poblado pesquero donde el aire te avisa antes que los ojos. El olor es fuerte, directo, y tiene explicación: allí el pescado se limpia, se trabaja y se ahúma como método de conservación, porque no siempre hay frío suficiente para guardar como haríamos en Europa. La playa era un escenario en marcha: barcas entrando a la orilla, gaviotas girando como si supieran el guion, mujeres esperando el género, y chavales ayudando en la descarga con una naturalidad que te deja callado. Muchas mujeres se metían en el océano hasta la cintura y, sobre la cabeza, llevaban cestas de pescado como si el equilibrio fuera una extensión natural del cuerpo.
+
+Nosotros llevábamos bolígrafos y en cada parada repetimos el mismo ritual: organizarlos en fila y darles un detalle a cada uno. Sin teatro. Solo un gesto sencillo, de esos que no cambian un país, pero sí un minuto.
+
+De vuelta al hotel, cerramos el día como había que cerrarlo: caminata hasta la orilla para ver el atardecer en el Atlántico. Para los que venimos de la costa este de España, ver caer el sol en el mar es casi un lujo raro, una escena que parece prestada. Ese naranja bajando despacio fue el primer “vale, estamos en África” de verdad.`,
+  },
+  {
+    day: 3,
+    title: "Abuko, manglares y noche de taxis",
+    text: `Por la mañana, bajar a desayunar ya era un safari. En el hotel la vida se movía a ras de suelo y por las ramas: monos merodeando con descaro, lagartos cruzando como si tuvieran prisa y buitres apostados, pacientes, con ese aire de “yo ya estaba aquí antes que vosotros”.
+
+Nos recogieron y la primera escena del día fue pura Gambia: un sitio donde había montañas de cacahuetes y un ejército de mujeres seleccionando a mano, una por una, separando las buenas de las que no valen. No era un gesto “folclórico”: era trabajo fino, de ojo y dedos, y además tiene lógica sanitaria; apartar los granos dañados o mohosos ayuda a reducir problemas como la aflatoxina en los cacahuetes.
+
+De ahí fuimos a Abuko Nature Reserve, la reserva más clásica del país: pequeña en tamaño, pero intensa en ambiente, con senderos entre bosque de galería y zonas de sabana, siguiendo el curso del Lamin Stream.
+Y sí, se ve fauna, pero también con un matiz que conviene decir claro: Gambia no es el destino para “gran safari” de animales libres. Abuko tiene su encanto, sobre todo para aves y primates, pero parte de lo más llamativo está en recintos (como las hienas).
+
+Allí nos topamos con los babuinos de Guinea, listos como ellos solos.
+Había uno que parecía jugar con la gente: te dejaba acercarte lo justo… y cuando ya estabas confiado, te birlaba lo que pillara. Con Vicky le funcionó el truco: en un despiste le agarró las gafas de sol colgadas del jersey y, en un par de movimientos, las pasó entre las rejas. Cuando reaccionamos, ya era tarde: en segundos estaban hechas trizas. Lección aprendida: en África, el “mono simpático” dura lo que tarda en salirte caro.
+
+Y ahí llegó la anécdota surrealista del día. El guía me dijo que era hermano de John Carew, el gigante noruego delantero del Valencia CF. Sonaba a cuento, pero recordé que Carew llevaba “Alieu” en la camiseta por su abuelo. Le pregunté al guía cómo se llamaba su abuelo y me soltó: Alieu. Se le iluminó la cara cuando vio que yo era del Valencia y la historia quedó sellada para siempre, de esas que no sabes si te las han contado o te han pasado.
+
+Al salir, como si fuera la banda sonora permanente, volvieron los niños. Rodeándonos, riéndose, acompañándonos. En aquella época se llevaba mucho Messenger y todos los jóvenes nos daban su email; evidentemente no tenían ni ordenador ni internet, pero en aquella época se llevaban los cibers, locales donde por poco dinero estaban conectados a un ordenador un tiempo.
+
+A mediodía comimos en Lamin Lodge, un restaurante de madera metido entre manglares, sobre un brazo de agua que serpentea como si el río estuviera pensando. Es un sitio muy de postal: pasarelas, bancos de troncos, agua quieta y pájaros por todas partes.
+La marea estaba baja y el paisaje parecía más ancho. La comida fue sencilla —espaguetis— y el espectáculo, inevitable: monos calculando la distancia a tu plato con la precisión de un relojero. En cuanto parpadeabas, intentaban el golpe.
+
+Como nos quedamos con hambre y con ganas de rematar el día, decidimos ir a cenar a un italiano llevado por un español que vivía allí desde hacía años. Tocaba taxi… y el taxi resultó ser una especie de furgoneta sin techo, versión gambiana, con precio de risa para llevarnos, esperarse durante la cena y devolvernos al hotel. Uno de los de la excursión se puso a regatear. Yo ahí fui tajante: ni hablar. Ese hombre se merecía el precio y una propina. No todos los días te esperan en la puerta como si fueras alguien importante.
+
+Cenamos a gusto, volvimos al hotel, y ya de noche dejamos las maletas preparadas: al día siguiente tocaba moverse. Gambia empezaba a enseñarnos su verdad, y nosotros ya íbamos dentro.`,
+  },
+  {
+    day: 4,
+    title: "Makasutu, bolong y noche de tambores",
+    text: `Dejamos atrás el Hotel Senegambia, pusimos rumbo a Alla Kunda, pero antes nos esperaba una parada de las que te cambian el tono del viaje: Makasutu Cultural Forest, junto al meandro Mandina Bolong del río Gambia. Es un mosaico de ecosistemas —palmeral, manglar, selva densa y claros de sabana— donde el aire huele a agua dulce y a hojas calientes, y las aves parecen llevar el mando del cielo.
+
+Nos enseñaron el arte de trepar palmeras para alcanzar los cocos, con una técnica que mezcla fuerza, equilibrio y oficio antiguo. Luego nos adentramos por senderos sombríos, con el verde apretando por ambos lados, hasta subir a una canoa tallada en un tronco y deslizarnos por el bolong: remos suaves, silencio, y el río contando su historia con cada curva.
+
+En el agua vimos pescadores y mujeres trabajando con la marea, recogiendo ostras en zonas de manglar: manos rápidas, mirada práctica, y esa calma de quien conoce el río como si fuera un calendario. El paseo siguió a pie por el bosque, oliendo plantas, escuchando alas, leyendo huellas y sombras.
+
+Con el cuerpo ya bien “amasado”, comimos allí mismo y nos sorprendieron con una muestra de folclore y baile: tambores que te entran por el pecho, palmas que marcan el pulso y una alegría directa, sin artificio, de la que se contagia sin permiso.
+
+De camino al alojamiento, los paisajes se abrieron en campos fértiles a ambos lados, tierra roja y vida a ras de suelo. Ya por la tarde alcanzamos el Sindola Safari Lodge, en la zona de Kanilai, un alojamiento de “bush camp” con cabañas de techo vegetal y ambiente de refugio africano. Allí, la noche empezó antes de que cenáramos: ranas croando sin descanso, un auténtico concierto en do menor.
+
+Y tras la cena, el broche: un show multitudinario de tambores, música y bailes, con trajes tradicionales y energía de fiesta grande. Una de esas noches en las que entiendes que el viaje no solo se mira: también se escucha.`,
+  },
+];
+
+const daysSet = new Set(itinerario.map((d) => d.day));
+const nextExistingDay = (day: number): number | null => {
+  for (let i = day + 1; i <= 365; i++) {
+    if (daysSet.has(i)) return i;
+  }
+  return null;
+};
+---
+
+<BaseLayout title={`${title} | Ruta Base`}>
+  <style>
+    .hero{ position: relative; border-radius: 16px; overflow: hidden; border: 0; background: transparent; margin-bottom: 12px; }
+    .heroImg{ width: 100%; height: 320px; object-fit: cover; display: block; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 10px 24px rgba(0,0,0,0.10); }
+    .pad{ position: absolute; left: 0; right: 0; bottom: 0; padding: 10px; display: flex; justify-content: flex-start; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%); }
+    .caption{ display: inline-block; padding: 4px 8px; border-radius: 10px; background: rgba(255,255,255,0.35); border: 1px solid rgba(0,0,0,0.1); margin: 0; font-size: 13px; font-weight: 600; font-style: italic; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+    .pageTitle{ margin-top: 0; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px; }
+
+    .toc{ display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 16px; position: sticky; top: 10px; z-index: 5; backdrop-filter: blur(6px); background: rgba(255,255,255,0.7); padding: 8px; border-radius: 12px; }
+    .toc a{ display: inline-block; text-decoration: none; color: #1a0b2e; padding: 6px 10px; border-radius: 10px; background: rgba(255,255,255,0.65); border: 1px solid rgba(0,0,0,0.08); font-weight: 700; font-size: 13px; }
+    .toc a:hover{ background: rgba(155,120,255,0.22); }
+
+    details.sec{ border: 0; background: transparent; margin-bottom: 0; overflow: hidden; }
+    summary.secSummary{ display: none; }
+    .secBody{ padding: 0 14px 14px 14px; border-top: 1px solid rgba(0,0,0,0.08); }
+    details.sec[open]{ border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; background: rgba(255,255,255,0.75); margin-bottom: 12px; }
+    details.sec .secBody{ display: none; }
+    details.sec[open] .secBody{ display: block; }
+
+    .dots{ color:#666; margin:10px 0 0 0; }
+
+    .dayList{ display: grid; gap: 10px; margin-top: 10px; }
+    details.day{ border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; background: rgba(255,255,255,0.65); overflow: hidden; }
+    summary.daySummary{ list-style: none; cursor: pointer; padding: 12px; font-weight: 800; color: #1a0b2e; user-select: none; }
+    summary.daySummary::-webkit-details-marker{ display:none; }
+    .dayBody{ padding: 0 12px 12px 12px; border-top: 1px solid rgba(0,0,0,0.08); }
+    .dayText{ margin: 10px 0 0 0; color: #222; line-height: 1.7; white-space: pre-wrap; }
+    .nextRow{ margin-top: 12px; display: flex; justify-content: flex-end; }
+    .nextBtn{ display: inline-block; text-decoration: none; color: #1a0b2e; font-weight: 800; font-size: 13px; padding: 8px 10px; border-radius: 10px; background: rgba(155,120,255,0.22); border: 1px solid rgba(155,120,255,0.45); }
+    .nextBtn:hover{ background: rgba(155,120,255,0.30); }
+
+    .hotelList{ display: grid; gap: 12px; }
+    .hotelItem{ border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; background: rgba(255,255,255,0.7); overflow: hidden; }
+    .hotelToggle{
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      font-weight: 800;
+      font-size: 16px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+    .hotelTitle{ display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
+    .hotelStars{ color: #f2c84b; text-shadow: 0 1px 0 rgba(0,0,0,0.15); font-size: 16px; letter-spacing: 1px; }
+    .hotelToggle .hotelCaret{ font-size: 18px; opacity: 0.7; transform: rotate(-90deg); transition: transform 0.18s ease; }
+    .hotelItem.open .hotelToggle .hotelCaret{ transform: rotate(0deg); }
+    .hotelPanel{ display: none; padding: 0 14px 14px 14px; border-top: 1px solid rgba(0,0,0,0.08); }
+    .hotelItem.open .hotelPanel{ display: block; }
+    .hotelInfo{ display: grid; gap: 6px; margin-top: 10px; }
+    .hotelInfo a{ color: inherit; font-weight: 700; }
+    .hotelMedia{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .hotelPhoto{
+      width: 100%;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.1);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.18s ease;
+    }
+    .hotelPhoto:hover{
+      transform: scale(1.03);
+    }
+    .hotelMap{
+      width: 100%;
+      height: 240px;
+      border: 0;
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    .mapWrap{ display:flex; justify-content:center; margin-top:10px; }
+    .mapBox{ width: 55%; max-width: 340px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); background: rgba(255,255,255,0.65); }
+    .mapBtn{ padding:0; border:0; background:transparent; cursor:pointer; display:block; width:100%; }
+    .mapImg{ width:100%; height:auto; display:block; }
+
+    .noScroll{ overflow: hidden; }
+    .lightbox{ position: fixed; inset: 0; display: none; z-index: 9999; }
+    .lightbox.open{ display: block; }
+    .lbBackdrop{ position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+    .lbPanel{ position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; }
+    .lbImg{ max-width: min(92vw, 980px); max-height: 82vh; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); }
+    .lbClose{ position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color: #fff; font-size: 26px; line-height: 36px; cursor: pointer; }
+    .lbNav{ position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 56px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color: #fff; font-size: 34px; cursor: pointer; user-select: none; }
+    .lbPrev{ left: 14px; }
+    .lbNext{ right: 14px; }
+    .lbCounter{ position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(0,0,0,0.35); color: #fff; font-weight: 700; font-size: 12px; }
+  </style>
+
+  <div class="titleRow" style="position:relative; width:100%;">
+    <div class="titleNav" style="position:absolute; top:-16px; right:-6px; z-index:5; display:flex; align-items:center;">
+      <a class="titleArrow" href="/viajes/francia" aria-label="Anterior"><img src="/giroizquierda.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
+      <a class="titleArrow" href="/viajes/kenya" aria-label="Siguiente" style="margin-left:-8px;"><img src="/giroderecha.png" alt="" style="width:72px; height:72px; object-fit:contain; display:block;" /></a>
+    </div>
+    <h1 class="pageTitle">{title}</h1>
+  </div>
+
+  <div class="hero">
+    <img class="heroImg" src={cover} alt={title} />
+    <div class="pad">
+      <p class="muted caption">Portada del viaje por Gambia.</p>
+    </div>
+  </div>
+
+  <div class="toc">
+    <a href="#resumen">Resumen</a>
+    <a href="#itinerario">Itinerario</a>
+    <a href="#imprescindibles">Imprescindibles</a>
+    <a href="#costes">Costes</a>
+    <a href="#hoteles">Hoteles</a>
+    <a href="#mapa">Mapa</a>
+    <a href="#galeria">Galería</a>
+  </div>
+
+  <details class="sec" id="resumen">
+    <summary class="secSummary"><span>Resumen</span></summary>
+    <div class="secBody"><p class="dots">...</p></div>
+  </details>
+
+  <details class="sec" id="itinerario">
+    <summary class="secSummary"><span>Itinerario</span></summary>
+    <div class="secBody">
+      <div class="dayList">
+        {itinerario.map((d) => {
+          const nextDay = nextExistingDay(d.day);
+          const hasText = typeof d.text === "string" && d.text.trim().length > 0;
+          return (
+            <details class="day" id={`dia-${d.day}`}>
+              <summary class="daySummary">Día {d.day} - {d.title}</summary>
+              <div class="dayBody">
+                {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">...</p>}
+                {nextDay && (
+                  <div class="nextRow">
+                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día &#10148;</a>
+                  </div>
+                )}
+              </div>
+            </details>
+          );
+        })}
+      </div>
+    </div>
+  </details>
+
+  <details class="sec" id="imprescindibles">
+    <summary class="secSummary"><span>Imprescindibles</span></summary>
+    <div class="secBody"><p class="dots">...</p></div>
+  </details>
+
+  <details class="sec" id="costes">
+    <summary class="secSummary"><span>Costes</span></summary>
+    <div class="secBody"><p class="dots">...</p></div>
+  </details>
+
+  <details class="sec" id="hoteles">
+    <summary class="secSummary"><span>Hoteles</span></summary>
+    <div class="secBody">
+      <div class="hotelList">
+        <div class="hotelItem" data-hotel>
+          <button class="hotelToggle" type="button">
+            <span class="hotelTitle">
+              Senegambia Beach Hotel
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;</span>
+            </span>
+            <span class="hotelCaret">&#9662;</span>
+          </button>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div class="muted">Kololi, Banjul, Gambia</div>
+              <div class="muted">Precio: <strong>94 &euro;</strong> / noche</div>
+              <div class="muted">Web: <a href="https://senegambiahotel.com/" target="_blank" rel="noopener">senegambiahotel.com</a></div>
+            </div>
+            <div class="hotelMedia">
+              <img class="hotelPhoto" src="https://senegambiahotel.com/wp-content/uploads/2023/08/AfterlightImage4-1.jpg" alt="Senegambia Beach Hotel - foto 1" loading="lazy" />
+              <img class="hotelPhoto" src="https://senegambiahotel.com/wp-content/uploads/2023/08/AfterlightImage14-1.jpg" alt="Senegambia Beach Hotel - foto 2" loading="lazy" />
+              <img class="hotelPhoto" src="https://senegambiahotel.com/wp-content/uploads/2023/08/8109CDD0-0105-4D68-A11B-14905A799B3C-1.jpg" alt="Senegambia Beach Hotel - foto 3" loading="lazy" />
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d164868.72424515442!2d-16.767563388680177!3d13.461125154024376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec29a083f73013d%3A0xe8f413bd08a9e58f!2sSenegambia%20Beach%20Hotel!5e1!3m2!1ses!2ses!4v1771085307423!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Senegambia Beach Hotel"
+            ></iframe>
+          </div>
+        </div>
+        <div class="hotelItem" data-hotel>
+          <button class="hotelToggle" type="button">
+            <span class="hotelTitle">
+              Sindola Safari Lodge
+              <span class="hotelStars" aria-hidden="true">&#9733;&#9733;&#9733;</span>
+            </span>
+            <span class="hotelCaret">&#9662;</span>
+          </button>
+          <div class="hotelPanel">
+            <div class="hotelInfo">
+              <div class="muted">Alla Kunda, Gambia</div>
+              <div class="muted">Precio: <strong>49 &euro;</strong> / noche</div>
+            </div>
+            <iframe
+              class="hotelMap"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3884.8562815436712!2d-16.01072591114502!3d13.1714602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xee87057e44f7f2d%3A0xcbec7ca2a1b36a84!2sSindola%20Safari%20Lodge%20-%20Double%20Room%20Single%20Use%2C%20Non%20Smoking!5e0!3m2!1ses!2ses!4v1771096107840!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa Sindola Safari Lodge"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="sec" id="mapa">
+    <summary class="secSummary"><span>Mapa</span></summary>
+    <div class="secBody">
+      <div class="mapWrap">
+        <div class="mapBox">
+          <button class="mapBtn" type="button" id="openMap">
+            <img class="mapImg" src={mapSrc} alt={`Mapa de ${title}`} />
+          </button>
+        </div>
+      </div>
+      <p class="dots">Próximamente: mapa interactivo.</p>
+    </div>
+  </details>
+
+  <details class="sec" id="galeria">
+    <summary class="secSummary"><span>Galería</span></summary>
+    <div class="secBody"><p class="dots">...</p></div>
+  </details>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lbBackdrop" id="lbBackdrop"></div>
+    <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
+      <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
+      <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
+      <img class="lbImg" id="lbImg" alt="" />
+      <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
+      <div class="lbCounter" id="lbCounter">1 / 1</div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const getDetailsById = (id) => document.getElementById(id);
+      const openSection = (id) => {
+        const d = getDetailsById(id);
+        if (d && d.tagName.toLowerCase() === "details") d.open = true;
+        return d;
+      };
+      const closeAllSectionsExcept = (keepId) => {
+        document.querySelectorAll("details.sec").forEach((d) => {
+          if (d.id !== keepId) d.open = false;
+        });
+      };
+
+      const openFromHash = () => {
+        const raw = (location.hash || "").slice(1);
+        if (!raw) {
+          openSection("resumen");
+          closeAllSectionsExcept("resumen");
+          return;
+        }
+        if (raw.startsWith("dia-")) {
+          const it = openSection("itinerario");
+          closeAllSectionsExcept("itinerario");
+          const dayEl = document.getElementById(raw);
+          if (dayEl && dayEl.tagName.toLowerCase() === "details") {
+            dayEl.open = true;
+            setTimeout(() => dayEl.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          } else if (it) {
+            setTimeout(() => it.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+          }
+          return;
+        }
+        const sec = openSection(raw);
+        if (sec) {
+          closeAllSectionsExcept(raw);
+          setTimeout(() => sec.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+        }
+      };
+
+      document.querySelectorAll(".toc a").forEach((a) => {
+        a.addEventListener("click", () => {
+          const id = (a.getAttribute("href") || "").replace("#", "");
+          if (!id) return;
+          openSection(id);
+          closeAllSectionsExcept(id);
+        });
+      });
+
+      window.addEventListener("hashchange", openFromHash);
+      openFromHash();
+
+      const dayDetails = Array.from(document.querySelectorAll("details.day"));
+      dayDetails.forEach((d) => {
+        d.addEventListener("toggle", () => {
+          if (!d.open) return;
+          dayDetails.forEach((other) => {
+            if (other !== d) other.open = false;
+          });
+        });
+      });
+
+      const hotelItems = Array.from(document.querySelectorAll("[data-hotel]"));
+      hotelItems.forEach((item) => {
+        const btn = item.querySelector(".hotelToggle");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          hotelItems.forEach((other) => {
+            if (other !== item) other.classList.remove("open");
+          });
+          item.classList.toggle("open");
+        });
+      });
+
+      const lightbox = document.getElementById("lightbox");
+      const backdrop = document.getElementById("lbBackdrop");
+      const btnClose = document.getElementById("lbClose");
+      const btnPrev = document.getElementById("lbPrev");
+      const btnNext = document.getElementById("lbNext");
+      const imgEl = document.getElementById("lbImg");
+      const counter = document.getElementById("lbCounter");
+      const openMapBtn = document.getElementById("openMap");
+      if (!lightbox || !imgEl) return;
+
+      let activeImgs = [];
+      let index = 0;
+      let mode = "hotel";
+      const mapThumb = openMapBtn ? openMapBtn.querySelector("img") : null;
+      const MAP_SRC = mapThumb ? (mapThumb.getAttribute("src") || "") : "";
+
+      const setImage = (i) => {
+        if (!activeImgs.length) return;
+        index = (i + activeImgs.length) % activeImgs.length;
+        const src = activeImgs[index].getAttribute("src") || "";
+        const alt = activeImgs[index].getAttribute("alt") || "";
+        imgEl.setAttribute("src", src);
+        imgEl.setAttribute("alt", alt);
+        if (counter) counter.textContent = (index + 1) + " / " + activeImgs.length;
+      };
+
+      const openLightbox = () => {
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.documentElement.classList.add("noScroll");
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.documentElement.classList.remove("noScroll");
+        imgEl.removeAttribute("src");
+        mode = "hotel";
+      };
+
+      const hotelImgs = Array.from(document.querySelectorAll(".hotelPhoto"));
+      hotelImgs.forEach((img) => {
+        img.addEventListener("click", () => {
+          const hotelItem = img.closest(".hotelItem");
+          activeImgs = hotelItem ? Array.from(hotelItem.querySelectorAll(".hotelPhoto")) : [];
+          index = activeImgs.indexOf(img);
+          mode = "hotel";
+          if (btnPrev) btnPrev.style.display = "";
+          if (btnNext) btnNext.style.display = "";
+          setImage(index);
+          openLightbox();
+        });
+      });
+
+      const openMap = () => {
+        mode = "map";
+        imgEl.setAttribute("src", MAP_SRC);
+        imgEl.setAttribute("alt", "Mapa de Gambia");
+        if (counter) counter.textContent = "Mapa";
+        if (btnPrev) btnPrev.style.display = "none";
+        if (btnNext) btnNext.style.display = "none";
+        openLightbox();
+      };
+
+      const prev = () => setImage(index - 1);
+      const next = () => setImage(index + 1);
+
+      if (btnPrev) btnPrev.addEventListener("click", prev);
+      if (btnNext) btnNext.addEventListener("click", next);
+      if (btnClose) btnClose.addEventListener("click", closeLightbox);
+      if (backdrop) backdrop.addEventListener("click", closeLightbox);
+      if (openMapBtn) openMapBtn.addEventListener("dblclick", (e) => {
+        e.preventDefault();
+        if (lightbox.classList.contains("open") && mode === "map") closeLightbox();
+        else openMap();
+      });
+      imgEl.addEventListener("dblclick", () => {
+        if (mode === "map") closeLightbox();
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (mode !== "hotel") return;
+        if (e.key === "ArrowLeft") prev();
+        if (e.key === "ArrowRight") next();
+      });
+    })();
+  </script>
+</BaseLayout>
