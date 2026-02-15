@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 type Dia = {
@@ -10,6 +10,11 @@ type Dia = {
 const title = "Gambia";
 const cover = "/portadagambia.jpg";
 const mapSrc = "/maps/mapgambia.jpg";
+const gambiaGallery = Array.from({ length: 35 }, (_, i) => {
+  const n = i + 1;
+  const ext = n === 22 ? "png" : "jpg";
+  return `/galeria/gam${n}.${ext}`;
+});
 
 const itinerario: Dia[] = [
   {
@@ -17,11 +22,11 @@ const itinerario: Dia[] = [
     title: "Llegada a Banjul",
     text: `Salimos de Valencia el 27 de julio de 2006, a las 10:00, rumbo a Banjul, la capital de Gambia, vía Madrid con Spanair. A esas horas todo parecía fácil: maletas recién cerradas, cabeza despejada y la sensación de que lo duro todavía no había empezado.
 
-En Barajas el viaje cambió de pulso: pantallas, colas, anuncios por megafonía y, de golpe, el grupo completo cuando nos juntamos con los amigos que venían desde Barcelona. Ese reencuentro en un aeropuerto siempre tiene algo especial: abrazos rápidos, bromas de “ya estamos” y la certeza de que, a partir de ahí, la aventura ya no es individual, es de equipo.
+En Barajas el viaje cambió de pulso: pantallas, colas, anuncios por megafonía y, de golpe, el grupo completo cuando nos juntamos con los amigos que venían desde Barcelona. Ese reencuentro en un aeropuerto siempre tiene algo especial: abrazos rápidos, bromas de "ya estamos" y la certeza de que, a partir de ahí, la aventura ya no es individual, es de equipo.
 
 Llegamos al Aeropuerto Internacional de Banjul pasadas las 20:00 y ya era noche. El primer contacto fue intenso: la salida se volvió algo caótica y en el control de aduanas vimos un sistema que no iba fino; la escena daba la impresión de improvisación y de autoridad ejercida a mano, con registros que podían acabar en requisas incluso de material que algunos viajeros traían con intención humanitaria. No era la mejor bienvenida, pero sí una de esas que te aterrizan de golpe en otro continente.
 
-Subimos a un autobús que nos fue repartiendo por los hoteles, y por las ventanillas empezó a dibujarse Banjul: una capital pequeña y administrativa, asentada en una isla baja (St. Mary’s Island) entre el río Gambia y el Atlántico. No es una ciudad de rascacielos ni de grandes avenidas; es más bien un lugar de puerto, ministerios y mercados, con calles sencillas, vida al ritmo del calor y una frontera muy marcada entre lo oficial y lo cotidiano. En el centro late el Albert Market, el típico mercado donde se entiende el país sin necesidad de guías: fruta, telas, olor a especias, voces y regateo. Y como telón de fondo, el río, que en Banjul no es paisaje: es ruta, trabajo y salida al mundo.
+Subimos a un autobús que nos fue repartiendo por los hoteles, y por las ventanillas empezó a dibujarse Banjul: una capital pequeña y administrativa, asentada en una isla baja (St. Mary's Island) entre el río Gambia y el Atlántico. No es una ciudad de rascacielos ni de grandes avenidas; es más bien un lugar de puerto, ministerios y mercados, con calles sencillas, vida al ritmo del calor y una frontera muy marcada entre lo oficial y lo cotidiano. En el centro late el Albert Market, el típico mercado donde se entiende el país sin necesidad de guías: fruta, telas, olor a especias, voces y regateo. Y como telón de fondo, el río, que en Banjul no es paisaje: es ruta, trabajo y salida al mundo.
 
 Nuestro destino final fue el Senegambia Beach Hotel, a 17 km de Banjul, en primera línea de playa. Llegamos ya con la noche cerrada y esa mezcla de cansancio y euforia de los comienzos grandes. En la habitación nos esperaba una carta de bienvenida de Club Vacaciones: breve, directa y con cita marcada para el día siguiente a las 11:00, meeting oficial para organizar la semana. Era como si el viaje, después del caos de aeropuertos y aduanas, por fin hubiera encontrado su compás.`,
   },
@@ -32,58 +37,109 @@ Nuestro destino final fue el Senegambia Beach Hotel, a 17 km de Banjul, en prime
 
 A media tarde apareció el jeep y nos llevó hacia Bakau, al Kachikally Crocodile Pool, uno de esos lugares que no se visitan: se atraviesan con respeto. Nada más bajar y plantar el pie en tierra, nos rodeó una tropa de críos como salida de la nada: risas, manos buscando las tuyas, ganas de caminar pegados a ti. Lo más llamativo fue lo que no hicieron: no venían a mendigar; venían a saludar, a curiosear, a darte la bienvenida a su manera.
 
-El recinto del Kachikally es un pequeño santuario urbano con museo y un estanque considerado sagrado, famoso por los rituales y creencias vinculadas a fertilidad, prosperidad y protección. Allí los cocodrilos no son solo animales: forman parte del imaginario del lugar, de la tradición, de la relación entre la gente y el agua.
-Y sí, estaban por todas partes, quietos, antiguos, con esa calma que impone más que un rugido. Nos hicimos fotos a pocos centímetros, en cuclillas, creyendo que controlábamos la escena… hasta que te das cuenta de lo rápido que puede cambiar todo si un reptil de ese tamaño decide moverse. Salimos enteros, pero con la lección aprendida.
+El recinto del Kachikally es un pequeño santuario urbano con museo y un estanque considerado sagrado, famoso por los rituales y creencias vinculadas a fertilidad, prosperidad y protección. Allí los cocodrilos no son solo animales: forman parte del imaginario del lugar, de la tradición, de la relación entre la gente y el agua. Y sí, estaban por todas partes, quietos, antiguos, con esa calma que impone más que un rugido. Nos hicimos fotos a pocos centímetros, en cuclillas, creyendo que controlábamos la escena... hasta que te das cuenta de lo rápido que puede cambiar todo si un reptil de ese tamaño decide moverse. Salimos enteros, pero con la lección aprendida.
 
-Antes de marcharnos nos hicimos otra foto junto a una ceiba enorme, el árbol del kapok o “algodón de seda”, de esas presencias vegetales que parecen un monumento natural. Se decía que rondaba los trescientos años, y no costaba creerlo: tronco poderoso, sombra seria y ese aire de árbol importante que en África occidental suele venir acompañado de historias.
+Antes de marcharnos nos hicimos otra foto junto a una ceiba enorme, el árbol del kapok o "algodón de seda", de esas presencias vegetales que parecen un monumento natural. Se decía que rondaba los trescientos años, y no costaba creerlo: tronco poderoso, sombra seria y ese aire de árbol importante que en África occidental suele venir acompañado de historias.
 
-El siguiente golpe fue el mercado de Serrekunda, un laberinto vivo en la ciudad más poblada del país: calles de tierra, puestos interminables, telas, fruta, cacharros, voces cruzadas y un pulso que te arrastra sin pedir permiso. Es el tipo de mercado que funciona como un corazón: no es “turístico”, es cotidiano, y por eso engancha.
+El siguiente golpe fue el mercado de Serrekunda, un laberinto vivo en la ciudad más poblada del país: calles de tierra, puestos interminables, telas, fruta, cacharros, voces cruzadas y un pulso que te arrastra sin pedir permiso. Es el tipo de mercado que funciona como un corazón: no es "turístico", es cotidiano, y por eso engancha.
 Las lluvias de días anteriores habían dejado algunas zonas convertidas en un barrizal de manual; caminar era elegir cada paso. Y aun así, todo seguía: vender, comprar, regatear, cargar, reír.
 
 Paramos a tomar una Coca-Cola. De allí fuimos a Tanji Village, un poblado pesquero donde el aire te avisa antes que los ojos. El olor es fuerte, directo, y tiene explicación: allí el pescado se limpia, se trabaja y se ahúma como método de conservación, porque no siempre hay frío suficiente para guardar como haríamos en Europa. La playa era un escenario en marcha: barcas entrando a la orilla, gaviotas girando como si supieran el guion, mujeres esperando el género, y chavales ayudando en la descarga con una naturalidad que te deja callado. Muchas mujeres se metían en el océano hasta la cintura y, sobre la cabeza, llevaban cestas de pescado como si el equilibrio fuera una extensión natural del cuerpo.
 
 Nosotros llevábamos bolígrafos y en cada parada repetimos el mismo ritual: organizarlos en fila y darles un detalle a cada uno. Sin teatro. Solo un gesto sencillo, de esos que no cambian un país, pero sí un minuto.
 
-De vuelta al hotel, cerramos el día como había que cerrarlo: caminata hasta la orilla para ver el atardecer en el Atlántico. Para los que venimos de la costa este de España, ver caer el sol en el mar es casi un lujo raro, una escena que parece prestada. Ese naranja bajando despacio fue el primer “vale, estamos en África” de verdad.`,
+De vuelta al hotel, cerramos el día como había que cerrarlo: caminata hasta la orilla para ver el atardecer en el Atlántico. Para los que venimos de la costa este de España, ver caer el sol en el mar es casi un lujo raro, una escena que parece prestada. Ese naranja bajando despacio fue el primer "vale, estamos en África" de verdad.`,
   },
   {
     day: 3,
     title: "Abuko, manglares y noche de taxis",
-    text: `Por la mañana, bajar a desayunar ya era un safari. En el hotel la vida se movía a ras de suelo y por las ramas: monos merodeando con descaro, lagartos cruzando como si tuvieran prisa y buitres apostados, pacientes, con ese aire de “yo ya estaba aquí antes que vosotros”.
+    text: `Por la mañana, bajar a desayunar ya era un safari. En el hotel la vida se movía a ras de suelo y por las ramas: monos merodeando con descaro, lagartos cruzando como si tuvieran prisa y buitres apostados, pacientes, con ese aire de "yo ya estaba aquí antes que vosotros".
 
-Nos recogieron y la primera escena del día fue pura Gambia: un sitio donde había montañas de cacahuetes y un ejército de mujeres seleccionando a mano, una por una, separando las buenas de las que no valen. No era un gesto “folclórico”: era trabajo fino, de ojo y dedos, y además tiene lógica sanitaria; apartar los granos dañados o mohosos ayuda a reducir problemas como la aflatoxina en los cacahuetes.
+Nos recogieron y la primera escena del día fue pura Gambia: un sitio donde había montañas de cacahuetes y un ejército de mujeres seleccionando a mano, una por una, separando las buenas de las que no valen. No era un gesto "folclórico": era trabajo fino, de ojo y dedos, y además tiene lógica sanitaria; apartar los granos dañados o mohosos ayuda a reducir problemas como la aflatoxina en los cacahuetes.
 
-De ahí fuimos a Abuko Nature Reserve, la reserva más clásica del país: pequeña en tamaño, pero intensa en ambiente, con senderos entre bosque de galería y zonas de sabana, siguiendo el curso del Lamin Stream.
-Y sí, se ve fauna, pero también con un matiz que conviene decir claro: Gambia no es el destino para “gran safari” de animales libres. Abuko tiene su encanto, sobre todo para aves y primates, pero parte de lo más llamativo está en recintos (como las hienas).
+De ahí fuimos a Abuko Nature Reserve, la reserva más clásica del país: pequeña en tamaño, pero intensa en ambiente, con senderos entre bosque de galería y zonas de sabana, siguiendo el curso del Lamin Stream. Y sí, se ve fauna, pero también con un matiz que conviene decir claro: Gambia no es el destino para "gran safari" de animales libres. Abuko tiene su encanto, sobre todo para aves y primates, pero parte de lo más llamativo está en recintos (como las hienas).
 
-Allí nos topamos con los babuinos de Guinea, listos como ellos solos.
-Había uno que parecía jugar con la gente: te dejaba acercarte lo justo… y cuando ya estabas confiado, te birlaba lo que pillara. Con Vicky le funcionó el truco: en un despiste le agarró las gafas de sol colgadas del jersey y, en un par de movimientos, las pasó entre las rejas. Cuando reaccionamos, ya era tarde: en segundos estaban hechas trizas. Lección aprendida: en África, el “mono simpático” dura lo que tarda en salirte caro.
+Allí nos topamos con los babuinos de Guinea, listos como ellos solos. Había uno que parecía jugar con la gente: te dejaba acercarte lo justo... y cuando ya estabas confiado, te birlaba lo que pillara. Con Vicky le funcionó el truco: en un despiste le agarró las gafas de sol colgadas del jersey y, en un par de movimientos, las pasó entre las rejas. Cuando reaccionamos, ya era tarde: en segundos estaban hechas trizas. Lección aprendida: en África, el "mono simpático" dura lo que tarda en salirte caro.
 
-Y ahí llegó la anécdota surrealista del día. El guía me dijo que era hermano de John Carew, el gigante noruego delantero del Valencia CF. Sonaba a cuento, pero recordé que Carew llevaba “Alieu” en la camiseta por su abuelo. Le pregunté al guía cómo se llamaba su abuelo y me soltó: Alieu. Se le iluminó la cara cuando vio que yo era del Valencia y la historia quedó sellada para siempre, de esas que no sabes si te las han contado o te han pasado.
+Y ahí llegó la anécdota surrealista del día. El guía me dijo que era hermano de John Carew, el gigante noruego delantero del Valencia CF. Sonaba a cuento, pero recordé que Carew llevaba "Alieu" en la camiseta por su abuelo. Le pregunté al guía cómo se llamaba su abuelo y me soltó: Alieu. Se le iluminó la cara cuando vio que yo era del Valencia y la historia quedó sellada para siempre, de esas que no sabes si te las han contado o te han pasado.
 
 Al salir, como si fuera la banda sonora permanente, volvieron los niños. Rodeándonos, riéndose, acompañándonos. En aquella época se llevaba mucho Messenger y todos los jóvenes nos daban su email; evidentemente no tenían ni ordenador ni internet, pero en aquella época se llevaban los cibers, locales donde por poco dinero estaban conectados a un ordenador un tiempo.
 
 A mediodía comimos en Lamin Lodge, un restaurante de madera metido entre manglares, sobre un brazo de agua que serpentea como si el río estuviera pensando. Es un sitio muy de postal: pasarelas, bancos de troncos, agua quieta y pájaros por todas partes.
-La marea estaba baja y el paisaje parecía más ancho. La comida fue sencilla —espaguetis— y el espectáculo, inevitable: monos calculando la distancia a tu plato con la precisión de un relojero. En cuanto parpadeabas, intentaban el golpe.
+La marea estaba baja y el paisaje parecía más ancho. La comida fue sencilla -espaguetis- y el espectáculo, inevitable: monos calculando la distancia a tu plato con la precisión de un relojero. En cuanto parpadeabas, intentaban el golpe.
 
-Como nos quedamos con hambre y con ganas de rematar el día, decidimos ir a cenar a un italiano llevado por un español que vivía allí desde hacía años. Tocaba taxi… y el taxi resultó ser una especie de furgoneta sin techo, versión gambiana, con precio de risa para llevarnos, esperarse durante la cena y devolvernos al hotel. Uno de los de la excursión se puso a regatear. Yo ahí fui tajante: ni hablar. Ese hombre se merecía el precio y una propina. No todos los días te esperan en la puerta como si fueras alguien importante.
+Como nos quedamos con hambre y con ganas de rematar el día, decidimos ir a cenar a un italiano llevado por un español que vivía allí desde hacía años. Tocaba taxi... y el taxi resultó ser una especie de furgoneta sin techo, versión gambiana, con precio de risa para llevarnos, esperarse durante la cena y devolvernos al hotel. Uno de los de la excursión se puso a regatear. Yo ahí fui tajante: ni hablar. Ese hombre se merecía el precio y una propina. No todos los días te esperan en la puerta como si fueras alguien importante.
 
 Cenamos a gusto, volvimos al hotel, y ya de noche dejamos las maletas preparadas: al día siguiente tocaba moverse. Gambia empezaba a enseñarnos su verdad, y nosotros ya íbamos dentro.`,
   },
   {
     day: 4,
     title: "Makasutu, bolong y noche de tambores",
-    text: `Dejamos atrás el Hotel Senegambia, pusimos rumbo a Alla Kunda, pero antes nos esperaba una parada de las que te cambian el tono del viaje: Makasutu Cultural Forest, junto al meandro Mandina Bolong del río Gambia. Es un mosaico de ecosistemas —palmeral, manglar, selva densa y claros de sabana— donde el aire huele a agua dulce y a hojas calientes, y las aves parecen llevar el mando del cielo.
+    text: `Dejamos atrás el Hotel Senegambia, pusimos rumbo a Alla Kunda, pero antes nos esperaba una parada de las que te cambian el tono del viaje: Makasutu Cultural Forest, junto al meandro Mandina Bolong del río Gambia. Es un mosaico de ecosistemas -palmeral, manglar, selva densa y claros de sabana- donde el aire huele a agua dulce y a hojas calientes, y las aves parecen llevar el mando del cielo.
 
 Nos enseñaron el arte de trepar palmeras para alcanzar los cocos, con una técnica que mezcla fuerza, equilibrio y oficio antiguo. Luego nos adentramos por senderos sombríos, con el verde apretando por ambos lados, hasta subir a una canoa tallada en un tronco y deslizarnos por el bolong: remos suaves, silencio, y el río contando su historia con cada curva.
 
 En el agua vimos pescadores y mujeres trabajando con la marea, recogiendo ostras en zonas de manglar: manos rápidas, mirada práctica, y esa calma de quien conoce el río como si fuera un calendario. El paseo siguió a pie por el bosque, oliendo plantas, escuchando alas, leyendo huellas y sombras.
 
-Con el cuerpo ya bien “amasado”, comimos allí mismo y nos sorprendieron con una muestra de folclore y baile: tambores que te entran por el pecho, palmas que marcan el pulso y una alegría directa, sin artificio, de la que se contagia sin permiso.
+Con el cuerpo ya bien "amasado", comimos allí mismo y nos sorprendieron con una muestra de folclore y baile: tambores que te entran por el pecho, palmas que marcan el pulso y una alegría directa, sin artificio, de la que se contagia sin permiso.
 
-De camino al alojamiento, los paisajes se abrieron en campos fértiles a ambos lados, tierra roja y vida a ras de suelo. Ya por la tarde alcanzamos el Sindola Safari Lodge, en la zona de Kanilai, un alojamiento de “bush camp” con cabañas de techo vegetal y ambiente de refugio africano. Allí, la noche empezó antes de que cenáramos: ranas croando sin descanso, un auténtico concierto en do menor.
+De camino al alojamiento, los paisajes se abrieron en campos fértiles a ambos lados, tierra roja y vida a ras de suelo. Ya por la tarde alcanzamos el Sindola Safari Lodge, en la zona de Kanilai, un alojamiento de "bush camp" con cabañas de techo vegetal y ambiente de refugio africano. Allí, la noche empezó antes de que cenáramos: ranas croando sin descanso, un auténtico concierto en do menor.
 
 Y tras la cena, el broche: un show multitudinario de tambores, música y bailes, con trajes tradicionales y energía de fiesta grande. Una de esas noches en las que entiendes que el viaje no solo se mira: también se escucha.`,
+  },
+  {
+    day: 5,
+    title: "Tendaba, manglares y safari en llovizna",
+    text: `Desayunamos y nos pusimos en ruta hacia Tendaba Camp, un alojamiento sencillo a orillas del río Gambia, conocido por sus salidas en barca y por la cantidad de vida que se concentra en los manglares y canales de la zona.
+
+Nada más llegar, tocaba lo mejor: subir a piraguas típicas africanas y meternos por los afluentes del río. Navegamos por Duntu Malang, un brazo de agua estrecho y sinuoso, con las orillas llenas de raíces, barro y movimiento. Había cangrejos por todas partes, y sobre nuestras cabezas un desfile continuo de aves: unas planeando, otras posadas, otras pescando, todas con ese dominio natural del lugar. Era de esos paisajes que te obligan a mirar en silencio.
+
+Volvimos al campamento para el avituallamiento y, por la tarde, continuó el safari fotográfico en jeep. Nos cayó una llovizna ligera y tocó sacar los chubasqueros, pero no frenó nada; el camino seguía, y el verde se volvía aún más intenso con el agua. Vimos algún animal y, sobre todo, muchas aves. Gambia no es Kenia ni Tanzania: aquí no vas a encontrar a los "cinco grandes" en libertad, pero sí escenas pequeñas que suman mucho.
+
+Al caer la tarde regresamos. Y como siempre en África, el día se despidió con una puesta de sol de las que parecen irreales: el cielo ardiendo durante unos minutos y, después, la noche cayendo de golpe.`,
+  },
+  {
+    day: 6,
+    title: "Regreso, ayuda y atardecer en Senegambia",
+    text: `Nos tocaba despedirnos del Sindola Safari Lodge. Recorrimos por última vez sus instalaciones y no podíamos dejar pasar la foto de rigor: los puentes de madera que cruzan entre sus estanques, con esa calma húmeda alrededor, mientras esperábamos a que nos recogiera el autobús de Gambia Tours.
+
+Había también una familia de Madrid —tíos y primos— muy agradable que se unió al tour. Venían con sus hijas y sobrinas, de entre 9 y 14 años, y se lo pasaban en grande. Habían pensado en Disney, pero los padres decidieron otra cosa: que vieran de primera mano que existe un mundo sin ordenadores ni PlayStation, para ampliarles la mirada y darles una lección de vida de las que se aprenden viajando.
+
+El traslado hacia el siguiente destino fue un espectáculo en sí mismo: carreteras de tierra roja, polvo fino en suspensión, y enormes termiteros levantándose en las orillas como pequeñas catedrales. A ambos lados, niños llamando nuestra atención, saludando, corriendo junto al camino. En el bus nos avisaron de algo importante: no lanzar nada por las ventanas, porque los más pequeños se tiran hacia la carretera para cogerlo y puede ocurrir una tragedia bajo las ruedas. Aquello nos dejó tocados.
+
+Y fue ahí cuando el grupo entero empezó a darle vueltas a lo mismo: cómo ayudar, aunque fuera con un gesto simple, a la gente tan amable de Gambia. Se decidió parar en un poblado para comprar alimentos básicos en un ultramarinos: sacos de 50 kg de arroz, legumbres y bienes de primera necesidad, con la idea de entregarlo aleatoriamente a una familia durante el recorrido.
+
+Con todo comprado, yo me desmarqué del grupo. Vi a unos niños jugando al fútbol con una pelota hecha de bolsas de plástico, y decidí comprarles un balón. Entré en una tienda que tenía una malla llena de balones. Pregunté el precio de uno... y me sorprendió. Así que hice lo que me salió del alma: compré toda la malla. Repartimos los balones entre los chavales y nos echamos una pachanguita espontánea allí mismo. Cosas así no se olvidan nunca.
+
+Seguimos la ruta y decidimos el lugar donde parar para entregar la ayuda. El guía bajó primero para preguntar si la aceptaban. La respuesta fue positiva, así que bajamos todo lo que habíamos comprado. La señora, agradecida, se brindó a enseñarnos su casa. Esa gente no tiene nada... y aun así te lo da todo. La vivienda estaba llena de niños, así que la ayuda iba a venirles realmente bien.
+
+Continuamos el camino y paramos a comer en el Lamin Lodge, el lugar de los espaguetis y los monos de unos días antes. Y sí: a nuestra llegada parecía que había todavía más monos que la otra vez, como si ya nos tuvieran fichados.
+
+Después de comer hicimos una parada en Brikama, en un mercado de artesanía donde el país se resume en objetos: tallas de madera, máscaras, tambores, cestas trenzadas, telas de colores y ese regateo amable que forma parte del juego. Brikama es conocida precisamente por eso, por su tradición de carpintería y artesanía; aquí las manos trabajan y el viajero acaba mirando dos veces, porque siempre hay algo que te llama.
+
+Vuelta al hotel. Nos recibió de nuevo el Senegambia Beach Hotel, y aún nos dio tiempo de cerrar el día con otra imagen que se queda para siempre: la puesta de sol en el Atlántico, espectacular como siempre. Luego, cena y descanso.`,
+  },
+  {
+    day: 7,
+    title: "Tumani Tenda: escuela, lluvia y regreso",
+    text: `Amanecimos en el Senegambia Beach Hotel y nos subimos a un gran camión reconvertido en "autobús turístico". Rumbo al interior, el paisaje cambiaba a cada kilómetro: menos costa, más tierra roja y más vida de pueblo.
+
+Nuestro destino era Tumani Tenda, una aldea jola ligada a un proyecto comunitario de ecoturismo, junto a un brazo de agua conectado con el río Gambia. Es un sitio pequeño, de los que funcionan por familias grandes y por cooperación, y eso se nota en cuanto pisas el lugar.
+
+Lo prioritario era entregar al jefe del poblado todo el material sanitario y didáctico que traíamos desde España. Él era quien debía repartirlo según las necesidades reales de cada familia, para evitar el conflicto que podría surgir si lo dábamos nosotros "a ojo", a quien no lo necesita o dejando a otros fuera.
+
+Después recorrimos el poblado hasta la escuela. Allí nos esperaban casi cien niños, todos con uniforme, cantándonos una canción de bienvenida en inglés. Los profesores nos contaron el día a día, entramos en las aulas y pasamos un buen rato con los peques: miradas curiosas, risas rápidas, y esa naturalidad que te desarma.
+
+Luego nos llevaron a comer a una palapa típica a orillas del río, a pocos metros de Tumani Tenda. Las mujeres del poblado cocinaron varios platos de la gastronomía local y lo acompañaron con baile y música, todo muy directo y alegre. Y cuando la lluvia decidió aparecer, recogimos los bártulos a toda prisa y volvimos a subir al camión despitralado que nos devolvió al hotel, empapados por fuera y contentos por dentro.`,
+  },
+  {
+    day: 8,
+    title: "Gambia llegó a su fin",
+    text: `Gambia llegó a su fin. Por la mañana, camino del aeropuerto, vimos que muchas aldeas estaban anegadas de agua: la lluvia había hecho estragos. Y aun así, allí no había quejas ni teatro; había gente. Todos colaboraban con pozales y con los pocos recursos que tenían para sacar el agua y recomponer lo que se podía. Era, tal cual, el hombre contra la naturaleza.
+
+Nuestro avión salió con destino a Madrid a media mañana. En Barajas nos despedimos de Mari y Jesús y nos emplazamos para más adelante volver a vernos. Pero allí se separaban nuestros caminos: ellos a Barcelona y nosotros a Valencia.
+
+Nuestro vuelo de Iberia salía a las 19:40. Y con ese despegue se puso el punto final a aquellos días vividos en Gambia: intensos, humanos, distintos. Nos llevamos muchas cosas, pero sobre todo una: esas sonrisas que vimos allí, que ya no se nos borraron jamás.`,
   },
 ];
 
@@ -184,6 +240,25 @@ const nextExistingDay = (day: number): number | null => {
     .mapBtn{ padding:0; border:0; background:transparent; cursor:pointer; display:block; width:100%; }
     .mapImg{ width:100%; height:auto; display:block; }
 
+    #galeria h3{ margin: 14px 0 8px 0; font-size: 15px; color: #1a0b2e; }
+    .photoGrid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .photoBtn{ padding: 0; border: 0; background: transparent; cursor: pointer; }
+    .photoBtn img{
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.10);
+      display: block;
+      transition: transform 0.18s ease;
+    }
+    .photoBtn:hover img{ transform: scale(1.03); }
+
     .noScroll{ overflow: hidden; }
     .lightbox{ position: fixed; inset: 0; display: none; z-index: 9999; }
     .lightbox.open{ display: block; }
@@ -224,7 +299,16 @@ const nextExistingDay = (day: number): number | null => {
 
   <details class="sec" id="resumen">
     <summary class="secSummary"><span>Resumen</span></summary>
-    <div class="secBody"><p class="dots">...</p></div>
+    <div class="secBody">
+      <p>
+        Todo empezó dos años antes en Irlanda, cuando conocimos a Mari y Jesús, una pareja de Tarragona de las que te lo ponen fácil desde el minuto uno. Hicimos amistad, nos reímos un montón y encajamos tan bien que en el siguiente viaje pensaron con nosotros: viajar juntos a Gambia.
+      </p>
+      <p>
+        Del 27 de julio al regreso, Gambia fue una mezcla de costa y interior: llegada nocturna a Banjul, base en el Senegambia Beach Hotel y primeras excursiones entre cocodrilos en Kachikally, el barro y el pulso del mercado de Serrekunda, y el ambiente pesquero de Tanji, rematado con atardeceres en el Atlántico. Vimos también la Gambia natural en Abuko, con la anécdota del babuino que destrozó las gafas de Vicky y la historia del guía ligado a John Carew. En el interior, Makasutu y Tendaba nos dieron manglares, piraguas, aves y safaris suaves, además de noches potentes en el Sindola Safari Lodge con tambores y baile.
+      </p>
+      <p>
+        Lo más humano del viaje llegó en carretera: decidimos comprar comida básica para una familia, y además compramos una malla de balones para unos críos que jugaban con una pelota de bolsas y acabamos en pachanga improvisada. Hubo visita solidaria a Tumani Tenda (entrega de material, escuela y comida local) y, en la despedida, vimos aldeas inundadas por la lluvia con la gente achicando agua a mano. Regreso vía Barajas, despedida de Mari y Jesús, y vuelta a casa con una idea clara: Gambia no se recuerda por lujos, sino por su gente y su alegría.
+      </p></div>
   </details>
 
   <details class="sec" id="itinerario">
@@ -241,7 +325,7 @@ const nextExistingDay = (day: number): number | null => {
                 {hasText ? <p class="dayText">{d.text}</p> : <p class="dots">...</p>}
                 {nextDay && (
                   <div class="nextRow">
-                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente día &#10148;</a>
+                    <a class="nextBtn" href={`#dia-${nextDay}`}>Siguiente dia &#10148;</a>
                   </div>
                 )}
               </div>
@@ -334,20 +418,27 @@ const nextExistingDay = (day: number): number | null => {
       </div>
       <p class="dots">Próximamente: mapa interactivo.</p>
     </div>
-  </details>
-
-  <details class="sec" id="galeria">
+  </details>  <details class="sec" id="galeria">
     <summary class="secSummary"><span>Galería</span></summary>
-    <div class="secBody"><p class="dots">...</p></div>
+    <div class="secBody">
+      <h3>Fotos</h3>
+      <div class="photoGrid" id="photoGrid">
+        {gambiaGallery.map((src, idx) => (
+          <button class="photoBtn" type="button">
+            <img src={src} alt={`Gambia ${idx + 1}`} loading="lazy" />
+          </button>
+        ))}
+      </div>
+    </div>
   </details>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lbBackdrop" id="lbBackdrop"></div>
     <div class="lbPanel" role="dialog" aria-modal="true" aria-label="Galería">
       <button class="lbClose" type="button" id="lbClose" aria-label="Cerrar">×</button>
-      <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior">‹</button>
+      <button class="lbNav lbPrev" type="button" id="lbPrev" aria-label="Anterior"><</button>
       <img class="lbImg" id="lbImg" alt="" />
-      <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">›</button>
+      <button class="lbNav lbNext" type="button" id="lbNext" aria-label="Siguiente">></button>
       <div class="lbCounter" id="lbCounter">1 / 1</div>
     </div>
   </div>
@@ -434,8 +525,10 @@ const nextExistingDay = (day: number): number | null => {
       const imgEl = document.getElementById("lbImg");
       const counter = document.getElementById("lbCounter");
       const openMapBtn = document.getElementById("openMap");
+      const grid = document.getElementById("photoGrid");
       if (!lightbox || !imgEl) return;
 
+      const galleryImgs = grid ? Array.from(grid.querySelectorAll("img")) : [];
       let activeImgs = [];
       let index = 0;
       let mode = "hotel";
@@ -464,7 +557,22 @@ const nextExistingDay = (day: number): number | null => {
         document.documentElement.classList.remove("noScroll");
         imgEl.removeAttribute("src");
         mode = "hotel";
+        activeImgs = [];
       };
+
+      if (grid) {
+        grid.addEventListener("click", (e) => {
+          const targetImg = e.target && e.target.closest ? e.target.closest("img") : null;
+          if (!targetImg) return;
+          activeImgs = galleryImgs;
+          index = galleryImgs.indexOf(targetImg);
+          mode = "photos";
+          if (btnPrev) btnPrev.style.display = "";
+          if (btnNext) btnNext.style.display = "";
+          setImage(index);
+          openLightbox();
+        });
+      }
 
       const hotelImgs = Array.from(document.querySelectorAll(".hotelPhoto"));
       hotelImgs.forEach((img) => {
@@ -509,10 +617,26 @@ const nextExistingDay = (day: number): number | null => {
       window.addEventListener("keydown", (e) => {
         if (!lightbox.classList.contains("open")) return;
         if (e.key === "Escape") closeLightbox();
-        if (mode !== "hotel") return;
+        if (mode !== "hotel" && mode !== "photos") return;
         if (e.key === "ArrowLeft") prev();
         if (e.key === "ArrowRight") next();
       });
     })();
   </script>
 </BaseLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
